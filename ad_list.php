@@ -175,7 +175,7 @@ include('categories_left.php');
                               </div>
 							  <a href="/easyads/items?item=<?php echo $id; ?>">
                               <div class="item-img-grid">
-                                 <img alt="" width="350" src="<?php echo '/easyads/ads_images/'.$cover; ?>" class="img-responsive img-center">
+                                 <img alt="" width="350" src="<?php echo '/easyads/ads_images/small_'.$cover; ?>" class="img-responsive img-center">
                               </div>
                               <div class="item-title">
                                  

@@ -14,7 +14,7 @@ if(!isset($_SESSION['user'])){
 					<div class="col-sm-8 col-sm-offset-2">
 						<div class="login-panel widget top-space">
 							<div class="login-body">
-								<form action="/easyads/preview.php" method="POST" class="row">
+								<form id="forma" action="/easyads/preview.php" method="POST" class="row">
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Ad Title <span class="required">*</span></label>
 										<div class="col-sm-9">
@@ -222,7 +222,7 @@ for($i=1994;$i<2017;$i++){
 									</div>
 									<div class="form-group">
 										<div class="col-sm-offset-3 col-sm-9">
-											<button type="submit" class="btn btn-primary"><i class="fa fa-table"></i> Preview</button>
+											<button type="button" class="btn btn-primary"><i class="fa fa-table"></i> Preview</button>
 											<button type="button" onclick="save()" class="btn btn-success"><i class="fa fa-save"></i> Create ad</button>
 										</div>
 									</div>
@@ -246,6 +246,7 @@ function save(){
 		var request = new XMLHttpRequest();
 		request.onreadystatechange = function() {
 			if (request.readyState === 4) {
+				document.getElementById("forma").submit();
 				//callback(request.response);
 				//alert('done');
 			}

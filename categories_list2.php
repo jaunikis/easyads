@@ -82,7 +82,7 @@ while ($row = $result->fetch_assoc()) {
 						<a href="/easyads/items?item=<?php echo $id;?>">
                            <div class="item-ads-grid icon-<?php echo $color;?>">
                               <div class="item-img-grid">
-                                 <img alt="" src="<?php echo '/easyads/ads_images/'.$cover;?>" class="img-responsive img-center">
+                                 <img alt="" src="<?php echo '/easyads/ads_images/small_'.$cover;?>" class="img-responsive img-center">
                               </div>
                               <div class="item-title">
                                     <h4><?php echo $title;?></h4>

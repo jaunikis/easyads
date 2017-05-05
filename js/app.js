@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 							elem.appendChild(elem2);
 							elem2.innerHTML='<div class="col-xs-6 col-sm-4 col-md-4" ><div class="card"><div class="card-image"><img class="img-responsive" src="'+thumbnail+'"></div><div class="card-content" style="background-color:palegoldenrod"><span id="img_n'+images.length+'" class="card-title"><input title="Cover" name="cover" value="'+images.length+'" type="radio"></span><span class="card-title pull-right"><i onclick="persukti(this,'+images.length+')" class="fa fa-refresh"></i>&nbsp;&nbsp;&nbsp;<i onclick="delete_img(this,'+images.length+')" class="fa fa-times"></i></span></div></div></div>';
 							
-							if(images.length==1){document.getElementById('img_n1').innerHTML='<input title="Cover" name="cover" value="'+images.length+'" type="radio" checked>';}
+							//if(images.length==1){document.getElementById('img_n1').innerHTML='<input title="Cover" name="cover" value="'+images.length+'" type="radio" checked>';}
 							
 							//var img = document.createElement('img');
 							//img.src = thumbnail;

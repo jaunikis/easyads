@@ -2,8 +2,8 @@
 session_start();
 
 $filename = md5(mt_rand()).'.jpg';
-$status = (boolean) move_uploaded_file($_FILES['photo1']['tmp_name'], 'tempimages/small_'.$filename);
-$status = (boolean) move_uploaded_file($_FILES['photo2']['tmp_name'], 'tempimages/big_'.$filename);
+$status = (boolean) move_uploaded_file($_FILES['photo1']['tmp_name'], 'ads_images/small_'.$filename);
+$status = (boolean) move_uploaded_file($_FILES['photo2']['tmp_name'], 'ads_images/big_'.$filename);
 
 
 //perkelia faila

@@ -62,7 +62,7 @@ $result=sqlconnect($sql);
 $last_id=$result;
 
 $_SESSION['last_id']=$last_id;
-echo ($last_id);
+//echo ($last_id);
 
 
 //images..
@@ -77,8 +77,8 @@ for($x = 0; $x < $arrlength; $x++) {
 	if($x==$cover){$coverim='yes';echo '<b>';}
 	if(isset($images[$x])){echo $x.' - '.$images[$x];
 	if($x==$cover){echo '</b>';}
-    echo "<br>";
-	rename('tempimages/'.$images[$x], 'ads_images/'.$images[$x]);
+    //echo "<br>";
+	////rename('tempimages/'.$images[$x], 'ads_images/'.$images[$x]);
 	
 //save images to db
 $sql = "INSERT INTO images (user,src,addid,cover) VALUES ('$user','$images[$x]','$last_id','$coverim')";

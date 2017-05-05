@@ -70,7 +70,7 @@ include('categories_left.php');
 						   <div class="similar-ads">
                               <a href="/easyads/items?item=<?php echo $id2;?>">
                                  <div class="similar-ad-left">
-                                    <img class="img-responsive img-center" src="<?php echo'/easyads/ads_images/'.$cover2;?>" alt="">
+                                    <img class="img-responsive img-center" src="<?php echo'/easyads/ads_images/small_'.$cover2;?>" alt="">
                                  </div>
                                  <div class="similar-ad-right">
                                     <h4><?php echo $title2;?></h4>
@@ -116,7 +116,7 @@ include('categories_left.php');
 <?php
 $images_length=count($images);
 for($i=0;$i<$images_length;$i++){
-echo '<div class="item"><a href="/easyads/ads_images/'.$images[$i].'" target="blank"><img alt="" src="/easyads/ads_images/'.$images[$i].'" class="img-responsive img-center"></a></div>';
+echo '<div class="item"><a href="/easyads/ads_images/big_'.$images[$i].'" target="blank"><img alt="" src="/easyads/ads_images/small_'.$images[$i].'" class="img-responsive img-center"></a></div>';
 }
 ?>
                                  </div>
@@ -124,7 +124,7 @@ echo '<div class="item"><a href="/easyads/ads_images/'.$images[$i].'" target="bl
 <?php           
 								$images_length=count($images);
 								for($i=0;$i<$images_length;$i++){
-								echo '<div class="item"><img alt="" src="/easyads/ads_images/'.$images[$i].'" class="img-responsive img-center"></div>';
+								echo '<div class="item"><img alt="" src="/easyads/ads_images/small_'.$images[$i].'" class="img-responsive img-center"></div>';
                                 }
 ?>
                                  </div>
