@@ -12,6 +12,7 @@ require_once ('incl/elapsed.php');
 			if(isset($segments[5])){if($segments[5]!==''){$make=str_replace("%20"," ",$segments[5]);$sql="SELECT * FROM skelbimai WHERE make='$make' ORDER BY id DESC";}}
 			if(isset($segments[6])){if($segments[6]!==''){$model=str_replace("%20"," ",$segments[6]);$sql="SELECT * FROM skelbimai WHERE model='$model' ORDER BY id DESC";}}
 			$result=sqlconnect($sql);
+			
 			$ad_count = $result->num_rows;
 ?>
       <section class="category-grid">

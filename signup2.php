@@ -1,4 +1,5 @@
 <?php
+require_once ('incl/server.php');
 if(isset($_POST['email'])){$email=$_POST['email'];}
 if(isset($_POST['password1'])){$password1=$_POST['password1'];}
 if(isset($_POST['password2'])){$password2=$_POST['password2'];}
@@ -25,18 +26,14 @@ echo $browser.'<br>';
 
 $password=md5($password1);
 
-$servername_1 = "localhost";
-$username_1 = "adsuietm_ds4u";
-$password_1 = "Joklmnas2";
-$dbname_1 = "adsuietm_ds4u";
-// Create connection
-$conn = new mysqli($servername_1, $username_1, $password_1,$dbname_1);
+
 //$email=mysql_real_escape_string($email);
 //$name=mysql_real_escape_string($name);
 
 $sql="INSERT INTO users (email,password,name,active,ip,browser) VALUES ('$email','$password','$name','yes','$ip','$browser')";
 
-if (!$result = $conn->query($sql)) {echo "Sorry, the website is experiencing problems.";exit;}
+//if (!$result = $conn->query($sql)) {echo "Sorry, the website is experiencing problems.";exit;}
+sqlconnect($sql);
 //echo $name;
 session_start();
 $_SESSION['user']=$name;

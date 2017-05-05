@@ -17,12 +17,12 @@ while ($row = $result3->fetch_assoc()) {
                         <div class="widget-body">
                            <ul class="trends">
                               <li>
-                                 <a href="/easyads/items/motor/cars">
+                                 <a href="/easyads/items/cars & motor/cars">
                                     <i class="fa fa-car shortcut-icon icon-orange"></i> 
                                     <p>Cars <small><?php if(isset($occ['Cars'])){echo $occ['Cars'].' Ads';} ?></small></p>
                                  </a>
                               <li>
-                                 <a href="/easyads/items/motor">
+                                 <a href="/easyads/items/cars & motor">
                                     <i class="fa fa-gears shortcut-icon icon-green"></i> 
                                     <p>Motor <small><?php if(isset($occ['Cars & Motor'])){echo $occ['Cars & Motor'].' Ads';} ?></small></p>
                                  </a>

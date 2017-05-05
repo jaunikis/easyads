@@ -49,10 +49,9 @@ while ($row = $result->fetch_assoc()) {
             <div class="row">
                <div class="col-lg-3 col-md-3 col-sm-3">
                   <div class="listing-filters">
-
 <?php
 include('categories_left.php');
-?>				 
+?>
                      <div id="similar" class="widget listing-filter-block">
                         <div class="widget-header">
                            <h1>Similar ads</h1>
@@ -67,7 +66,7 @@ include('categories_left.php');
 				$title2=$row['title'];
 				$cover2=$row['cover'];if($cover2==''){$cover2='no-image3.gif';}
 				$price2=$row['price'];
-?>          
+?>
 						   <div class="similar-ads">
                               <a href="/easyads/items?item=<?php echo $id2;?>">
                                  <div class="similar-ad-left">
@@ -80,9 +79,9 @@ include('categories_left.php');
                                  <div class="clearfix"></div>
                               </a>
                            </div>
-                 <?php
-			}
-			?>          
+<?php
+	}
+?>
 						  
                         </div>
                      </div>
@@ -94,9 +93,9 @@ include('categories_left.php');
                         <div class="item single-ads top-space">
                            <div class="item-ads-grid icon-blue">
                               <div class="item-title">
-                                 <a href="single.html">
+                                 
                                     <h2><?php echo $title;?></h2>
-                                 </a>
+                                 
                                  <div class="item-meta">
                                     <ul>
                                        <li class="item-date"><i class="fa fa-clock-o"></i> <?php echo elapsed($timestamp2);?></li>
@@ -114,13 +113,12 @@ include('categories_left.php');
 							
 		
                                  <div id="sync1" class="carousel">
-<?php           
-								$images_length=count($images);
-								for($i=0;$i<$images_length;$i++){
-								echo '<div class="item"><a href="/easyads/ads_images/'.$images[$i].'" target="blank"><img alt="" src="/easyads/ads_images/'.$images[$i].'" class="img-responsive img-center"></a></div>';
-                                }
-?>	    
-									
+<?php
+$images_length=count($images);
+for($i=0;$i<$images_length;$i++){
+echo '<div class="item"><a href="/easyads/ads_images/'.$images[$i].'" target="blank"><img alt="" src="/easyads/ads_images/'.$images[$i].'" class="img-responsive img-center"></a></div>';
+}
+?>
                                  </div>
                                  <div id="sync2" class="carousel">
 <?php           

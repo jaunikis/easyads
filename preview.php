@@ -29,6 +29,7 @@ if(isset($_POST['email'])){$email=$_POST['email'];}
 if(isset($_POST['phone'])){$phone=$_POST['phone'];}
 if(isset($_POST['cover'])){$cover=$_POST['cover']-1;}
 
+/*
 echo 'form:<hr>';
 if(isset($title)){echo 'title: '.$title.'<br>';}
 if(isset($cat1)){echo 'cat1: '.$cat1.'<br>';}
@@ -44,6 +45,7 @@ if(isset($name)){echo 'name: '.$name.'<br>';}
 if(isset($email)){echo 'email: '.$email.'<br>';}
 if(isset($phone)){echo 'phone: '.$phone.'<br>';}
 if(isset($cover)){echo 'cover: '.$cover.'<br>';}
+*/
 
 if(isset($_SESSION['images'])){ $images=$_SESSION['images'];}
 
@@ -51,10 +53,14 @@ $date = new DateTime();$timestamp2=$date->getTimestamp();
 
 //save to db
 $sql = "INSERT INTO skelbimai (ip,user,title,cat1,cat2,cover,make,model,year,price,location,condition2,description,name,email,phone,active,timestamp2) VALUES ('$ip','$user','$title','$cat1','$cat2','$images[$cover]','$make','$model','$year','$price','$location','$condition','$description','$name','$email','$phone','no',$timestamp2)";
-$servername = "localhost";$username = "adsuietm_ds4u";$password = "Joklmnas2";$dbname = "adsuietm_ds4u";
-$conn = new mysqli($servername, $username, $password,$dbname);
-$result = $conn->query($sql);
-$last_id=$conn->insert_id;
+
+$result=sqlconnect($sql);
+
+//echo '<hr>';
+//echo $result;
+
+$last_id=$result;
+
 $_SESSION['last_id']=$last_id;
 echo ($last_id);
 
@@ -85,7 +91,7 @@ $link='Location: /easyads/items/'.$cat1.'/'.$cat2;
 if($make!==''){$link.='/'.$make;}
 if($model!==''){$link.='/'.$model;}
 $link.='?item='.$last_id;
-echo 'link='.$link;
+//echo 'link='.$link;
 
 header($link);
 ?>
