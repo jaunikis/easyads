@@ -1,0 +1,3 @@
+RewriteEngine ON
+
+ErrorDocument 404 /easyads/index.php
