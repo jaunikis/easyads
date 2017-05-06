@@ -3,7 +3,7 @@
          <div class="container">
             <div class="row">
                <div class="main-search-box text-center">
-                  <h1 class="intro-title">Sell or Advertise anything online with Easyads.ie classified</h1>
+                  <h1 class="intro-title" >Sell or Advertise everything online with Easyads.ie classified</h1>
                   <p class="sub-title">Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and more</p>
                   <form>
                      <div class="col-md-4 col-sm-4 search-input">
@@ -38,7 +38,7 @@
                </div>
                <div class="top-categories">
                   <h4>Popular Categories</h4>
-                  <a href="/easyads/items/Motor/Cars">
+                  <a href="/easyads/items/Cars & Motor/Cars">
                   <i class="fa fa-car"></i>Cars
                   </a>
                   <a href="/easyads/items/Jobs">

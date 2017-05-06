@@ -40,7 +40,7 @@ while ($row = $result->fetch_assoc()) {
 				$active=$row['active'];
 ?>
                               <tr>
-                                 <td><img src="<?php echo '/easyads/ads_images/'.$cover; ?>" class="thumb-img img-responsive" alt=""></td>
+                                 <td><img src="<?php echo '/easyads/ads_images/small_'.$cover; ?>" class="thumb-img img-responsive" alt=""></td>
                                  <td>
                                     <div class="my-item-title"><a target="_blank" href="/easyads/items?item=<?php echo $id; ?>"><strong><?php echo $title;?></strong></a></div>
                                     <div class="item-meta">
