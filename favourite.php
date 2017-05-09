@@ -5,15 +5,7 @@
                      </div>
                      <div class="widget-body">
                         <table class="table table-bordered">
-                           <thead>
-                              <tr>
-                                 <th style="width: 20%;">Photo
-                                 </th>
-                                 <th>Details</th>
-                                 <th>Price</th>
-                                 <th></th>
-                              </tr>
-                           </thead>
+                           
                            <tbody>
 <?php
 if(!isset($_SESSION['email'])){$_SESSION['link']='/easyads/my_ads';echo('<script>window.location = "/easyads/login";</script>');exit;}
@@ -31,7 +23,7 @@ while ($row = $result->fetch_assoc()) {
 				$price=$row['price'];
 				$location=$row['location'];
 				$timestamp=$row['timestamp'];
-				$condition2=$row['condition2'];
+				$description=$row['description'];
 				$make=$row['make'];
 				$model=$row['model'];
 				$timestamp2=$row['timestamp2'];
@@ -42,21 +34,21 @@ while ($row = $result->fetch_assoc()) {
                               <tr>
                                  <td><img src="<?php echo '/easyads/ads_images/small_'.$cover; ?>" class="thumb-img img-responsive" alt=""></td>
                                  <td>
-                                    <div class="my-item-title"><a target="_blank" href="/easyads/items?item=<?php echo $id; ?>"><strong><?php echo $title;?></strong></a></div>
+                                    <div class="my-item-title"><a href="/easyads/items?item=<?php echo $id; ?>"><strong><?php echo $title;?></strong></a></div>
                                     <div class="item-meta">
-                                       <ul>
-                                          <li class="item-date"><i class="fa fa-clock-o"></i> <?php echo elapsed($timestamp2); ?></li>
-                                          <li class="item-location"><a href="#"><i class="fa fa-map-marker"></i> <?php echo $location;?></a></li>
-                                          <li class="item-type"><i class="fa fa-bookmark"></i> <?php echo $condition2;?></li>
-                                       </ul>
+										<span class="item-date"><?php echo substr($description, 0, 44); ?>...</span>
+										<p>
+                                          <span class="item-date"><i class="fa fa-clock-o"></i> <?php echo elapsed($timestamp2); ?> |</span>
+                                          <span class="item-location"><a href="#"><i class="fa fa-map-marker"></i> <?php echo $location;?></a> |</span>
+										  <span class="item-price"><strong>€<?php echo $price;?></strong></span>
+										  </p>
+										 
+										
+										<div class="action">
+											<span class="label label-warning" style="font-size:10px;" title="" data-placement="top" data-toggle="tooltip" onclick="unfavourite(<?php echo $id; ?>,this)" data-original-title="Unfavourite"><i class="fa fa-close"></i></span>
+										</div>
+                                          
                                     </div>
-                                 </td>
-                                 <td><strong>€<?php echo $price;?></strong></td>
-                                 <td>
-                                    <div class="action">
-                                       <span class="label label-warning" title="" data-placement="top" data-toggle="tooltip" onclick="unfavourite(<?php echo $id; ?>,this)" data-original-title="Unfavourite"><i class="fa fa-close"></i></span>
-									   <a class="label label-info" title="" data-placement="top" data-toggle="tooltip" href="/easyads/items?item=<?php echo $id; ?>" data-original-title="View Ad"><i class="fa fa-eye"></i></a>
-									</div>
                                  </td>
                               </tr>
 <?php
