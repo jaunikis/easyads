@@ -4,9 +4,7 @@
                         <h1>Favourite Ads</h1>
                      </div>
                      <div class="widget-body">
-                        <table class="table table-bordered">
-                           
-                           <tbody>
+                        
 <?php
 if(!isset($_SESSION['email'])){$_SESSION['link']='/easyads/my_ads';echo('<script>window.location = "/easyads/login";</script>');exit;}
 
@@ -31,32 +29,35 @@ while ($row = $result->fetch_assoc()) {
 				$cat2=$row['cat2'];
 				$active=$row['active'];
 ?>
-                              <tr>
-                                 <td><img src="<?php echo '/easyads/ads_images/small_'.$cover; ?>" class="thumb-img img-responsive" alt=""></td>
-                                 <td>
-                                    <div class="my-item-title"><a href="/easyads/items?item=<?php echo $id; ?>"><strong><?php echo $title;?></strong></a></div>
+   <div class="row"> 
+    <p>   
+	<div class="col-xs-3">			
+		<img src="<?php echo '/easyads/ads_images/small_'.$cover; ?>" class="thumb-img img-responsive" alt="">
+	</div>
+	<div class="col-xs-6">
+		<div class="my-item-title"><a href="/easyads/items?item=<?php echo $id; ?>"><strong><?php echo $title;?></strong></a></div>
                                     <div class="item-meta">
 										<span class="item-date"><?php echo substr($description, 0, 44); ?>...</span>
-										<p>
+									
                                           <span class="item-date"><i class="fa fa-clock-o"></i> <?php echo elapsed($timestamp2); ?> |</span>
                                           <span class="item-location"><a href="#"><i class="fa fa-map-marker"></i> <?php echo $location;?></a> |</span>
 										  <span class="item-price"><strong>€<?php echo $price;?></strong></span>
-										  </p>
+							</div>
+							</div>
 										 
 										
-										<div class="action">
+										<div class="col-xs-3">
 											<span class="label label-warning" style="font-size:10px;" title="" data-placement="top" data-toggle="tooltip" onclick="unfavourite(<?php echo $id; ?>,this)" data-original-title="Unfavourite"><i class="fa fa-close"></i></span>
 										</div>
-                                          
-                                    </div>
-                                 </td>
-                              </tr>
+                                       
+	
+	</p>
+   </div>                           
 <?php
 }
 ?>
-                           </tbody>
-                        </table>
-                     </div>
+                           
+                     </div> <!-- widged-body -->
                   </div>
                </div>
             </div>
