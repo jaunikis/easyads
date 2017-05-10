@@ -1,9 +1,10 @@
 <div class="col-sm-9">
-                  <div class="widget my-profile">
+                 
                      <div class="widget-header">
                         <h1>Favourite Ads</h1>
                      </div>
-                     <div class="widget-body">
+				 
+				   
                         
 <?php
 if(!isset($_SESSION['email'])){$_SESSION['link']='/easyads/my_ads';echo('<script>window.location = "/easyads/login";</script>');exit;}
@@ -29,12 +30,14 @@ while ($row = $result->fetch_assoc()) {
 				$cat2=$row['cat2'];
 				$active=$row['active'];
 ?>
+   <div class="widget my-profile" style="margin-bottom:0;">
+   <div class="widget-body">
    <div class="row"> 
     <p>   
-	<div class="col-xs-3">			
-		<img src="<?php echo '/easyads/ads_images/small_'.$cover; ?>" class="thumb-img img-responsive" alt="">
+	<div class="col-xs-4" style="padding:10px;">			
+		<img src="<?php echo '/easyads/ads_images/small_'.$cover; ?>" class="thumb-img img-responsive" alt="" style="width: 200px;">
 	</div>
-	<div class="col-xs-6">
+	<div class="col-sm-5">
 		<div class="my-item-title"><a href="/easyads/items?item=<?php echo $id; ?>"><strong><?php echo $title;?></strong></a></div>
                                     <div class="item-meta">
 										<span class="item-date"><?php echo substr($description, 0, 44); ?>...</span>
@@ -46,21 +49,22 @@ while ($row = $result->fetch_assoc()) {
 							</div>
 										 
 										
-										<div class="col-xs-3">
+										<div class="col-sm-3">
 											<span class="label label-warning" style="font-size:10px;" title="" data-placement="top" data-toggle="tooltip" onclick="unfavourite(<?php echo $id; ?>,this)" data-original-title="Unfavourite"><i class="fa fa-close"></i></span>
 										</div>
                                        
 	
 	</p>
-   </div>                           
+   </div>    
+</div>
+</div>   
 <?php
 }
 ?>
                            
-                     </div> <!-- widged-body -->
-                  </div>
-               </div>
-            </div>
+               
+                  
+            
          </div>
       </section>
       <!-- End Favourite Ads -->
