@@ -30,34 +30,31 @@ while ($row = $result->fetch_assoc()) {
 				$cat2=$row['cat2'];
 				$active=$row['active'];
 ?>
-   <div class="widget my-profile" style="margin-bottom:0;">
-   <div class="widget-body">
-   <div class="row"> 
-    <p>   
-	<div class="col-xs-4" style="padding:10px;">			
-		<img src="<?php echo '/easyads/ads_images/small_'.$cover; ?>" class="thumb-img img-responsive" alt="" style="width: 200px;">
-	</div>
-	<div class="col-sm-5">
-		<div class="my-item-title"><a href="/easyads/items?item=<?php echo $id; ?>"><strong><?php echo $title;?></strong></a></div>
-                                    <div class="item-meta">
-										<span class="item-date"><?php echo substr($description, 0, 44); ?>...</span>
+   <div class="remas">
+     
+			
+		<img class="list-image" src="<?php echo '/easyads/ads_images/small_'.$cover; ?>" class="" alt="<?php echo $title;?>">
+	
+	
+		<div class=""><a href="/easyads/items?item=<?php echo $id; ?>"><strong><?php echo $title;?></strong></a></div>
+                                    <div class="">
+										<div><span class=""><?php echo substr($description, 0, 44); ?>...</span></div>
 									
-                                          <span class="item-date"><i class="fa fa-clock-o"></i> <?php echo elapsed($timestamp2); ?> |</span>
-                                          <span class="item-location"><a href="#"><i class="fa fa-map-marker"></i> <?php echo $location;?></a> |</span>
-										  <span class="item-price"><strong>€<?php echo $price;?></strong></span>
+                                          <span class=""><i class="fa fa-clock-o"></i> <?php echo elapsed($timestamp2); ?> |</span>
+                                          <span class=""><a href="#"><i class="fa fa-map-marker"></i> <?php echo $location;?></a> |</span>
+										  <span class=""><strong>€<?php echo $price;?></strong></span>
 							</div>
-							</div>
+							
 										 
 										
-										<div class="col-sm-3">
-											<span class="label label-warning" style="font-size:10px;" title="" data-placement="top" data-toggle="tooltip" onclick="unfavourite(<?php echo $id; ?>,this)" data-original-title="Unfavourite"><i class="fa fa-close"></i></span>
+										<div class="mygtukai">
+											<span class="" data-placement="top" data-toggle="tooltip" onclick="unfavourite(<?php echo $id; ?>,this)" data-original-title="Unfavourite">Remove <i class="fa fa-close"></i></span>
 										</div>
                                        
 	
-	</p>
+	
    </div>    
-</div>
-</div>   
+ 
 <?php
 }
 ?>

@@ -1,21 +1,8 @@
 <div class="col-sm-9">
-                  <div class="widget my-profile">
+                  
                      <div class="widget-header">
                         <h1>My Ads</h1>
                      </div>
-                     <div class="widget-body">
-                        <table class="table table-bordered">
-                           <thead>
-                              <tr>
-                                 <th style="width: 20%;">Photo
-                                 </th>
-                                 <th>Details</th>
-                                 <th>Price</th>
-                                 <th>Status</th>
-                                 <th></th>
-                              </tr>
-                           </thead>
-                           <tbody>
 <?php
 if(!isset($_SESSION['email'])){$_SESSION['link']='/easyads/my_ads';echo('<script>window.location = "/easyads/login";</script>');exit;}
 
@@ -38,33 +25,51 @@ while ($row = $result->fetch_assoc()) {
 				$cat1=$row['cat1'];
 				$cat2=$row['cat2'];
 				$active=$row['active'];
+				$description=$row['description'];
 ?>
-							  <tr>
-                                 <td><img src="<?php echo '/easyads/ads_images/small_'.$cover; ?>" class="thumb-img img-responsive" alt=""></td>
-                                 <td>
-                                    <div class="my-item-title"><a href="/easyads/items?item=<?php echo $id; ?>"><strong><?php echo $title;?></strong></a></div>
-                                    <div class="item-meta">
-                                       <ul>
-                                          <li class="item-date"><i class="fa fa-clock-o"></i> <?php echo elapsed($timestamp2); ?></li>
-                                          <li class="item-views"><span data-placement="top" data-toggle="tooltip" data-original-title="Ad Views"><i class="fa fa-eye"></i> <?php echo $ad_views;?></span></li>
-                                          <li class="item-type"><span data-placement="top" data-toggle="tooltip" data-original-title="Ad Saved"><i class="fa fa-heart"></i> <?php echo $saved;?></span></li>
-                                       </ul>
-                                    </div>
-                                 </td>
-                                 <td><strong>€<?php echo $price;?></strong></td>
-                                 <td><?php if($active=='Active'){echo '<b><span style="color:green">'.$active.'</span></b>';}else{echo '<b><span style="color:orange">'.$active.'</span></b>';}?></td>
-                                 <td>
-                                    <div class="action">
-                                       <a class="label label-success" title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Edit Ad"><i class="fa fa-pencil"></i></a>
-            <?php if($active=='Active'){echo '<span onclick="enable_disable('.$id.',this) "class="label label-warning" title="" data-placement="top" data-toggle="tooltip" data-original-title="Disable"><i class="fa fa-close"></i></span>';}
-					else{echo '<span onclick="enable_disable('.$id.',this)" class="label label-primary" title="" data-placement="top" data-toggle="tooltip" data-original-title="Enable"><i class="fa fa-check"></i></span>';
-					}
-			?>
-                                       <a class="label label-info" title="" data-placement="top" data-toggle="tooltip" href="/easyads/items?item=<?php echo $id; ?>" data-original-title="View Ad"><i class="fa fa-eye"></i></a>
-                                       <span class="label label-danger" onclick="delete_ad(<?php echo $id; ?>,this)" title="" data-placement="top" data-toggle="tooltip" href="" data-original-title="Delete"><i class="fa fa-trash"></i></span>
-                                    </div>
-                                 </td>
-                              </tr>
+							
+							<div class="remas">  
+                            <img class="list-image" src="<?php echo '/easyads/ads_images/small_'.$cover; ?>" alt=""></td>
+                                
+                        <div class=""><a data-placement="top" data-toggle="tooltip" data-original-title="View Ad" href="/easyads/items?item=<?php echo $id; ?>"><strong><?php echo $title;?></strong></a>
+						
+						
+						
+						
+						<div><span class=""><?php echo substr($description, 0, 44); ?>...</span></div>
+						
+							<div><strong>€<?php echo $price;?></strong></div>
+							
+                             
+                                    
+                            <span><i class="fa fa-clock-o"></i> <?php echo elapsed($timestamp2); ?></span> | 
+                            <span><span data-placement="top" data-toggle="tooltip" data-original-title="Ad Views"><i class="fa fa-eye"></i> <?php echo $ad_views;?></span></span> | 
+                            <span><span data-placement="top" data-toggle="tooltip" data-original-title="Ad Saved"><i class="fa fa-heart"></i> <?php echo $saved;?></span></span> | 
+                            
+						   
+						   </div>
+						   
+                                
+                             <div class="skelbimo-status" style="display:block">
+								Status: <?php if($active=='Active'){echo '<b><span style="color:green">'.$active.'</span></b>';}else{echo '<b><span style="color:orange">'.$active.'</span></b>';}?>
+								<span> |  </span>
+								 <?php if($active=='Active'){echo '<span onclick="enable_disable('.$id.',this) "class="label label-warning" title="" data-placement="top" data-toggle="tooltip" data-original-title="Disable">Disable: <i class="fa fa-close"></i></span>';}
+										else{echo '<span onclick="enable_disable('.$id.',this)" class="label label-success" title="" data-placement="top" data-toggle="tooltip" data-original-title="Enable">Enable: <i class="fa fa-check"></i></span>';
+										}
+								?>
+							<span> | </span>
+							<span class="label label-primary" title="" data-placement="top" data-toggle="tooltip" data-original-title="Edit Ad">Edit: <i class="fa fa-pencil"></i></span>
+							<span> | </span>
+							<span class="label label-danger" onclick="delete_ad(<?php echo $id; ?>,this)" title="" data-placement="top" data-toggle="tooltip"  data-original-title="Delete"><i class="fa fa-trash"></i></span>
+							<span style="color:white">.</span>
+							</div>
+							
+                                      
+                                    
+                              
+							  
+                             </div>
+							
 <?php
 }
 ?>

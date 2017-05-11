@@ -16,6 +16,8 @@
       <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:regular,700,600&amp;latin" type="text/css" />
       <!-- Custom CSS -->
       <link href="/easyads/css/style.css" rel="stylesheet">
+	  <!-- favourites, myads CSS -->
+      <link href="/easyads/css/myfav.css" rel="stylesheet">
       <!-- Owl Carousel -->
       <link rel="stylesheet" href="/easyads/plugins/owl-carousel/owl.carousel.css">
       <link rel="stylesheet" href="/easyads/plugins/owl-carousel/owl.theme.css">
