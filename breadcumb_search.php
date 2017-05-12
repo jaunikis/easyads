@@ -2,6 +2,8 @@
 <?php
 $location='All Locations';
 if(isset($_SESSION['s_location'])){$location=$_SESSION['s_location'];}
+$search='';
+if(isset($_SESSION['search'])){$search=$_SESSION['search'];}
 ?>    
 	
 	
@@ -11,7 +13,7 @@ if(isset($_SESSION['s_location'])){$location=$_SESSION['s_location'];}
                <div id="b_search" class="main-search-box text-center">
                   <form>
                      <div class="col-md-6 col-sm-6 search-input">
-                        <input name="search" type="text" placeholder="What are you looking for...?" class="form-control input-lg search-form">
+                        <input name="search" value="<?php echo $search; ?>" type="text" placeholder="What are you looking for...?" class="form-control input-lg search-form">
                      </div>
                      <div class="col-md-4 col-sm-4 search-input">
                         <select name="location" class="form-control input-lg search-form">
