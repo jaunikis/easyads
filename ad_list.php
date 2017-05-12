@@ -1,11 +1,13 @@
 <!-- Category List -->
+
+
 <?php
 require_once ('incl/server.php');
 require_once ('incl/elapsed.php');
 			$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 			$segments = explode('/', $path);
 			//echo  (str_replace("%20"," ",$segments[3]));
-			$sql="SELECT * FROM skelbimai ORDER BY id DESC";
+			$sql="SELECT * FROM skelbimai WHERE id=id ORDER BY id DESC";
 			
 			if(isset($segments[3])){if($segments[3]!==''){$cat1=str_replace("%20"," ",$segments[3]);$sql="SELECT * FROM skelbimai WHERE cat1='$cat1' ORDER BY id DESC";}}
 			if(isset($segments[4])){if($segments[4]!==''){$cat2=str_replace("%20"," ",$segments[4]);$sql="SELECT * FROM skelbimai WHERE cat1='$cat1' AND cat2='$cat2' ORDER BY id DESC";}}
@@ -23,7 +25,7 @@ require_once ('incl/elapsed.php');
                      <div class="tags col-xs-6 text-left">
                         <span><?php echo $ad_count; ?> Adverts</span>
                         
-                        <span>Clear All <a href="#"><i class="fa fa-close"></i></a></span>
+                        <span>Clear All <span style="cursor:pointer;" id="clear_all"><i class="fa fa-close"></i></span></span>
                      </div>
                      <ul class="listing-actions-nav col-xs-6 text-right">
                         <li id="c_list"><a class="layout-action active" title="" data-placement="top" data-toggle="tooltip" href="category-list.html" data-original-title="List layout"><i class="fa fa-bars"></i></a></li>
@@ -205,3 +207,17 @@ include('categories_left.php');
          </div>
       </section>
       <!-- End Category List -->
+	  
+<script>
+	
+    function panaikinti(){
+        //alert('fggf');
+		//$(this).remove();
+		 //$("#clear_all").remove();
+    }
+	
+	$("#clear_all").click(function(){
+		this.parentNode.remove();
+	});
+
+</script>

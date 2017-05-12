@@ -7,7 +7,10 @@
       <meta name="description" content="Ireland Free classified adverts, free car ads">
       <meta name="author" content="Marius Vorosilovas">
       <title>Easyads classified free adverts</title>
-      <!-- Favicon Icon -->
+      
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  
+	  <!-- Favicon Icon -->
       <link rel="apple-touch-icon" sizes="76x76" href="/easyads/images/apple-icon.png">
       <link rel="icon" type="image/png" href="/easyads/images/favicon.png">
       <!-- Bootstrap CSS -->    
