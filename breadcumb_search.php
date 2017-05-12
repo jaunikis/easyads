@@ -1,15 +1,21 @@
 <!-- Categories Page Search-->
-      <section class="categories-page-search">
+<?php
+$location='All Locations';
+if(isset($_SESSION['s_location'])){$location=$_SESSION['s_location'];}
+?>    
+	
+	
+	 <section class="categories-page-search">
          <div class="container">
             <div class="row">
                <div id="b_search" class="main-search-box text-center">
                   <form>
                      <div class="col-md-6 col-sm-6 search-input">
-                        <input type="text" placeholder="What are you looking for...?" class="form-control input-lg search-form">
+                        <input name="search" type="text" placeholder="What are you looking for...?" class="form-control input-lg search-form">
                      </div>
                      <div class="col-md-4 col-sm-4 search-input">
-                        <select class="form-control input-lg search-form">
-                           <option selected="">All Location</option>
+                        <select name="location" class="form-control input-lg search-form">
+                           <option selected=""><?php echo $location; ?></option>
             <?php
 				for($i=0;$i<count($locations);$i++){
 					echo '<option>'.$locations[$i].'</option>';
@@ -51,7 +57,7 @@
 						}
 						$link='easyads/items/'.$cat1;
 						echo '<li><i class="fa fa-angle-right" aria-hidden="true"></i></li>';
-						echo '<li><a href="/'.$link.'">'.$cat1.'</a></li>';
+						echo '<li><a href="/'.$link.'">'.str_replace("%20"," ",$cat1).'</a></li>';
 						
 						$link.='/'.$cat2;
 						echo '<li><i class="fa fa-angle-right" aria-hidden="true"></i></li>';
@@ -76,7 +82,7 @@
 							if($segments[$a]){
 								$link.='/'.$segments[$a];
 								echo '<li><i class="fa fa-angle-right" aria-hidden="true"></i></li>';
-								echo '<li><a href="/'.$link.'">'.$segments[$a].'</a></li>';
+								echo '<li><a href="/'.$link.'">'.str_replace("%20"," ",$segments[$a]).'</a></li>';
 							}
 						}
 					}

@@ -7,12 +7,21 @@ require_once ('incl/elapsed.php');
 			$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 			$segments = explode('/', $path);
 			//echo  (str_replace("%20"," ",$segments[3]));
-			$sql="SELECT * FROM skelbimai WHERE id=id ORDER BY id DESC";
+			$cat1='cat1';
+			$cat2='cat2'; 
+			$make='make';
+			$model='model';
+			$location='location';
+			$search='%';
+			if(isset($_SESSION['search'])){$search='%'.$_SESSION['search'].'%';}
+			if(isset($_SESSION['s_location'])){$location='"'.$_SESSION['s_location'].'"';}
+			if(isset($segments[3])){if($segments[3]!==''){$cat1='"'.str_replace("%20"," ",$segments[3]).'"';}}
+			if(isset($segments[4])){if($segments[4]!==''){$cat2='"'.str_replace("%20"," ",$segments[4]).'"';}}
+			if(isset($segments[5])){if($segments[5]!==''){$make='"'.str_replace("%20"," ",$segments[5]).'"';}}
+			if(isset($segments[6])){if($segments[6]!==''){$model='"'.str_replace("%20"," ",$segments[6]).'"';}}
+			//echo '<h1>'.$search.'</h1>';
 			
-			if(isset($segments[3])){if($segments[3]!==''){$cat1=str_replace("%20"," ",$segments[3]);$sql="SELECT * FROM skelbimai WHERE cat1='$cat1' ORDER BY id DESC";}}
-			if(isset($segments[4])){if($segments[4]!==''){$cat2=str_replace("%20"," ",$segments[4]);$sql="SELECT * FROM skelbimai WHERE cat1='$cat1' AND cat2='$cat2' ORDER BY id DESC";}}
-			if(isset($segments[5])){if($segments[5]!==''){$make=str_replace("%20"," ",$segments[5]);$sql="SELECT * FROM skelbimai WHERE make='$make' ORDER BY id DESC";}}
-			if(isset($segments[6])){if($segments[6]!==''){$model=str_replace("%20"," ",$segments[6]);$sql="SELECT * FROM skelbimai WHERE model='$model' ORDER BY id DESC";}}
+			$sql="SELECT * FROM skelbimai WHERE cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND location=$location AND (description LIKE '$search' OR title LIKE '$search') ORDER BY id DESC";
 			$result=sqlconnect($sql);
 			
 			$ad_count = $result->num_rows;

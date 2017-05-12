@@ -150,10 +150,18 @@ case 'signup':
     require('footer_short.php');
     break;
 case 'items':
+	unset($_SESSION['s_location']);
+	unset($_SESSION['search']);
 	$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	$segments = explode('?', $actual_link);
 	//echo $segments[1];
-	if(count($segments)>1){parse_str($segments[1]);}
+	if(count($segments)>1){
+		parse_str($segments[1]);
+		if(isset($location)){
+			if($location!=='All Locations'){$_SESSION['s_location']=$location;}
+		}
+		if(isset($search)){$_SESSION['search']=$search;}
+	}
 	if(isset($item)){
 		require('top_nav.php');
 		require('breadcumb_search.php');
