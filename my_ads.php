@@ -50,7 +50,7 @@ while ($row = $result->fetch_assoc()) {
 						   </div>
 						   
                                 
-                             <div class="skelbimo-status" style="display:block">
+                             <div class="skelbimo-status">
 								Status: <?php if($active=='Active'){echo '<b><span style="color:green">'.$active.'</span></b>';}else{echo '<b><span style="color:orange">'.$active.'</span></b>';}?>
 								<span> |  </span>
 								 <?php if($active=='Active'){echo '<span onclick="enable_disable('.$id.',this) "class="label label-warning" title="" data-placement="top" data-toggle="tooltip" data-original-title="Disable">Disable: <i class="fa fa-close"></i></span>';}

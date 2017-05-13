@@ -47,8 +47,12 @@ while ($row = $result->fetch_assoc()) {
 							
 										 
 										
-										<div class="mygtukai">
-											<span class="" data-placement="top" data-toggle="tooltip" onclick="unfavourite(<?php echo $id; ?>,this)" data-original-title="Unfavourite">Remove <i class="fa fa-close"></i></span>
+										<div class="skelbimo-status">
+										Status: <?php if($active=='Active'){echo '<b><span style="color:green">'.$active.'</span></b>';}else{echo '<b><span style="color:orange">'.$active.'</span></b>';}?>
+								
+							<span> | </span>
+										
+											<span class="" data-placement="top" data-toggle="tooltip" onclick="unfavourite(<?php echo $id; ?>,this)" data-original-title="Unfavourite">Unsave <i class="fa fa-close"></i></span>
 										</div>
                                        
 	

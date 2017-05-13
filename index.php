@@ -193,7 +193,7 @@ case 'items':
 	  <script src="/easyads/js/bootstrap.min.js"></script>
       
       <!-- Owl Carousel -->
-      <script src="/easyads/plugins/owl-carousel/owl.carousel.js"></script>
+      <script src="/easyads/plugins/owl-carousel/owl.carousel2.js"></script>
 	  
 	  
 	   <script>
