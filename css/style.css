@@ -6,6 +6,12 @@ Version: 1.0
 */
 
 /* body */
+
+.label-search {
+	color:green;
+	margin-left: 20px;
+}
+
 body {
 background: #ecf0f1 none repeat scroll 0 0;
 color: #666;

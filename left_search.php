@@ -10,12 +10,37 @@ while ($row = $result3->fetch_assoc()) {
 ?>
 
 				  
-                     <div id="categories_left" class="widget listing-filter-block filter-categories">
+                    <div id="categories_left" class="widget listing-filter-block filter-categories">
                         <div class="widget-header">
-                           <h1>Categories</h1>
+                           <h4>Refine search:</h4>
                         </div>
                         <div class="widget-body">
-                           <ul class="trends">
+						<div class="widget-header">
+						<div class="form-group">
+                        <div class="">Category:</div>
+						<select style="margin-bottom:6px;" name="cat1" id="cat1" onchange="cat1_parinkimas()" class="form-control border-form">
+						<option selected>All Category</option>
+						<option>Cars</option>
+			<?php
+				for($i=0;$i<count($category1);$i++){
+					echo '<option>'.$category1[$i].'</option>';
+				}
+            ?>
+						</select>
+						<select style="margin-bottom:6px;" onchange="" class="form-control border-form">
+						<option selected>All Category</option>
+			<?php
+				for($i=0;$i<count($category1);$i++){
+					echo '<option>'.$category1[$i].'</option>';
+				}
+            ?>
+						</select>
+						
+						
+						</div>
+						</div> <!-- form group -->
+						   <br><hr>
+						   <ul class="trends">
                               <li>
                                  <a href="/easyads/items/cars & motor/cars">
                                     <i class="fa fa-car shortcut-icon icon-orange"></i> 

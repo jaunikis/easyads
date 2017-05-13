@@ -62,9 +62,8 @@ require_once ('incl/elapsed.php');
 			   <div class="row">
                <div class="col-lg-3 col-md-3 col-sm-3">
                   <div class="listing-filters">
-                     
 <?php
-include('categories_left.php');
+include('left_search.php');
 ?>
                     <div id="filter"> 
 					 <div class="widget listing-filter-block">

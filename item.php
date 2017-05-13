@@ -50,7 +50,7 @@ while ($row = $result->fetch_assoc()) {
                <div class="col-lg-3 col-md-3 col-sm-3">
                   <div class="listing-filters">
 <?php
-include('left_search.php');
+include('reklama.php');
 ?>
                      <div id="similar" class="widget listing-filter-block">
                         <div class="widget-header">
