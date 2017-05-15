@@ -18,7 +18,7 @@ while ($row = $result3->fetch_assoc()) {
 						<div class="widget-header">
 						<div class="form-group">
                         <div class="">Category:</div>
-						<select style="margin-bottom:6px;" name="cat1" id="cat1" onchange="cat1_parinkimas()" class="form-control border-form">
+						<select style="margin-bottom:6px;" name="cat1" id="cat1" class="form-control border-form">
 						<option selected>All Category</option>
 						<option>Cars</option>
 			<?php
@@ -27,14 +27,12 @@ while ($row = $result3->fetch_assoc()) {
 				}
             ?>
 						</select>
-						<select style="margin-bottom:6px;" onchange="" class="form-control border-form">
-						<option selected>All Category</option>
-			<?php
-				for($i=0;$i<count($category1);$i++){
-					echo '<option>'.$category1[$i].'</option>';
-				}
-            ?>
-						</select>
+						
+					<select id="cat2" style="margin-bottom:6px;display:none;"  class="form-control border-form">
+						
+					</select>
+					
+					<div id="test">a</div>
 						
 						
 						</div>
@@ -115,3 +113,31 @@ while ($row = $result3->fetch_assoc()) {
                            </ul>
                         </div>
                      </div>
+					 
+					 
+<script>
+ $(function(){
+	//alert('ok');
+	$("#cat1").change(function(){
+		var cat2=$("#cat2");
+		cat2.empty();
+		$("#cat2").css("display","block");
+		 $.ajax({url: "/easyads/categories-list.txt", success: function(result){
+            //$("#test").html(result);
+			var myObj = JSON.parse(result);
+			document.getElementById("test").innerHTML = myObj.cat1[1];
+			parinktas=$("#cat1").val();
+			//alert(myObj[parinktas].length);
+			for(x=0;x<myObj[parinktas].length;x++){
+				var item=$("<option></option>").text(myObj[parinktas][x]);
+				$("#cat2").append(item);
+			}
+			
+			
+		 }});
+	});
+	
+	
+	
+ });
+</script>
