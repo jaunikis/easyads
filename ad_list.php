@@ -48,13 +48,6 @@ require_once ('incl/elapsed.php');
                               <li><a href="#">Recently Published</a></li>
                            </ul>
                         </li>
-                        <li class="dropdown">
-                           <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown"> All Type <b class="caret"></b></a>
-                           <ul class="dropdown-menu">
-                              <li><a href="#">New</a></li>
-                              <li><a href="#">Used</a></li>
-                           </ul>
-                        </li>
                      </ul>
                   </div>
                

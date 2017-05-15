@@ -12,12 +12,12 @@ while ($row = $result3->fetch_assoc()) {
 				  
                     <div id="categories_left" class="widget listing-filter-block filter-categories">
                         <div class="widget-header">
-                           <h4>Refine search:</h4>
+                           <h2>Refine search:</h>
                         </div>
                         <div class="widget-body">
-						<div class="widget-header">
+						
 						<div class="form-group">
-                        <div class="">Category:</div>
+                        <strong>Category:</strong>
 						<select style="margin-bottom:6px;" name="cat1" id="cat1" class="form-control border-form">
 						<option selected>All Category</option>
 						<option>Cars</option>
@@ -26,91 +26,76 @@ while ($row = $result3->fetch_assoc()) {
 					echo '<option>'.$category1[$i].'</option>';
 				}
             ?>
-						</select>
+					</select>
 						
 					<select id="cat2" style="margin-bottom:6px;display:none;"  class="form-control border-form">
-						
 					</select>
 					
-					<div id="test">a</div>
+					<select id="cat3" style="margin-bottom:6px;display:none;"  class="form-control border-form">
+					</select>
+					
+					<select id="cat4" style="margin-bottom:6px;display:none;"  class="form-control border-form">
+					</select>
 						
-						
-						</div>
-						</div> <!-- form group -->
-						   <br><hr>
-						   <ul class="trends">
-                              <li>
-                                 <a href="/easyads/items/cars & motor/cars">
-                                    <i class="fa fa-car shortcut-icon icon-orange"></i> 
-                                    <p>Cars <small><?php if(isset($occ['Cars'])){echo $occ['Cars'].' Ads';} ?></small></p>
-                                 </a>
-                              <li>
-                                 <a href="/easyads/items/cars & motor">
-                                    <i class="fa fa-gears shortcut-icon icon-green"></i> 
-                                    <p>Motor <small><?php if(isset($occ['Cars & Motor'])){echo $occ['Cars & Motor'].' Ads';} ?></small></p>
-                                 </a>
-                              </li>
-							  <li>
-                                 <a href="/easyads/items/farming">
-                                    <i class="fa fa-truck shortcut-icon icon-brown"></i> 
-                                    <p>Farming <small><?php if(isset($occ['Farming'])){echo $occ['Farming'].' Ads';} ?></small></p>
-                                 </a>
-                              </li>
-							  <li>
-                                 <a href="/easyads/items/Electronics">
-                                    <i class="fa fa-laptop shortcut-icon icon-blue"></i> 
-                                    <p>Electronics <small><?php if(isset($occ['Electronics'])){echo $occ['Electronics'].' Ads';} ?></small></p>
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="/easyads/items/Services">
-                                    <i class="fa fa-star shortcut-icon icon-light-green"></i> 
-                                    <p>Services <small><?php if(isset($occ['Services'])){echo $occ['Services'].' Ads';} ?></small></p>
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="/easyads/items/Jobs">
-                                    <i class="fa fa-briefcase shortcut-icon icon-dark-blue"></i> 
-                                    <p>Jobs <small><?php if(isset($occ['Jobs'])){echo $occ['Jobs'].' Ads';} ?></small></p>
-                                 </a>
-                              </li>
-							  <li>
-                                 <a href="/easyads/items/Real estate">
-                                    <i class="fa fa-home shortcut-icon icon-violet"></i> 
-                                    <p>Real estate <small><?php if(isset($occ['Real estate'])){echo $occ['Real estate'].' Ads';} ?></small></p>
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="/easyads/items/Pets">
-                                    <i class="fa fa-paw shortcut-icon icon-orange"></i> 
-                                    <p>Pets <small><?php if(isset($occ['Pets'])){echo $occ['Pets'].' Ads';} ?></small></p>
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="/easyads/items/Baby & kids">
-                                    <i class="fa fa-child shortcut-icon icon-light-blue"></i> 
-                                    <p>Baby & kids <small><?php if(isset($occ['Baby & kids'])){echo $occ['Baby & kids'].' Ads';} ?></small></p>
-                                 </a>
-                              </li>
-							  <li>
-                                 <a href="/easyads/items/House & DIY">
-                                    <i class="fa fa-gavel shortcut-icon icon-brown"></i> 
-                                    <p>House & DIY <small><?php if(isset($occ['House & DIY'])){echo $occ['House & DIY'].' Ads';} ?></small></p>
-                                 </a>
-                              </li>
-                              <li>
-                                 <a href="/easyads/items/Sports">
-                                    <i class="fa fa-bicycle shortcut-icon icon-light-green"></i> 
-                                    <p>Sports <small><?php if(isset($occ['Sports'])){echo $occ['Sports'].' Ads';} ?></small></p>
-                                 </a>
-                              </li>
-							  <li>
-                                 <a href="/easyads/items/Clothes">
-                                    <i class="fa fa-female shortcut-icon icon-orange"></i> 
-                                    <p>Clothes <small><?php if(isset($occ['Clothes'])){echo $occ['Clothes'].' Ads';} ?></small></p>
-                                 </a>
-                              </li>
-                           </ul>
+				
+				
+				<strong>Location:</strong>
+						<select style="margin-bottom:6px;" name="location" id="location" class="form-control border-form">
+						<option selected>All Locations</option>
+			<?php
+				for($i=0;$i<count($locations);$i++){
+					echo '<option>'.$locations[$i].'</option>';
+				}
+            ?>
+					</select>
+					
+				
+				
+			<strong style="display:block;">Year:</strong>
+			<select style="margin-bottom:6px; width:49%;display:inline-block;" name="year-min" id="year-min" class="form-control border-form">
+			<option selected>No Min</option>
+			<?php
+				for($i=1997;$i<=date("Y");$i++){
+					echo '<option>'.$i.'</option>';
+				}
+            ?>
+			</select>
+					
+			<select style="margin-bottom:6px; width:49%;display:inline;margin-left:2px;" name="year-max" id="year-max" class="form-control border-form">
+			<option selected>No Max</option>
+			<?php
+				for($i=1997;$i<=date("Y");$i++){
+					echo '<option>'.$i.'</option>';
+				}
+            ?>
+			</select>
+			
+			
+			<strong style="display:block;">Price:</strong>
+			<select style="margin-bottom:6px; width:49%;display:inline-block;" name="price-min" id="price-min" class="form-control border-form">
+			<option selected>No Min</option>
+			<?php
+				for($i=0;$i<=20000;$i+=500){
+					echo '<option>'.$i.'</option>';
+				}
+            ?>
+			</select>
+					
+			<select style="margin-bottom:6px; width:49%;display:inline;margin-left:2px;" name="price-max" id="price-max" class="form-control border-form">
+			<option selected>No Max</option>
+			<?php
+				for($i=500;$i<=20000;$i+=500){
+					echo '<option>'.$i.'</option>';
+				}
+            ?>
+			</select>
+					
+					
+					<br>
+					
+					</div> <!-- form group -->	
+						   
+						  
                         </div>
                      </div>
 					 
@@ -118,26 +103,123 @@ while ($row = $result3->fetch_assoc()) {
 <script>
  $(function(){
 	//alert('ok');
+	
+	$.ajax({url: "/easyads/categories-list.txt", success: function(result){
+        //$("#test").html(result);
+		myObj = JSON.parse(result);
+	
+	
 	$("#cat1").change(function(){
-		var cat2=$("#cat2");
-		cat2.empty();
+		
+		$("#cat2").empty();
+		$("#cat3").empty();
+		$("#cat4").empty();
 		$("#cat2").css("display","block");
-		 $.ajax({url: "/easyads/categories-list.txt", success: function(result){
-            //$("#test").html(result);
-			var myObj = JSON.parse(result);
-			document.getElementById("test").innerHTML = myObj.cat1[1];
-			parinktas=$("#cat1").val();
-			//alert(myObj[parinktas].length);
+		$("#cat3").css("display","none");
+		$("#cat4").css("display","none");
+		var parinktas=$("#cat1").val();
+		//alert(myObj[parinktas].length);
+		for(x=0;x<myObj[parinktas].length;x++){
+			var item=$("<option></option>").text(myObj[parinktas][x]);
+			$("#cat2").append(item);
+		} 
+	}); // cat1.change
+	
+	
+	$("#cat2").change(function(){
+		//alert('cat2');
+		$("#cat3").empty();
+		$("#cat4").empty();
+		$("#cat3").css("display","none");
+		$("#cat4").css("display","none");
+		var parinktas=$("#cat2").val();
+		var a=myObj[parinktas].length; //speciali klaida kad sustotu skriptas
+		
+			$("#cat3").css("display","block");
+			
 			for(x=0;x<myObj[parinktas].length;x++){
 				var item=$("<option></option>").text(myObj[parinktas][x]);
-				$("#cat2").append(item);
+				$("#cat3").append(item);
 			}
+		
+	}); //cat2.change
+	
+	$("#cat3").change(function(){
+		//alert('cat2');
+		$("#cat4").empty();
+		$("#cat4").css("display","none");
+		var parinktas=$("#cat3").val();
+		//alert(myObj[parinktas].length);
+		var a=myObj[parinktas].length; //speciali klaida kad sustotu skriptas
+		
+			$("#cat4").css("display","block");
 			
-			
-		 }});
-	});
+			for(x=0;x<myObj[parinktas].length;x++){
+				var item=$("<option></option>").text(myObj[parinktas][x]);
+				$("#cat4").append(item);
+			}
+	}); // cat3.change
 	
+	$("#year-min").change(function(){
+		var yearMax=$("#year-max").val();
+		var minimum=$(this).val();
+		if(minimum=='No Min'){minimum=1997;}
+		$("#year-max").empty();
+		var item=$("<option></option>").text('No Max');
+		$("#year-max").append(item);
+		for(x=minimum;x<=2017;x++){
+			var item=$("<option></option>").text(x);
+			$("#year-max").append(item);
+		}
+		$("#year-max").val(yearMax);
+	}); // year-min
 	
+	$("#year-max").change(function(){
+		var yearMin=$("#year-min").val();
+		var maximum=$(this).val();
+		var d = new Date();
+		var n = d.getFullYear();
+		if(maximum=='No Max'){maximum=n;}
+		$("#year-min").empty();
+		var item=$("<option></option>").text('No Min');
+		$("#year-min").append(item);
+		for(x=1997;x<=maximum;x++){
+			var item=$("<option></option>").text(x);
+			$("#year-min").append(item);
+		}
+		$("#year-min").val(yearMin);
+	}); // year-max
 	
+	$("#price-min").change(function(){
+		var priceMax=$("#price-max").val();
+		var minimum=$(this).val();
+		if(minimum=='No Min'){minimum=0;}
+		minimum=parseInt(minimum);
+		$("#price-max").empty();
+		var item=$("<option></option>").text('No Max');
+		$("#price-max").append(item);
+		for(x=minimum;x<=20000;x+=500){
+			var item=$("<option></option>").text(x);
+			$("#price-max").append(item);
+		}
+		$("#price-max").val(priceMax);
+	}); // price-min
+	
+	$("#price-max").change(function(){
+		var priceMin=$("#price-min").val();
+		var maximum=$(this).val();
+		if(maximum=='No Max'){maximum=20000;}
+		maximum=parseInt(maximum);
+		$("#price-min").empty();
+		var item=$("<option></option>").text('No Min');
+		$("#price-min").append(item);
+		for(x=0;x<=maximum;x+=500){
+			var item=$("<option></option>").text(x);
+			$("#price-min").append(item);
+		}
+		$("#price-min").val(priceMin);
+	}); // price-max
+	
+	}}); // ajax
  });
 </script>

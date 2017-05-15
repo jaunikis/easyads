@@ -1,18 +1,28 @@
 {
-"name":"John",
-"age":30,
 "cat1":["Cars & Motor","Farming","Electronics","Services","Jobs","Real Estate","Pets","Baby & Kids","House & DIY","Sports","Clothes","Other"],
-"Cars & Motor":["Cars","Car Parts","Breaking & Repairables","Motorbikes","Commercials","Vintage Cars","Other"],
-"Farming":["Bedding & Feed","Cattle trailers","Fertilizer Spreaders","Hedge Cutters","Manure Spreaders","Mowers","Silage grabs","Silage Harvesters","Other Farm"],
-"Electronics":["Mobile phones","Personal Computers","PC Parts","Laptops","Laptop parts","TV's","Other Electronics"],
-"Services":["Services"],
-"Jobs":["Jobs"],
-"Real Estate":["For Sale","For Rent","To Share","Land & Estates","Other"],
-"Pets":["Dogs","Cats"],
-"Baby & Kids":["Clothing","Toys","Other Baby"],
-"House & DIY":["Furniture","Home Improvement","Garden","Antiques","Other Home"],
-"Sports":["Sports Clothing","Sports Equipment","Other Sports"],
-"Clothes":["Mens","Women's","Childrens"],
+
+"Cars & Motor":["All Motors","Cars","Car Parts","Breaking & Repairables","Motorbikes","Commercials","Vintage Cars","Other"],
+"Farming":["All Farming","Bedding & Feed","Cattle trailers","Fertilizer Spreaders","Hedge Cutters","Manure Spreaders","Mowers","Silage grabs","Silage Harvesters","Other Farm"],
+"Electronics":["All Electronics","Mobile phones","Tablets","Personal Computers","PC Parts","Laptops","Laptop Parts","Games & Consoles","Printers","MP3 Players","TV's","Other Electronics"],
+"Services":["All Services","Services"],
+"Jobs":["All Jobs","Jobs"],
+"Real Estate":["All Real Estate","For Sale","For Rent","To Share","Land & Estates","Other"],
+"Pets":["All Pets","Dogs","Cats"],
+"Baby & Kids":["All Baby & Kids","Clothing","Toys","Other Baby"],
+"House & DIY":["All Home","Furniture","Home Improvement","Garden","Antiques","Other Home"],
+"Sports":["All Sports","Sports Clothing","Sports Equipment","Other Sports"],
+"Clothes":["All Clothes","Mens","Women's","Childrens"],
 "Other":["other"],
-"Cars":["Aixam","Acura","Alfa Romeo","Aston Martin","Audi","Austin","Bentley","Bmw","Bugatti","Cadillac","Chevrolet","Chrysler","Citroen","Dacia","Daewoo","Daihatsu","Dodge","Ferrari","Fiat","Ford","GMC","Holden","Honda","Hummer","Hyundai","Isuzu","Jaguar","Jeep","Kia","Lamborghini","Lancia","Land Rover","Lexus","Lincoln","Lotus","Maserati","Maybach","Mazda","Mc Laren","Mercedes Benz","Mercury","MG","Mini","Mitsubichi","Nissan","Opel","Peugeot","Pontiac","Porsche","Proton","Renault","Rover","Saab","Seat","Skoda","Smart","Ssang Yong","Subaru","Suzuki","Tesla","Toyota","Vauxhall","Volkswagen","Volvo","Other"]
+
+"Mobile phones":["All Phones","Apple","Samsung","LG","Huawei","ZTE","Sony","TCL","Lenovo","Yulong","Other"],
+
+"Laptops":["All Laptops","Apple","Assus","Dell","HP","Lenovo","Acer","Microsoft","Samsung","Other"],
+"Laptop Parts":["All Laptops","Apple","Assus","Dell","HP","Lenovo","Acer","Microsoft","Samsung","Other"],
+
+"Cars":["All Cars","Aixam","Acura","Alfa Romeo","Aston Martin","Audi","Austin","Bentley","Bmw","Bugatti","Cadillac","Chevrolet","Chrysler","Citroen","Dacia","Daewoo","Daihatsu","Dodge","Ferrari","Fiat","Ford","GMC","Holden","Honda","Hummer","Hyundai","Isuzu","Jaguar","Jeep","Kia","Lamborghini","Lancia","Land Rover","Lexus","Lincoln","Lotus","Maserati","Maybach","Mazda","Mc Laren","Mercedes Benz","Mercury","MG","Mini","Mitsubichi","Nissan","Opel","Peugeot","Pontiac","Porsche","Proton","Renault","Rover","Saab","Seat","Skoda","Smart","Ssang Yong","Subaru","Suzuki","Tesla","Toyota","Vauxhall","Volkswagen","Volvo","Other"],
+
+"Breaking & Repairables":["All Cars","Aixam","Acura","Alfa Romeo","Aston Martin","Audi","Austin","Bentley","Bmw","Bugatti","Cadillac","Chevrolet","Chrysler","Citroen","Dacia","Daewoo","Daihatsu","Dodge","Ferrari","Fiat","Ford","GMC","Holden","Honda","Hummer","Hyundai","Isuzu","Jaguar","Jeep","Kia","Lamborghini","Lancia","Land Rover","Lexus","Lincoln","Lotus","Maserati","Maybach","Mazda","Mc Laren","Mercedes Benz","Mercury","MG","Mini","Mitsubichi","Nissan","Opel","Peugeot","Pontiac","Porsche","Proton","Renault","Rover","Saab","Seat","Skoda","Smart","Ssang Yong","Subaru","Suzuki","Tesla","Toyota","Vauxhall","Volkswagen","Volvo","Other"],
+
+"Audi":["All Audi","100","80","90","A1","A2","A3","A4","A5","A6","A7","A8","Other"]
+
 }
