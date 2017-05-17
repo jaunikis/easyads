@@ -152,15 +152,15 @@ case 'signup':
 case 'items':
 	unset($_SESSION['s_location']);
 	unset($_SESSION['search']);
+	unset($_SESSION['cat1']);
 	
 	$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	$segments = explode('?', $actual_link);
 	//echo $segments[1];
 	if(count($segments)>1){
 		parse_str($segments[1]);
-		if(isset($location)){
-			if($location!=='All Locations'){$_SESSION['s_location']=$location;}
-		}
+		if(isset($location)){if($location!=='All Locations'){$_SESSION['s_location']=$location;}}
+		if(isset($cat1)){if($cat1!=='All Category'){$_SESSION['cat1']=$cat1;}}
 		if(isset($search)){$_SESSION['search']=$search;}
 	}
 	if(isset($item)){

@@ -1,7 +1,10 @@
 <?php
 $s_location='';
+
 if(isset($_SESSION['s_location'])){$s_location=$_SESSION['s_location'];}
-echo 'loc: '.$s_location;
+if(isset($_SESSION['cat1'])){$cat1=$_SESSION['cat1'];}
+
+//echo 'loc: '.$s_location;
 
 $sql="SELECT cat1,cat2 FROM skelbimai";
 $result3=sqlconnect($sql);
@@ -28,7 +31,9 @@ while ($row = $result3->fetch_assoc()) {
 						<option>Cars</option>
 			<?php
 				for($i=0;$i<count($category1);$i++){
-					echo '<option>'.$category1[$i].'</option>';
+					echo '<option ';
+					if($category1[$i]==$cat1){echo 'selected';}
+					echo '>'.$category1[$i].'</option>';
 				}
             ?>
 					</select>
@@ -134,6 +139,7 @@ while ($row = $result3->fetch_assoc()) {
 			var item=$("<option></option>").text(myObj[parinktas][x]);
 			$("#cat2").append(item);
 		} 
+		$("#refine").submit();
 	}); // cat1.change
 	
 	
@@ -152,6 +158,7 @@ while ($row = $result3->fetch_assoc()) {
 				var item=$("<option></option>").text(myObj[parinktas][x]);
 				$("#cat3").append(item);
 			}
+			$("#refine").submit();
 		
 	}); //cat2.change
 	
@@ -169,6 +176,7 @@ while ($row = $result3->fetch_assoc()) {
 				var item=$("<option></option>").text(myObj[parinktas][x]);
 				$("#cat4").append(item);
 			}
+			$("#refine").submit();
 	}); // cat3.change
 	
 	$("#year-min").change(function(){
@@ -183,6 +191,7 @@ while ($row = $result3->fetch_assoc()) {
 			$("#year-max").append(item);
 		}
 		$("#year-max").val(yearMax);
+		$("#refine").submit();
 	}); // year-min
 	
 	$("#year-max").change(function(){
@@ -199,6 +208,7 @@ while ($row = $result3->fetch_assoc()) {
 			$("#year-min").append(item);
 		}
 		$("#year-min").val(yearMin);
+		$("#refine").submit();
 	}); // year-max
 	
 	$("#price-min").change(function(){
@@ -214,6 +224,7 @@ while ($row = $result3->fetch_assoc()) {
 			$("#price-max").append(item);
 		}
 		$("#price-max").val(priceMax);
+		$("#refine").submit();
 	}); // price-min
 	
 	$("#price-max").change(function(){
@@ -229,6 +240,7 @@ while ($row = $result3->fetch_assoc()) {
 			$("#price-min").append(item);
 		}
 		$("#price-min").val(priceMin);
+		$("#refine").submit();
 	}); // price-max
 	
 	}}); // ajax
