@@ -152,6 +152,7 @@ case 'signup':
 case 'items':
 	unset($_SESSION['s_location']);
 	unset($_SESSION['search']);
+	
 	$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	$segments = explode('?', $actual_link);
 	//echo $segments[1];

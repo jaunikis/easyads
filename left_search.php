@@ -1,4 +1,8 @@
 <?php
+$s_location='';
+if(isset($_SESSION['s_location'])){$s_location=$_SESSION['s_location'];}
+echo 'loc: '.$s_location;
+
 $sql="SELECT cat1,cat2 FROM skelbimai";
 $result3=sqlconnect($sql);
 $cars_count = $result3->num_rows;
@@ -17,6 +21,7 @@ while ($row = $result3->fetch_assoc()) {
                         <div class="widget-body">
 						
 						<div class="form-group">
+						<form id="refine">
                         <strong>Category:</strong>
 						<select style="margin-bottom:6px;" name="cat1" id="cat1" class="form-control border-form">
 						<option selected>All Category</option>
@@ -41,10 +46,13 @@ while ($row = $result3->fetch_assoc()) {
 				
 				<strong>Location:</strong>
 						<select style="margin-bottom:6px;" name="location" id="location" class="form-control border-form">
-						<option selected>All Locations</option>
+						<option>All Locations</option>
+						<option>Cavan</option>
 			<?php
 				for($i=0;$i<count($locations);$i++){
-					echo '<option>'.$locations[$i].'</option>';
+					echo '<option ';
+					if($locations[$i]==$s_location){echo 'selected';}
+					echo'>'.$locations[$i].'</option>';
 				}
             ?>
 					</select>
@@ -92,7 +100,7 @@ while ($row = $result3->fetch_assoc()) {
 					
 					
 					<br>
-					
+					</form>
 					</div> <!-- form group -->	
 						   
 						  
@@ -108,6 +116,9 @@ while ($row = $result3->fetch_assoc()) {
         //$("#test").html(result);
 		myObj = JSON.parse(result);
 	
+	$("#location").change(function(){
+		$("#refine").submit();
+	});
 	
 	$("#cat1").change(function(){
 		
