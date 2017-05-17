@@ -15,7 +15,15 @@ require_once ('incl/elapsed.php');
 			$search='%';
 			if(isset($_SESSION['search'])){$search='%'.$_SESSION['search'].'%';}
 			if(isset($_SESSION['s_location'])){$location='"'.$_SESSION['s_location'].'"';}
-			if(isset($_SESSION['cat1'])){if($cat1!=='Cars'){$cat1='"'.$_SESSION['cat1'].'"';}}else{$cat1='"'.'Cars & Motor'.'"';}
+			if(isset($_SESSION['cat1'])){
+				$cat1=$_SESSION['cat1'];
+				if($cat1=='Cars'){
+					$cat1='"'.'Cars & Motor'.'"';
+					$cat2='"'.'Cars'.'"';
+				}else{
+					$cat1='"'.$_SESSION['cat1'].'"';
+				}
+			}
 			if(isset($segments[3])){if($segments[3]!==''){$cat1='"'.str_replace("%20"," ",$segments[3]).'"';}}
 			if(isset($segments[4])){if($segments[4]!==''){$cat2='"'.str_replace("%20"," ",$segments[4]).'"';}}
 			if(isset($segments[5])){if($segments[5]!==''){$make='"'.str_replace("%20"," ",$segments[5]).'"';}}
