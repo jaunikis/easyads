@@ -1,9 +1,9 @@
 <?php
-$s_location='';
+$string = file_get_contents("categories-list.txt");
+//echo $string;
 
-if(isset($_SESSION['s_location'])){$s_location=$_SESSION['s_location'];}
-if(isset($_SESSION['cat1'])){$cat1=$_SESSION['cat1'];}
-
+$json = json_decode($string, true);
+$s_location="";
 //echo 'loc: '.$s_location;
 
 $sql="SELECT cat1,cat2 FROM skelbimai";
@@ -14,8 +14,18 @@ while ($row = $result3->fetch_assoc()) {
 	$count[]=$row['cat2'];
 }
 	$occ = array_count_values($count);
-?>
 
+	
+	
+	$cat1=str_replace('"', "", $cat1);
+	$cat2=str_replace('"', "", $cat2);
+	$cat3=str_replace('"', "", $make);
+	$cat4=str_replace('"', "", $model);
+	
+	//echo '<h1>'.$cat3.'</h1>';
+	?>
+
+				
 				  
                     <div id="categories_left" class="widget listing-filter-block filter-categories">
                         <div class="widget-header">
@@ -30,21 +40,43 @@ while ($row = $result3->fetch_assoc()) {
 						<option selected>All Category</option>
 						<option>Cars</option>
 			<?php
-				for($i=0;$i<count($category1);$i++){
+				for($i=0;$i<count($json['cat1']);$i++){
 					echo '<option ';
-					if($category1[$i]==$cat1){echo 'selected';}
-					echo '>'.$category1[$i].'</option>';
+					if($json['cat1'][$i]==$cat1){echo 'selected';}
+				echo '>'.$json['cat1'][$i].'</option>';
 				}
             ?>
 					</select>
-						
-					<select id="cat2" style="margin-bottom:6px;display:none;"  class="form-control border-form">
+					
+				
+					<select id="cat2" style="margin-bottom:6px;<?php if($cat1=='cat1'){echo 'display:none;';}?>"  class="form-control border-form">
+			<?php
+				for($i=0;$i<count($json[$cat1]);$i++){
+					echo '<option ';
+					if($json[$cat1][$i]==$cat2){echo 'selected';}
+				echo '>'.$json[$cat1][$i].'</option>';
+				}
+            ?>
 					</select>
 					
-					<select id="cat3" style="margin-bottom:6px;display:none;"  class="form-control border-form">
+					<select id="cat3" style="margin-bottom:6px;<?php if($cat2=='cat2'){echo 'display:none;';}?>"  class="form-control border-form">
+			<?php
+				for($i=0;$i<count($json[$cat2]);$i++){
+					echo '<option ';
+					if($json[$cat2][$i]==$cat3){echo 'selected';}
+				echo '>'.$json[$cat2][$i].'</option>';
+				}
+            ?>		
 					</select>
 					
-					<select id="cat4" style="margin-bottom:6px;display:none;"  class="form-control border-form">
+					<select id="cat4" style="margin-bottom:6px;<?php if($cat3=='make'){echo 'display:none;';}?>"  class="form-control border-form">
+			<?php
+				for($i=0;$i<count($json[$cat3]);$i++){
+					echo '<option ';
+					if($json[$cat3][$i]==$cat4){echo 'selected';}
+				echo '>'.$json[$cat3][$i].'</option>';
+				}
+            ?>
 					</select>
 						
 				
@@ -52,12 +84,11 @@ while ($row = $result3->fetch_assoc()) {
 				<strong>Location:</strong>
 						<select style="margin-bottom:6px;" name="location" id="location" class="form-control border-form">
 						<option>All Locations</option>
-						<option>Cavan</option>
 			<?php
-				for($i=0;$i<count($locations);$i++){
+				for($i=0;$i<count($json["locations"]);$i++){
 					echo '<option ';
-					if($locations[$i]==$s_location){echo 'selected';}
-					echo'>'.$locations[$i].'</option>';
+					if($json["locations"][$i]==$s_location){echo 'selected';}
+					echo'>'.$json["locations"][$i].'</option>';
 				}
             ?>
 					</select>
@@ -116,23 +147,23 @@ while ($row = $result3->fetch_assoc()) {
 <script>
  $(function(){
 	//alert('ok');
-	var data='{ name:vardas}';
+	
 	//$.ajax({url: "/easyads/incl/get_ad_list.php", success: function(result){
         //$("#test").html(result);
 	//	AdList = JSON.parse(result);
 	//	alert(AdList.name);
 	//}});
 	
-	 $.post("/easyads/incl/get_ad_list.php",
-        {
-          cat1: "Pets",
-          cat2: "Cars"
-        },
-        function(result,status){
-            //alert(result);
-			AdList = JSON.parse(result);
-			alert(AdList[0].title);
-        });
+	// $.post("/easyads/incl/get_ad_list.php",
+    //    {
+    //      cat1: "Pets",
+   //       cat2: "Cars"
+   //     },
+   //     function(result,status){
+   //         //alert(result);
+	//		AdList = JSON.parse(result);
+	//		alert(AdList[0].title);
+   //     });
 	
 	
 	$.ajax({url: "/easyads/categories-list.txt", success: function(result){
@@ -148,35 +179,48 @@ while ($row = $result3->fetch_assoc()) {
 		$("#cat2").empty();
 		$("#cat3").empty();
 		$("#cat4").empty();
-		$("#cat2").css("display","block");
+		
 		$("#cat3").css("display","none");
 		$("#cat4").css("display","none");
 		var parinktas=$("#cat1").val();
 		//alert(myObj[parinktas].length);
-		for(x=0;x<myObj[parinktas].length;x++){
-			var item=$("<option></option>").text(myObj[parinktas][x]);
-			$("#cat2").append(item);
-		} 
+		if($("#cat1").val()!=='All Category'){
+			$("#cat2").css("display","block");
+			for(x=0;x<myObj[parinktas].length;x++){
+				var item=$("<option></option>").text(myObj[parinktas][x]);
+				$("#cat2").append(item);
+			}
+		}else{$("#cat2").css("display","none");}
 		//$("#refine").submit();
+		var link='';
+		if($("#cat1").val()!=='All Category'){link=$("#cat1").val();}
+		window.location.href = "/easyads/items/"+link;
 	}); // cat1.change
 	
 	
 	$("#cat2").change(function(){
-		//alert('cat2');
+		//alert($("#cat2").val().substring(0,3));
 		$("#cat3").empty();
 		$("#cat4").empty();
 		$("#cat3").css("display","none");
 		$("#cat4").css("display","none");
 		var parinktas=$("#cat2").val();
-		var a=myObj[parinktas].length; //speciali klaida kad sustotu skriptas
+		//var a=myObj[parinktas].length; //speciali klaida kad sustotu skriptas
 		
+			//alert($("#cat1").val());
+		if($("#cat1").val()=='Cars & Motor'){
 			$("#cat3").css("display","block");
-			
 			for(x=0;x<myObj[parinktas].length;x++){
 				var item=$("<option></option>").text(myObj[parinktas][x]);
 				$("#cat3").append(item);
 			}
+		}
 			//$("#refine").submit();
+			var link=$("#cat1").val();
+			//alert(link);
+			link+='/'+$("#cat2").val();
+			//alert(link);
+			window.location.href = "/easyads/items/"+link;
 	}); //cat2.change
 	
 	$("#cat3").change(function(){
@@ -194,7 +238,19 @@ while ($row = $result3->fetch_assoc()) {
 				$("#cat4").append(item);
 			}
 			//$("#refine").submit();
+			var link=$("#cat1").val();
+			link+='/'+$("#cat2").val();
+			link+='/'+$("#cat3").val();
+			window.location.href = "/easyads/items/"+link;
 	}); // cat3.change
+	
+	$("#cat4").change(function(){
+			var link=$("#cat1").val();
+			link+='/'+$("#cat2").val();
+			link+='/'+$("#cat3").val();
+			link+='/'+$("#cat4").val();
+			window.location.href = "/easyads/items/"+link;
+	}); // cat4 change
 	
 	$("#year-min").change(function(){
 		var yearMax=$("#year-max").val();
