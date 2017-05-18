@@ -116,13 +116,31 @@ while ($row = $result3->fetch_assoc()) {
 <script>
  $(function(){
 	//alert('ok');
+	var data='{ name:vardas}';
+	//$.ajax({url: "/easyads/incl/get_ad_list.php", success: function(result){
+        //$("#test").html(result);
+	//	AdList = JSON.parse(result);
+	//	alert(AdList.name);
+	//}});
+	
+	 $.post("/easyads/incl/get_ad_list.php",
+        {
+          cat1: "Pets",
+          cat2: "Cars"
+        },
+        function(result,status){
+            //alert(result);
+			AdList = JSON.parse(result);
+			alert(AdList[0].title);
+        });
+	
 	
 	$.ajax({url: "/easyads/categories-list.txt", success: function(result){
         //$("#test").html(result);
 		myObj = JSON.parse(result);
 	
 	$("#location").change(function(){
-		$("#refine").submit();
+		//$("#refine").submit();
 	});
 	
 	$("#cat1").change(function(){
@@ -139,7 +157,7 @@ while ($row = $result3->fetch_assoc()) {
 			var item=$("<option></option>").text(myObj[parinktas][x]);
 			$("#cat2").append(item);
 		} 
-		$("#refine").submit();
+		//$("#refine").submit();
 	}); // cat1.change
 	
 	
@@ -158,8 +176,7 @@ while ($row = $result3->fetch_assoc()) {
 				var item=$("<option></option>").text(myObj[parinktas][x]);
 				$("#cat3").append(item);
 			}
-			$("#refine").submit();
-		
+			//$("#refine").submit();
 	}); //cat2.change
 	
 	$("#cat3").change(function(){
@@ -176,7 +193,7 @@ while ($row = $result3->fetch_assoc()) {
 				var item=$("<option></option>").text(myObj[parinktas][x]);
 				$("#cat4").append(item);
 			}
-			$("#refine").submit();
+			//$("#refine").submit();
 	}); // cat3.change
 	
 	$("#year-min").change(function(){
