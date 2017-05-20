@@ -3,8 +3,8 @@ $string = file_get_contents("categories-list.txt");
 //echo $string;
 
 $json = json_decode($string, true);
-$s_location="";
-//echo 'loc: '.$s_location;
+//$s_location="";
+//echo 'loc: '.$location;
 
 $sql="SELECT cat1,cat2 FROM skelbimai";
 $result3=sqlconnect($sql);
@@ -16,7 +16,7 @@ while ($row = $result3->fetch_assoc()) {
 	$occ = array_count_values($count);
 
 	
-	
+	$location=str_replace('"', "", $location);
 	$cat1=str_replace('"', "", $cat1);
 	$cat2=str_replace('"', "", $cat2);
 	$cat3=str_replace('"', "", $make);
@@ -87,7 +87,7 @@ while ($row = $result3->fetch_assoc()) {
 			<?php
 				for($i=0;$i<count($json["locations"]);$i++){
 					echo '<option ';
-					if($json["locations"][$i]==$s_location){echo 'selected';}
+					if($json["locations"][$i]==$location){echo 'selected';}
 					echo'>'.$json["locations"][$i].'</option>';
 				}
             ?>
@@ -99,8 +99,12 @@ while ($row = $result3->fetch_assoc()) {
 			<select style="margin-bottom:6px; width:49%;display:inline-block;" name="year-min" id="year-min" class="form-control border-form">
 			<option selected>No Min</option>
 			<?php
+				//$year_min=2006;
+				//if(isset($year)){$year_min=$_GET['year-min'];echo $year_min;}
 				for($i=1997;$i<=date("Y");$i++){
-					echo '<option>'.$i.'</option>';
+					echo '<option ';
+					if($i==$yearMin){echo 'selected';}
+					echo '>'.$i.'</option>';
 				}
             ?>
 			</select>
@@ -171,7 +175,7 @@ while ($row = $result3->fetch_assoc()) {
 		myObj = JSON.parse(result);
 	
 	$("#location").change(function(){
-		//$("#refine").submit();
+		$("#refine").submit();
 	});
 	
 	$("#cat1").change(function(){
@@ -194,7 +198,10 @@ while ($row = $result3->fetch_assoc()) {
 		//$("#refine").submit();
 		var link='';
 		if($("#cat1").val()!=='All Category'){link=$("#cat1").val();}
-		window.location.href = "/easyads/items/"+link;
+		var vars='';
+		if($("#location").val().substring(0,3)!=='All'){vars='?location='+$("#location").val();}
+		if($("#year-min").val().substring(0,2)!=='No'){vars+='&year-min='+$("#year-min").val();}
+		window.location.href = "/easyads/items/"+link+vars;
 	}); // cat1.change
 	
 	
@@ -208,7 +215,7 @@ while ($row = $result3->fetch_assoc()) {
 		//var a=myObj[parinktas].length; //speciali klaida kad sustotu skriptas
 		
 			//alert($("#cat1").val());
-		if($("#cat1").val()=='Cars & Motor'){
+		if($("#cat2").val().substring(0,3)!=='All'){ 
 			$("#cat3").css("display","block");
 			for(x=0;x<myObj[parinktas].length;x++){
 				var item=$("<option></option>").text(myObj[parinktas][x]);
@@ -218,29 +225,30 @@ while ($row = $result3->fetch_assoc()) {
 			//$("#refine").submit();
 			var link=$("#cat1").val();
 			//alert(link);
-			link+='/'+$("#cat2").val();
+			if($("#cat2").val().substring(0,3)!=='All'){link+='/'+$("#cat2").val();}
 			//alert(link);
 			window.location.href = "/easyads/items/"+link;
 	}); //cat2.change
 	
 	$("#cat3").change(function(){
-		//alert('cat2');
+		//alert('cat3');
 		$("#cat4").empty();
 		$("#cat4").css("display","none");
 		var parinktas=$("#cat3").val();
-		//alert(myObj[parinktas].length);
-		var a=myObj[parinktas].length; //speciali klaida kad sustotu skriptas
-		
+		//var a=myObj[parinktas].length; //speciali klaida kad sustotu skriptas
+		//alert($("#cat3").val().substring(0,3));
+		if($("#cat3").val().substring(0,3)!=='All'){
 			$("#cat4").css("display","block");
 			
 			for(x=0;x<myObj[parinktas].length;x++){
 				var item=$("<option></option>").text(myObj[parinktas][x]);
 				$("#cat4").append(item);
 			}
+		}
 			//$("#refine").submit();
 			var link=$("#cat1").val();
 			link+='/'+$("#cat2").val();
-			link+='/'+$("#cat3").val();
+			if($("#cat3").val().substring(0,3)!=='All'){link+='/'+$("#cat3").val();}
 			window.location.href = "/easyads/items/"+link;
 	}); // cat3.change
 	
