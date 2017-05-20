@@ -59,7 +59,13 @@ while ($row = $result3->fetch_assoc()) {
             ?>
 					</select>
 					
-					<select id="cat3" style="margin-bottom:6px;<?php if($cat2=='cat2'){echo 'display:none;';}?>"  class="form-control border-form">
+					<select id="cat3" style="margin-bottom:6px;<?php if(
+					$cat2=='Cars' ||
+					$cat2=='Breaking & Repairables' ||
+					$cat2=='Mobile phones' ||
+					$cat2=='Cars' ||
+					$cat2=='Laptops' ||
+					$cat2=='Laptop Parts'){echo 'display:block;';}else{echo 'display:none;';}?>"  class="form-control border-form">
 			<?php
 				for($i=0;$i<count($json[$cat2]);$i++){
 					echo '<option ';
@@ -69,7 +75,7 @@ while ($row = $result3->fetch_assoc()) {
             ?>		
 					</select>
 					
-					<select id="cat4" style="margin-bottom:6px;<?php if($cat3=='make'){echo 'display:none;';}?>"  class="form-control border-form">
+					<select id="cat4" style="margin-bottom:6px;<?php if($cat2=='Cars' && $cat3!=='make'){echo 'display:block;';}else{echo 'display:none;';}?>"  class="form-control border-form">
 			<?php
 				for($i=0;$i<count($json[$cat3]);$i++){
 					echo '<option ';
@@ -94,46 +100,58 @@ while ($row = $result3->fetch_assoc()) {
 					</select>
 					
 				
-				
+			<div id="year" style="display:none;">	
 			<strong style="display:block;">Year:</strong>
-			<select style="margin-bottom:6px; width:49%;display:inline-block;" name="year-min" id="year-min" class="form-control border-form">
+			<select style="margin-bottom:6px; width:48%;display:inline-block;" name="yearMin" id="yearMin" class="form-control border-form">
 			<option selected>No Min</option>
 			<?php
+			if(!isset($yearMin)){$yearMin=date("Y")-20;} if($yearMin=='No Min'){$yearMin=0;}
+			if(!isset($yearMax)){$yearMax=date("Y");} if($yearMax=='No Max'){$yearMax=date("Y");}
 				//$year_min=2006;
-				//if(isset($year)){$year_min=$_GET['year-min'];echo $year_min;}
-				for($i=1997;$i<=date("Y");$i++){
+				//if(isset($year)){$year_min=$_GET['yearMin'];echo $year_min;}
+				for($i=$yearMin;$i<=$yearMax;$i++){
 					echo '<option ';
-					if($i==$yearMin){echo 'selected';}
+					if(isset($yearMin)){if($i==$yearMin && $i!==date("Y")-20){echo 'selected';}}
 					echo '>'.$i.'</option>';
 				}
             ?>
 			</select>
 					
-			<select style="margin-bottom:6px; width:49%;display:inline;margin-left:2px;" name="year-max" id="year-max" class="form-control border-form">
+			<select style="margin-bottom:6px; width:48%;display:inline;margin-left:2px;" name="yearMax" id="yearMax" class="form-control border-form">
 			<option selected>No Max</option>
 			<?php
-				for($i=1997;$i<=date("Y");$i++){
-					echo '<option>'.$i.'</option>';
+				for($i=$yearMin;$i<=date("Y");$i++){
+					echo '<option ';
+					if(isset($yearMax)){if($i==$yearMax && $yearMax!==date("Y")){echo 'selected';}}
+					echo '>'.$i.'</option>';
 				}
             ?>
 			</select>
-			
+			</div> <!-- year -->
 			
 			<strong style="display:block;">Price:</strong>
-			<select style="margin-bottom:6px; width:49%;display:inline-block;" name="price-min" id="price-min" class="form-control border-form">
+			<select style="margin-bottom:6px; width:48%;display:inline-block;" name="priceMin" id="priceMin" class="form-control border-form">
 			<option selected>No Min</option>
 			<?php
-				for($i=0;$i<=20000;$i+=500){
-					echo '<option>'.$i.'</option>';
+			if(!isset($priceMin)){$priceMin=0;} if($priceMin=='No Min'){$priceMin=0;}
+			if(!isset($priceMax)){$priceMax=20000;} if($priceMax=='No Max'){$priceMax=20000;}
+				for($i=0;$i<=$priceMax;$i+=500){
+					if($i>10000){$i+=500;}
+					echo '<option ';
+					if(isset($priceMin)){if($i==$priceMin && $i!==0){echo 'selected';}}
+					echo '>'.$i.'</option>';
 				}
             ?>
 			</select>
-					
-			<select style="margin-bottom:6px; width:49%;display:inline;margin-left:2px;" name="price-max" id="price-max" class="form-control border-form">
+			
+			<select style="margin-bottom:6px; width:48%;display:inline;margin-left:2px;" name="priceMax" id="priceMax" class="form-control border-form">
 			<option selected>No Max</option>
 			<?php
-				for($i=500;$i<=20000;$i+=500){
-					echo '<option>'.$i.'</option>';
+				for($i=$priceMin+500;$i<=20000;$i+=500){
+					if($i>10000){$i+=500;}
+					echo '<option ';
+					if(isset($priceMax)){if($i==$priceMax && $priceMax!==20000){echo 'selected';}}
+					echo '>'.$i.'</option>';
 				}
             ?>
 			</select>
@@ -169,11 +187,17 @@ while ($row = $result3->fetch_assoc()) {
 	//		alert(AdList[0].title);
    //     });
 	
+	if($("#cat2").val()=='Cars'){$("#year").css("display","block");}
 	
 	$.ajax({url: "/easyads/categories-list.txt", success: function(result){
         //$("#test").html(result);
 		myObj = JSON.parse(result);
 	
+	//location.search = 'namas=121212';
+	//alert(location.search);
+	//alert(location.pathname);
+	
+		
 	$("#location").change(function(){
 		$("#refine").submit();
 	});
@@ -197,10 +221,16 @@ while ($row = $result3->fetch_assoc()) {
 		}else{$("#cat2").css("display","none");}
 		//$("#refine").submit();
 		var link='';
-		if($("#cat1").val()!=='All Category'){link=$("#cat1").val();}
-		var vars='';
-		if($("#location").val().substring(0,3)!=='All'){vars='?location='+$("#location").val();}
-		if($("#year-min").val().substring(0,2)!=='No'){vars+='&year-min='+$("#year-min").val();}
+		if($("#cat1").val()=='Cars'){
+			link='Cars & Motor/Cars';
+		}else{
+			if($("#cat1").val()!=='All Category'){link=$("#cat1").val();}
+		}
+		var vars='?';
+		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
+		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
+		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
+		if(vars=='?'){vars='';}
 		window.location.href = "/easyads/items/"+link+vars;
 	}); // cat1.change
 	
@@ -215,7 +245,7 @@ while ($row = $result3->fetch_assoc()) {
 		//var a=myObj[parinktas].length; //speciali klaida kad sustotu skriptas
 		
 			//alert($("#cat1").val());
-		if($("#cat2").val().substring(0,3)!=='All'){ 
+		if($("#cat2").val()=='Cars' || $("#cat2").val()=='Breaking & Repairables'){ 
 			$("#cat3").css("display","block");
 			for(x=0;x<myObj[parinktas].length;x++){
 				var item=$("<option></option>").text(myObj[parinktas][x]);
@@ -260,69 +290,69 @@ while ($row = $result3->fetch_assoc()) {
 			window.location.href = "/easyads/items/"+link;
 	}); // cat4 change
 	
-	$("#year-min").change(function(){
-		var yearMax=$("#year-max").val();
+	$("#yearMin").change(function(){
+		var yearMax=$("#yearMax").val();
 		var minimum=$(this).val();
 		if(minimum=='No Min'){minimum=1997;}
-		$("#year-max").empty();
+		$("#yearMax").empty();
 		var item=$("<option></option>").text('No Max');
-		$("#year-max").append(item);
+		$("#yearMax").append(item);
 		for(x=minimum;x<=2017;x++){
 			var item=$("<option></option>").text(x);
-			$("#year-max").append(item);
+			$("#yearMax").append(item);
 		}
-		$("#year-max").val(yearMax);
+		$("#yearMax").val(yearMax);
 		$("#refine").submit();
-	}); // year-min
+	}); // yearMin
 	
-	$("#year-max").change(function(){
-		var yearMin=$("#year-min").val();
+	$("#yearMax").change(function(){
+		var yearMin=$("#yearMin").val();
 		var maximum=$(this).val();
 		var d = new Date();
 		var n = d.getFullYear();
 		if(maximum=='No Max'){maximum=n;}
-		$("#year-min").empty();
+		$("#yearMin").empty();
 		var item=$("<option></option>").text('No Min');
-		$("#year-min").append(item);
+		$("#yearMin").append(item);
 		for(x=1997;x<=maximum;x++){
 			var item=$("<option></option>").text(x);
-			$("#year-min").append(item);
+			$("#yearMin").append(item);
 		}
-		$("#year-min").val(yearMin);
+		$("#yearMin").val(yearMin);
 		$("#refine").submit();
-	}); // year-max
+	}); // yearMax
 	
-	$("#price-min").change(function(){
-		var priceMax=$("#price-max").val();
+	$("#priceMin").change(function(){
+		var priceMax=$("#priceMax").val();
 		var minimum=$(this).val();
 		if(minimum=='No Min'){minimum=0;}
 		minimum=parseInt(minimum);
-		$("#price-max").empty();
+		$("#priceMax").empty();
 		var item=$("<option></option>").text('No Max');
-		$("#price-max").append(item);
+		$("#priceMax").append(item);
 		for(x=minimum;x<=20000;x+=500){
 			var item=$("<option></option>").text(x);
-			$("#price-max").append(item);
+			$("#priceMax").append(item);
 		}
-		$("#price-max").val(priceMax);
+		$("#priceMax").val(priceMax);
 		$("#refine").submit();
-	}); // price-min
+	}); // priceMin
 	
-	$("#price-max").change(function(){
-		var priceMin=$("#price-min").val();
+	$("#priceMax").change(function(){
+		var priceMin=$("#priceMin").val();
 		var maximum=$(this).val();
 		if(maximum=='No Max'){maximum=20000;}
 		maximum=parseInt(maximum);
-		$("#price-min").empty();
+		$("#priceMin").empty();
 		var item=$("<option></option>").text('No Min');
-		$("#price-min").append(item);
+		$("#priceMin").append(item);
 		for(x=0;x<=maximum;x+=500){
 			var item=$("<option></option>").text(x);
-			$("#price-min").append(item);
+			$("#priceMin").append(item);
 		}
-		$("#price-min").val(priceMin);
+		$("#priceMin").val(priceMin);
 		$("#refine").submit();
-	}); // price-max
+	}); // priceMax
 	
 	}}); // ajax
  });
