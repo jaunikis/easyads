@@ -99,35 +99,6 @@ while ($row = $result3->fetch_assoc()) {
             ?>
 					</select>
 					
-				
-			<div id="year" style="display:none;">	
-			<strong style="display:block;">Year:</strong>
-			<select style="margin-bottom:6px; width:48%;display:inline-block;" name="yearMin" id="yearMin" class="form-control border-form">
-			<option selected>No Min</option>
-			<?php
-			if(!isset($yearMin)){$yearMin=date("Y")-20;} if($yearMin=='No Min'){$yearMin=0;}
-			if(!isset($yearMax)){$yearMax=date("Y");} if($yearMax=='No Max'){$yearMax=date("Y");}
-				//$year_min=2006;
-				//if(isset($year)){$year_min=$_GET['yearMin'];echo $year_min;}
-				for($i=$yearMin;$i<=$yearMax;$i++){
-					echo '<option ';
-					if(isset($yearMin)){if($i==$yearMin && $i!==date("Y")-20){echo 'selected';}}
-					echo '>'.$i.'</option>';
-				}
-            ?>
-			</select>
-					
-			<select style="margin-bottom:6px; width:48%;display:inline;margin-left:2px;" name="yearMax" id="yearMax" class="form-control border-form">
-			<option selected>No Max</option>
-			<?php
-				for($i=$yearMin;$i<=date("Y");$i++){
-					echo '<option ';
-					if(isset($yearMax)){if($i==$yearMax && $yearMax!==date("Y")){echo 'selected';}}
-					echo '>'.$i.'</option>';
-				}
-            ?>
-			</select>
-			</div> <!-- year -->
 			
 			<strong style="display:block;">Price:</strong>
 			<select style="margin-bottom:6px; width:48%;display:inline-block;" name="priceMin" id="priceMin" class="form-control border-form">
@@ -156,7 +127,35 @@ while ($row = $result3->fetch_assoc()) {
             ?>
 			</select>
 					
+		<div id="cars" style="display:none;">	
+			<strong style="display:block;">Year:</strong>
+			<select style="margin-bottom:6px; width:48%;display:inline-block;" name="yearMin" id="yearMin" class="form-control border-form">
+			<option selected>No Min</option>
+			<?php
+			if(!isset($yearMin)){$yearMin=date("Y")-20;} if($yearMin=='No Min'){$yearMin=0;}
+			if(!isset($yearMax)){$yearMax=date("Y");} if($yearMax=='No Max'){$yearMax=date("Y");}
+				//$year_min=2006;
+				//if(isset($year)){$year_min=$_GET['yearMin'];echo $year_min;}
+				for($i=$yearMin;$i<=$yearMax;$i++){
+					echo '<option ';
+					if(isset($yearMin)){if($i==$yearMin && $i!==date("Y")-20){echo 'selected';}}
+					echo '>'.$i.'</option>';
+				}
+            ?>
+			</select>
 					
+			<select style="margin-bottom:6px; width:48%;display:inline;margin-left:2px;" name="yearMax" id="yearMax" class="form-control border-form">
+			<option selected>No Max</option>
+			<?php
+				for($i=$yearMin;$i<=date("Y");$i++){
+					echo '<option ';
+					if(isset($yearMax)){if($i==$yearMax && $yearMax!==date("Y")){echo 'selected';}}
+					echo '>'.$i.'</option>';
+				}
+            ?>
+			</select>
+			</div> <!-- cars -->
+		
 					<br>
 					</form>
 					</div> <!-- form group -->	
@@ -187,7 +186,7 @@ while ($row = $result3->fetch_assoc()) {
 	//		alert(AdList[0].title);
    //     });
 	
-	if($("#cat2").val()=='Cars'){$("#year").css("display","block");}
+	if($("#cat2").val()=='Cars'){$("#cars").css("display","block");}
 	
 	$.ajax({url: "/easyads/categories-list.txt", success: function(result){
         //$("#test").html(result);
