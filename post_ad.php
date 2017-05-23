@@ -6,6 +6,8 @@ if(!isset($_SESSION['user'])){
 	//header('Location: /easyads/login');
 	echo('<script>location.href = "/easyads/login";</script>');
 	}
+$string = file_get_contents("categories-list.txt");
+$json = json_decode($string, true);
 ?>
 		<!-- Create Post -->
 		<section class="create-post">
@@ -18,7 +20,7 @@ if(!isset($_SESSION['user'])){
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Ad Title <span class="required">*</span></label>
 										<div class="col-sm-9">
-											<input name="title" onkeyup="showHint(this.value)" type="text" placeholder="What are you selling e.g. Apple iPhone SE 2017" required="required" class="form-control border-form">
+											<input name="title" id="title" type="text" placeholder="What are you selling e.g. Apple iPhone SE 2017" required="required" class="form-control border-form">
 										<!--	<p>Suggestions: <span id="txtHint"></span></p>	-->
 										</div>
 									</div>
@@ -27,11 +29,13 @@ if(!isset($_SESSION['user'])){
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Category <span class="required">*</span></label>
 										<div class="col-sm-9">
-											<select name="cat1" id="cat1" onchange="cat1_parinkimas()" class="form-control border-form">
+											<select name="cat1" id="cat1" class="form-control border-form">
 												<option value="0" disabled selected style="display: none;">Please Choose</option>
 			<?php
-				for($i=0;$i<count($category1);$i++){
-					echo '<option>'.$category1[$i].'</option>';
+				for($i=0;$i<count($json['cat1']);$i++){
+					echo '<option ';
+					//if($json['cat1'][$i]==$cat1){echo 'selected';}
+				echo '>'.$json['cat1'][$i].'</option>';
 				}
             ?>
 											</select>
@@ -41,25 +45,25 @@ if(!isset($_SESSION['user'])){
 									<div class="form-group" id="cat22" style="display:none">
 										<label class="col-sm-3 control-label">Sub Category </label>
 										<div class="col-sm-9">
-											<select name="cat2" id="cat2" onchange="cat2_parinkimas()" class="form-control border-form">
+											<select name="cat2" id="cat2" class="form-control border-form">
 												<option value="0" disabled selected style="display: none;">Please Choose</option>
 											</select>
 										</div>
 									</div>
 									
-									<div class="form-group" id="make3" style="display:none">
+									<div class="form-group" id="cat33" style="display:none">
 										<label class="col-sm-3 control-label">Make </label>
 										<div class="col-sm-9">
-											<select name="make" id="make" onchange="model_parinkimas()" class="form-control border-form">
+											<select name="make" id="cat3" class="form-control border-form">
 												<option value="0" disabled selected style="display: none;">Please Choose</option>	
 											</select>
 										</div>
 									</div>
 									
-									<div class="form-group" id="model1" style="display:none">
+									<div class="form-group" id="cat44" style="display:none">
 										<label class="col-sm-3 control-label">Model </label>
 										<div class="col-sm-9">
-											<select name="model" id="model" class="form-control border-form">
+											<select name="model" id="cat4" class="form-control border-form">
 												<option value="0" disabled selected style="display: none;">Please Choose</option>	
 											</select>
 										</div>
@@ -236,6 +240,7 @@ for($i=1994;$i<2017;$i++){
 		<!-- End Create Post -->
 		<div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;"><img src='/easyads/images/loading3.gif' width="64" height="64" /><br>Loading..</div>
 		
+<script src="/easyads/js/ads_categories.js"></script>
 <script>
 function save(){
 	 //alert(image.length);

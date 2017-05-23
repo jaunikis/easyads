@@ -1,7 +1,5 @@
 <?php
 $string = file_get_contents("categories-list.txt");
-//echo $string;
-
 $json = json_decode($string, true);
 //$s_location="";
 //echo 'loc: '.$location;
