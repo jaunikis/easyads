@@ -43,11 +43,10 @@ require_once ('incl/elapsed.php');
                      <div class="tags col-xs-6 text-left">
                         <span><?php echo $ad_count; ?> Adverts</span>
                         
-                        <span>Clear All <span style="cursor:pointer;" id="clear_all"><i class="fa fa-close"></i></span></span>
+                        
                      </div>
                      <ul class="listing-actions-nav col-xs-6 text-right">
-                        <li id="c_list"><a class="layout-action active" title="" data-placement="top" data-toggle="tooltip" href="category-list.html" data-original-title="List layout"><i class="fa fa-bars"></i></a></li>
-                        <li id="c_grid"><a class="layout-action" title="" data-placement="top" data-toggle="tooltip" href="category-grid.html" data-original-title="Grid layout"><i class="fa fa-th"></i></a></li>
+                        
                         <li class="dropdown">
                            <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown"> Recently Published <b class="caret"></b></a>
                            <ul class="dropdown-menu">
@@ -220,14 +219,10 @@ include('left_search.php');
 	  
 <script>
 	
-    function panaikinti(){
-        //alert('fggf');
-		//$(this).remove();
-		 //$("#clear_all").remove();
-    }
+    
 	
-	$("#clear_all").click(function(){
-		this.parentNode.remove();
-	});
+	//$("#clear_all").click(function(){
+	//	this.parentNode.remove();
+	//});
 
 </script>
