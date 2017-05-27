@@ -3,46 +3,24 @@ $.ajax({url: "/easyads/categories-list.txt", success: function(result){
 	myObj = JSON.parse(result);
 	
 	$("#title").keyup(function(){
-		//alert('title');
-    if ($("#cat1").val()== '') { 
-		$('#cat22').hide();
-		$('#cat33').hide();
-		$('#cat44').hide();
-        return;
-    } else { 
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-				var response=this.responseText;
-				var array = response.split('/');
-                //document.getElementById("txtHint").innerHTML = array[0]+'/'+array[1];
-				
-				if(array[0]=="Cars"){
-					document.getElementById("cat1").value="Cars & Motor";
-					cat1_parinkimas();
-					if(array[1]){
-						document.getElementById("make").value=array[1];
-						model_parinkimas();
-						if(array[2]){
-							document.getElementById("model").value=array[2];
-						}
-					}
-				}else{
-						document.getElementById('cat22').style.display = "none";
-						document.getElementById('make3').style.display = "none";
-						document.getElementById('model1').style.display = "none";
-						document.getElementById('year1').style.display = "none";
-						document.getElementById('cat1').value="0";
-						}			
-            }
-        };
-        xmlhttp.open("GET", "/easyads/gethint.php?q=" + str, true);
-        xmlhttp.send();
-    }
-});
+		var str=$("#title").val();
+		//alert(str);
+		$.ajax({url: "/easyads/incl/gethint.php?q=" + str, success: function(result){
+			$("#txtHint").text(result);
+			if(result!=='nera'){
+				var array = result.split('/');
+				if(namas){alert (namas);}
+				$("#cat1").val("Cars & Motor");change_cat1();
+			}
+			
+		}});
+	}); // title.keyup
 	
 	
 	$("#cat1").change(function(){
+		change_cat1();
+	}); //cat1.change
+	function change_cat1(){
 		$("#cat2").empty();
 		$("#cat3").empty();
 		$("#cat4").empty();
@@ -57,7 +35,7 @@ $.ajax({url: "/easyads/categories-list.txt", success: function(result){
 				$("#cat2").append(item);
 			}
 		}else{$("#cat2").css("display","none");}
-	}); //cat1.change
+	} // change_cat1()
 	
 	$("#cat2").change(function(){
 		$("#cat3").empty();

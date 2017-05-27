@@ -21,7 +21,7 @@ $json = json_decode($string, true);
 										<label class="col-sm-3 control-label">Ad Title <span class="required">*</span></label>
 										<div class="col-sm-9">
 											<input name="title" id="title" type="text" placeholder="What are you selling e.g. Apple iPhone SE 2017" required="required" class="form-control border-form">
-										<!--	<p>Suggestions: <span id="txtHint"></span></p>	-->
+											<p>Suggestions: <span id="txtHint"></span></p>	
 										</div>
 									</div>
 									
