@@ -43,7 +43,7 @@ $.ajax({url: "/easyads/categories-list.txt", success: function(result){
 		$("#cat44").css("display","none");
 		var parinktas=$("#cat1").val();
 		//alert(myObj[parinktas].length);
-		if($("#cat1").val()!=='All Category'){
+		if($("#cat1").val()!=='Please Choose'){
 			$("#cat22").show();
 			var item=$("<option></option>").text('All '+parinktas);
 			$("#cat2").append(item);
@@ -53,7 +53,7 @@ $.ajax({url: "/easyads/categories-list.txt", success: function(result){
 			}
 			var item=$("<option></option>").text('Other '+parinktas);
 			$("#cat2").append(item);
-		}else{$("#cat2").css("display","none");}
+		}else{$("#cat22").hide();}
 	} // change_cat1()
 	
 	$("#cat2").change(function(){
