@@ -30,7 +30,7 @@ $json = json_decode($string, true);
 										<label class="col-sm-3 control-label">Category <span class="required">*</span></label>
 										<div class="col-sm-9">
 											<select name="cat1" id="cat1" class="form-control border-form">
-												<option value="0" disabled selected style="display: none;">Please Choose</option>
+												<option value="0" selected >Please Choose</option>
 			<?php
 				for($i=0;$i<count($json['cat1']);$i++){
 					echo '<option ';

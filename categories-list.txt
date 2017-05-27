@@ -5,28 +5,31 @@
 
 "cat1":["Cars & Motor","Farming","Electronics","Services","Jobs","Real Estate","Pets","Baby & Kids","House & DIY","Sports","Clothes","Other"],
 
-"Cars & Motor":["All Motors","Cars","Car Parts","Breaking & Repairables","Motorbikes","Commercials","Vintage Cars","Other"],
-"Farming":["All Farming","Bedding & Feed","Cattle trailers","Fertilizer Spreaders","Hedge Cutters","Manure Spreaders","Mowers","Silage grabs","Silage Harvesters","Other Farm"],
-"Electronics":["All Electronics","Mobile phones","Tablets","Personal Computers","PC Parts","Laptops","Laptop Parts","Games & Consoles","Printers","MP3 Players","TV's","Other Electronics"],
-"Services":["All Services","Services"],
-"Jobs":["All Jobs","Jobs"],
-"Real Estate":["All Real Estate","For Sale","For Rent","To Share","Land & Estates","Other"],
-"Pets":["All Pets","Dogs","Cats"],
-"Baby & Kids":["All Baby & Kids","Clothing","Toys","Other Baby"],
-"House & DIY":["All Home","Furniture","Home Improvement","Garden","Antiques","Other Home"],
-"Sports":["All Sports","Sports Clothing","Sports Equipment","Other Sports"],
-"Clothes":["All Clothes","Mens","Women's","Childrens"],
+"Cars & Motor":["Cars","Car Parts","Breaking & Repairables","Motorbikes","Commercials","Vintage Cars"],
+"Farming":["Bedding & Feed","Cattle trailers","Fertilizer Spreaders","Hedge Cutters","Manure Spreaders","Mowers","Silage grabs","Silage Harvesters"],
+"Electronics":["Mobile phones","Tablets","Personal Computers","PC Parts","Laptops","Laptop Parts","Games & Consoles","Printers","MP3 Players","TV's"],
+"Services":["Services"],
+"Jobs":["Jobs"],
+"Real Estate":["For Sale","For Rent","To Share","Land & Estates"],
+"Pets":["Dogs","Cats"],
+"Baby & Kids":["Clothing","Toys"],
+"House & DIY":["Furniture","Home Improvement","Garden","Antiques"],
+"Sports":["Sports Clothing","Sports Equipment"],
+"Clothes":["Mens","Women's","Childrens"],
 "Other":["other"],
 
-"Mobile phones":["All Phones","Apple","Samsung","LG","Huawei","ZTE","Sony","TCL","Lenovo","Yulong","Other"],
+"Mobile phones":["Apple","Samsung","LG","Huawei","ZTE","Sony","TCL","Lenovo","Yulong"],
 
-"Laptops":["All Laptops","Apple","Assus","Dell","HP","Lenovo","Acer","Microsoft","Samsung","Other"],
-"Laptop Parts":["All Laptops","Apple","Assus","Dell","HP","Lenovo","Acer","Microsoft","Samsung","Other"],
+"Laptops":["Apple","Assus","Dell","HP","Lenovo","Acer","Microsoft","Samsung"],
+"Laptop Parts":["Apple","Assus","Dell","HP","Lenovo","Acer","Microsoft","Samsung"],
 
-"Cars":["All Cars","Aixam","Acura","Alfa Romeo","Aston Martin","Audi","Austin","Bentley","Bmw","Bugatti","Cadillac","Chevrolet","Chrysler","Citroen","Dacia","Daewoo","Daihatsu","Dodge","Ferrari","Fiat","Ford","GMC","Holden","Honda","Hummer","Hyundai","Isuzu","Jaguar","Jeep","Kia","Lamborghini","Lancia","Land Rover","Lexus","Lincoln","Lotus","Maserati","Maybach","Mazda","Mc Laren","Mercedes Benz","Mercury","MG","Mini","Mitsubichi","Nissan","Opel","Peugeot","Pontiac","Porsche","Proton","Renault","Rover","Saab","Seat","Skoda","Smart","Ssang Yong","Subaru","Suzuki","Tesla","Toyota","Vauxhall","Volkswagen","Volvo","Other"],
+"Cars":["Aixam","Acura","Alfa Romeo","Aston Martin","Audi","Austin","Bentley","Bmw","Bugatti","Cadillac","Chevrolet","Chrysler","Citroen","Dacia","Daewoo","Daihatsu","Dodge","Ferrari","Fiat","Ford","GMC","Holden","Honda","Hummer","Hyundai","Isuzu","Jaguar","Jeep","Kia","Lamborghini","Lancia","Land Rover","Lexus","Lincoln","Lotus","Maserati","Maybach","Mazda","Mc Laren","Mercedes Benz","Mercury","MG","Mini","Mitsubichi","Nissan","Opel","Peugeot","Pontiac","Porsche","Proton","Renault","Rover","Saab","Seat","Skoda","Smart","Ssang Yong","Subaru","Suzuki","Tesla","Toyota","Vauxhall","Volkswagen","Volvo"],
 
-"Breaking & Repairables":["All Cars","Aixam","Acura","Alfa Romeo","Aston Martin","Audi","Austin","Bentley","Bmw","Bugatti","Cadillac","Chevrolet","Chrysler","Citroen","Dacia","Daewoo","Daihatsu","Dodge","Ferrari","Fiat","Ford","GMC","Holden","Honda","Hummer","Hyundai","Isuzu","Jaguar","Jeep","Kia","Lamborghini","Lancia","Land Rover","Lexus","Lincoln","Lotus","Maserati","Maybach","Mazda","Mc Laren","Mercedes Benz","Mercury","MG","Mini","Mitsubichi","Nissan","Opel","Peugeot","Pontiac","Porsche","Proton","Renault","Rover","Saab","Seat","Skoda","Smart","Ssang Yong","Subaru","Suzuki","Tesla","Toyota","Vauxhall","Volkswagen","Volvo","Other"],
+"Breaking & Repairables":["Aixam","Acura","Alfa Romeo","Aston Martin","Audi","Austin","Bentley","Bmw","Bugatti","Cadillac","Chevrolet","Chrysler","Citroen","Dacia","Daewoo","Daihatsu","Dodge","Ferrari","Fiat","Ford","GMC","Holden","Honda","Hummer","Hyundai","Isuzu","Jaguar","Jeep","Kia","Lamborghini","Lancia","Land Rover","Lexus","Lincoln","Lotus","Maserati","Maybach","Mazda","Mc Laren","Mercedes Benz","Mercury","MG","Mini","Mitsubichi","Nissan","Opel","Peugeot","Pontiac","Porsche","Proton","Renault","Rover","Saab","Seat","Skoda","Smart","Ssang Yong","Subaru","Suzuki","Tesla","Toyota","Vauxhall","Volkswagen","Volvo"],
 
-"Audi":["All Audi","100","80","90","A1","A2","A3","A4","A5","A6","A7","A8","Other"],
-"Ford":["All Ford","B-Max","C-Max","Cortina","Cougar","Crown Victoria","Edge","Escort","Fiesta","Focus","F-Series","Fusion","Galaxy","Ka","Kuga","Maverick","Mondeo","Mustang","Orion","Probe","Puma","Sierra","S-Max","Transit"]
+"Aixam":["Aixam"],
+"Acura":["CL","EL","Integra","MDX","NSX","RL","TL"],
+"Alfa Romeo":["147","156","159","166","Alfasud","Brera","Giulia","GT","GTV"],
+"Audi":["100","80","90","A1","A2","A3","A4","A5","A6","A7","A8"],
+"Ford":["B-Max","C-Max","Cortina","Cougar","Crown Victoria","Edge","Escort","Fiesta","Focus","F-Series","Fusion","Galaxy","Ka","Kuga","Maverick","Mondeo","Mustang","Orion","Probe","Puma","Sierra","S-Max","Transit"]
 }
