@@ -52,7 +52,7 @@ if(isset($_SESSION['images'])){ $images=$_SESSION['images'];}
 $date = new DateTime();$timestamp2=$date->getTimestamp();
 
 //save to db
-$sql = "INSERT INTO skelbimai (ip,user,title,cat1,cat2,cover,make,model,year,price,location,condition2,description,name,email,phone,active,timestamp2) VALUES ('$ip','$user','$title','$cat1','$cat2','$images[$cover]','$make','$model','$year','$price','$location','$condition','$description','$name','$email','$phone','no',$timestamp2)";
+$sql = "INSERT INTO skelbimai (ip,user,title,cat1,cat2,cover,make,model,year,price,location,condition2,description,name,email,phone,active,timestamp2) VALUES ('$ip','$user','$title','$cat1','$cat2','$images[$cover]','$make','$model','$year','$price','$location','$condition','$description','$name','$email','$phone','Active',$timestamp2)";
 
 $result=sqlconnect($sql);
 

@@ -5,34 +5,38 @@ $.ajax({url: "/easyads/categories-list.txt", success: function(result){
 	$("#title").keyup(function(){
 		var str=$("#title").val();
 		//alert(str);
-		$.ajax({url: "/easyads/incl/gethint.php?q=" + str, success: function(result){
-			$("#txtHint").text(result);
-			if(result!=='nera'){
-				var array = result.split('/');
-				if (typeof array[0] !== 'undefined') {
-					$("#cat1").val(array[0]);change_cat1();
+		if(str==''){$("#txtHint").text('nera');}
+		if($("#txtHint").text()!=='stop'){
+			$.ajax({url: "/easyads/incl/gethint.php?q=" + str, success: function(result){
+				$("#txtHint").text(result);
+				if(result!=='nera'){
+					var array = result.split('/');
+					if (typeof array[0] !== 'undefined') {
+						$("#cat1").val(array[0]);change_cat1();
+					}
+					if (typeof array[1] !== 'undefined') {
+						$("#cat2").val(array[1]);change_cat2();
+					}
+					if (typeof array[2] !== 'undefined') {
+						$("#cat3").val(array[2]);change_cat3();
+					}
+					if (typeof array[3] !== 'undefined') {
+						$("#cat4").val(array[3]);
+					}
+				}else{
+					$("#cat1").val('Please Choose');
+					$("#cat44").hide();
+					$("#cat33").hide();
+					$("#cat22").hide();
 				}
-				if (typeof array[1] !== 'undefined') {
-					$("#cat2").val(array[1]);change_cat2();
-				}
-				if (typeof array[2] !== 'undefined') {
-					$("#cat3").val(array[2]);change_cat3();
-				}
-				if (typeof array[3] !== 'undefined') {
-					$("#cat4").val(array[3]);
-				}
-			}else{
-				$("#cat1").val('Please Choose');
-				$("#cat44").hide();
-				$("#cat33").hide();
-				$("#cat22").hide();
-			}
-			
-		}});
+				
+			}});
+		}
 	}); // title.keyup
 	
 	
 	$("#cat1").change(function(){
+		$("#txtHint").text('stop');
 		change_cat1();
 	}); //cat1.change
 	function change_cat1(){
@@ -57,6 +61,7 @@ $.ajax({url: "/easyads/categories-list.txt", success: function(result){
 	} // change_cat1()
 	
 	$("#cat2").change(function(){
+		$("#txtHint").text('stop');
 		change_cat2();
 	}); //cat2.change
 	function change_cat2(){
@@ -66,7 +71,7 @@ $.ajax({url: "/easyads/categories-list.txt", success: function(result){
 		$("#cat44").css("display","none");
 		var parinktas=$("#cat2").val();
 		//var a=myObj[parinktas].length; //speciali klaida kad sustotu skriptas
-		if($("#cat2").val()=='Cars' || $("#cat2").val()=='Breaking & Repairables'){ 
+		if($("#cat2").val()=='Cars' || $("#cat2").val()=='Breaking & Repairables' || $("#cat2").val()=='Mobile phones' || $("#cat2").val()=='Laptops' || $("#cat2").val()=='Furniture' ){ 
 			$("#cat33").show();
 			var item=$("<option></option>").text('All '+parinktas);
 			$("#cat3").append(item);
@@ -80,6 +85,7 @@ $.ajax({url: "/easyads/categories-list.txt", success: function(result){
 	} // change_cat2()
 	
 	$("#cat3").change(function(){
+		$("#txtHint").text('stop');
 		change_cat3();
 	}); // cat3.change
 	function change_cat3(){
@@ -87,7 +93,7 @@ $.ajax({url: "/easyads/categories-list.txt", success: function(result){
 		$("#cat44").css("display","none");
 		var parinktas=$("#cat3").val();
 		//var a=myObj[parinktas].length; //speciali klaida kad sustotu skriptas
-		if($("#cat3").val().substring(0,3)!=='All'){
+		if($("#cat2").val()=='Cars' || $("#cat2").val()=='Breaking & Repairables' && $("#cat3").val().substring(0,3)!=='All'){
 			$("#cat44").show();
 			var item=$("<option></option>").text('All '+parinktas);
 			$("#cat4").append(item);
@@ -99,5 +105,9 @@ $.ajax({url: "/easyads/categories-list.txt", success: function(result){
 			$("#cat4").append(item);
 		}
 	}
+	
+	$("#cat4").change(function(){
+		$("#txtHint").text('stop');
+	});
 	
 }}); // ajax

@@ -4,14 +4,7 @@
                         <h1>My Ads</h1>
                      </div>
 <?php
-if(!isset($_SESSION['email'])){$_SESSION['link']='/easyads/my_ads';echo('<script>window.location = "/easyads/login";</script>');exit;}
-
-$email=$_SESSION['email'];
-require_once ('incl/server.php');
-require_once ('incl/elapsed.php');
-$sql="SELECT * FROM skelbimai WHERE email='$email' ORDER BY id DESC";
-$result=sqlconnect($sql);
-while ($row = $result->fetch_assoc()) {
+while ($row = $result_my_ads->fetch_assoc()) {
 				$id=$row['id'];
 				$title=$row['title'];
 				$cover=$row['cover'];if($cover==''){$cover='no-image3.gif';}
@@ -53,14 +46,14 @@ while ($row = $result->fetch_assoc()) {
                              <div class="skelbimo-status">
 								Status: <?php if($active=='Active'){echo '<b><span style="color:green">'.$active.'</span></b>';}else{echo '<b><span style="color:orange">'.$active.'</span></b>';}?>
 								<span> |  </span>
-								 <?php if($active=='Active'){echo '<span onclick="enable_disable('.$id.',this) "class="label label-warning" title="" data-placement="top" data-toggle="tooltip" data-original-title="Disable">Disable: <i class="fa fa-close"></i></span>';}
-										else{echo '<span onclick="enable_disable('.$id.',this)" class="label label-success" title="" data-placement="top" data-toggle="tooltip" data-original-title="Enable">Enable: <i class="fa fa-check"></i></span>';
+								 <?php if($active=='Active'){echo '<span style="cursor:pointer;" onclick="enable_disable('.$id.',this) "class="label label-warning" title="" data-placement="top" data-toggle="tooltip" data-original-title="Disable">Disable: <i class="fa fa-close"></i></span>';}
+										else{echo '<span style="cursor:pointer;" onclick="enable_disable('.$id.',this)" class="label label-success" title="" data-placement="top" data-toggle="tooltip" data-original-title="Enable">Enable: <i class="fa fa-check"></i></span>';
 										}
 								?>
 							<span> | </span>
-							<span class="label label-primary" title="" data-placement="top" data-toggle="tooltip" data-original-title="Edit Ad">Edit: <i class="fa fa-pencil"></i></span>
+							<span style="cursor:pointer;" class="label label-primary" title="" data-placement="top" data-toggle="tooltip" data-original-title="Edit Ad">Edit: <i class="fa fa-pencil"></i></span>
 							<span> | </span>
-							<span class="label label-danger" onclick="delete_ad(<?php echo $id; ?>,this)" title="" data-placement="top" data-toggle="tooltip"  data-original-title="Delete"><i class="fa fa-trash"></i></span>
+							<span style="cursor:pointer;" class="label label-danger" onclick="delete_ad(<?php echo $id; ?>,this)" title="" data-placement="top" data-toggle="tooltip"  data-original-title="Delete"><i class="fa fa-trash"></i></span>
 							<span style="color:white">.</span>
 							</div>
 							
@@ -87,20 +80,21 @@ while ($row = $result->fetch_assoc()) {
 <script>
 function enable_disable(id,th){
 	//alert(id);
-	if(th.className=="label label-primary"){
+	if(th.className=="label label-success"){
 		//enable
 		//alert(th.className);
 		th.className="label label-warning";
 		th.firstChild.className="fa fa-close";
-		var el=th.parentNode.parentNode.parentNode;
-		el.childNodes[7].innerHTML='<b><span style="color:green">Active</span></b>';
+		th.innerHTML='Disable: <i class="fa fa-close"></i>';
+		var el=th.parentNode;
+		el.childNodes[1].innerHTML='<b><span style="color:green">Active</span></b>';
 		
 	}else{
 		//disable
-		th.className="label label-primary";
-		th.firstChild.className="fa fa-check";
-		var el=th.parentNode.parentNode.parentNode;
-		el.childNodes[7].innerHTML='<b><span style="color:orange">Not active</span></b>';
+		th.className="label label-success";
+		th.innerHTML='Enable: <i class="fa fa-check"></i>';
+		var el=th.parentNode;
+		el.childNodes[1].innerHTML='<b><span style="color:orange">Not active</span></b>';
 	}
 	var wait=document.getElementById("wait");
 	//alert(id);

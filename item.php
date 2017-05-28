@@ -182,7 +182,7 @@ echo '<div class="item"><a href="/easyads/ads_images/big_'.$images[$i].'" target
                   </div>
                   <div class="widget user-widget">
                      <div class="widget-body text-center">
-                        <img class="user-dp" alt="User Image" src="/easyads/images/user2.jpg">
+                        <img class="user-dp" alt="User Image" src="/easyads/images/user3.png">
                         <h2 class="seller-name"><?php echo $user;?></h2>
                         <p class="seller-detail">Location: <strong>Cavan</strong><br>
                            Joined : <strong>21 March 2017</strong>

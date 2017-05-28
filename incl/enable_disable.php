@@ -9,7 +9,7 @@ if($status=='label label-warning'){
 	$sql="UPDATE skelbimai SET active='Active' WHERE id='$id'";
 	$result=sqlconnect($sql);
 }
-if($status=='label label-primary'){
+if($status=='label label-success'){
 	$sql="UPDATE skelbimai SET active='Not active' WHERE id='$id'";
 	$result=sqlconnect($sql);
 }

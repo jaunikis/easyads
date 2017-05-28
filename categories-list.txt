@@ -14,13 +14,15 @@
 "Pets":["Dogs","Cats"],
 "Baby & Kids":["Clothing","Toys"],
 "House & DIY":["Furniture","Home Improvement","Garden","Antiques"],
-"Sports":["Sports Clothing","Sports Equipment"],
+"Sports":["Sports Clothing","Sports Equipment","Cycling"],
 "Clothes":["Mens","Women's","Childrens"],
 "Other":["other"],
 
-"Mobile phones":["Apple","Samsung","LG","Huawei","ZTE","Sony","TCL","Lenovo","Yulong"],
+"Furniture":["Living Room","Bedroom","Kitchen","Garden"],
 
-"Laptops":["Apple","Assus","Dell","HP","Lenovo","Acer","Microsoft","Samsung"],
+"Mobile phones":["Apple","Samsung","LG","HTC","Huawei","ZTE","Sony","TCL","Lenovo","Yulong"],
+
+"Laptops":["Apple","Asus","Dell","HP","Lenovo","Acer","Microsoft","Toshiba","Samsung"],
 "Laptop Parts":["Apple","Assus","Dell","HP","Lenovo","Acer","Microsoft","Samsung"],
 
 "Cars":["Aixam","Acura","Alfa Romeo","Aston Martin","Audi","Austin","Bentley","Bmw","Bugatti","Cadillac","Chevrolet","Chrysler","Citroen","Dacia","Daewoo","Daihatsu","Dodge","Ferrari","Fiat","Ford","GMC","Holden","Honda","Hyundai","Isuzu","Jaguar","Jeep","Kia","Lamborghini","Lancia","Land Rover","Lexus","Lincoln","Lotus","Maserati","Maybach","Mazda","Mc Laren","Mercedes Benz","MG","Mini","Mitsubichi","Nissan","Opel","Peugeot","Porsche","Proton","Renault","Rover","Saab","Seat","Skoda","Smart","Ssang Yong","Subaru","Suzuki","Tesla","Toyota","Triumph","Vauxhall","Volkswagen","Volvo"],

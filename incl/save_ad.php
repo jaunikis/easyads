@@ -10,12 +10,12 @@ $result=sqlconnect($sql);
 //$conn = new mysqli($servername, $username, $password,$dbname);
 //if ($conn->connect_errno) {echo "Sorry, this website is experiencing problems.";exit;}
 //if (!$result = $conn->query($sql)) {echo "Sorry, the website is experiencing problems.";}
-
+$perziureta=0;
 $row = $result->fetch_assoc();
 $perziureta=$row['saved'];
 	
 //save to user
-$email=$_SESSION['email'];	
+$email=$_SESSION['email'];
 $sql="SELECT saved FROM users WHERE email='$email'";
 $result=sqlconnect($sql);
 //$conn = new mysqli($servername, $username, $password,$dbname);

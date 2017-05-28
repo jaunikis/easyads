@@ -7,15 +7,13 @@
 				   
                         
 <?php
-if(!isset($_SESSION['email'])){$_SESSION['link']='/easyads/my_ads';echo('<script>window.location = "/easyads/login";</script>');exit;}
 
-$email=$_SESSION['email'];
-require_once ('incl/server.php');
 require_once ('incl/elapsed.php');
-if(isset($_SESSION['saved'])){$saved=$_SESSION['saved'];}else{$saved='';}
-$sql="SELECT * FROM skelbimai WHERE id IN ($saved) ORDER BY id DESC";
-$result=sqlconnect($sql);
-while ($row = $result->fetch_assoc()) {
+//if(isset($_SESSION['saved'])){$saved=$_SESSION['saved'];echo $saved;}else{$saved='';}
+
+
+
+while ($row = $result_favourite->fetch_assoc()) {
 				$id=$row['id'];
 				$title=$row['title'];
 				$cover=$row['cover'];if($cover==''){$cover='no-image3.gif';}
@@ -52,7 +50,7 @@ while ($row = $result->fetch_assoc()) {
 								
 							<span> | </span>
 										
-											<span class="" data-placement="top" data-toggle="tooltip" onclick="unfavourite(<?php echo $id; ?>,this)" data-original-title="Unfavourite">Unsave <i class="fa fa-close"></i></span>
+											<span class="" data-placement="top" data-toggle="tooltip" style="cursor:pointer;" onclick="unfavourite(<?php echo $id; ?>,this)" data-original-title="Unfavourite">Unsave <i class="fa fa-close"></i></span>
 										</div>
                                        
 	
@@ -87,7 +85,7 @@ var hr = new XMLHttpRequest();
 
 			if(hr.readyState == 4 && hr.status == 200) {
 				var return_data = hr.responseText;
-				var p=th.parentNode.parentNode.parentNode;
+				var p=th.parentNode.parentNode;
 				p.parentNode.removeChild(p);
 				//alert(return_data);
 				wait.style.display="none";

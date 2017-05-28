@@ -1,3 +1,27 @@
+<?php
+if(!isset($_SESSION['email'])){$_SESSION['link']='/easyads/my_ads';echo('<script>window.location = "/easyads/login";</script>');exit;}
+
+$email=$_SESSION['email'];
+require_once ('incl/server.php');
+require_once ('incl/elapsed.php');
+//my_ads
+$sql="SELECT * FROM skelbimai WHERE email='$email' ORDER BY id DESC";
+$result_my_ads=sqlconnect($sql);
+$my_ads = $result_my_ads->num_rows;
+
+//saved
+$sql="SELECT saved FROM users WHERE email='$email'";
+$result=sqlconnect($sql);
+$row = $result->fetch_assoc();
+$saved=$row['saved'];
+
+$sql="SELECT * FROM skelbimai WHERE id IN ($saved) ORDER BY id DESC";
+//$sql="SELECT * FROM skelbimai WHERE id IN (SELECT saved FROM users WHERE email='as') ORDER BY id DESC";
+if($result_favourite=sqlconnect($sql)){
+$favourite = $result_favourite->num_rows;
+}else{$favourite=0;}
+?>
+
 <!-- Settings -->
       <section class="settings">
          <div class="container">
@@ -17,11 +41,11 @@
                         </div>
                         <div class="list-group">
                            <a class="list-group-item" href="/easyads/my_ads">
-                           <span class="label label-info">15</span>
+                           <span class="label label-info"><?php echo $my_ads; ?></span>
                            <i class="fa fa-fw fa-pencil"></i> My Ads
                            </a>
                            <a class="list-group-item" href="/easyads/favourite">
-                           <span class="label label-success">10</span>
+                           <span class="label label-success"><?php echo $favourite; ?></span>
                            <i class="fa fa-fw fa-heart"></i> Favourite Ads
                            </a>
                            <a class="list-group-item" href="ad-alerts.html">

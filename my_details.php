@@ -26,11 +26,12 @@
                               </div>
                            </div>
                            <div class="form-group">
+						   
                               <label class="col-sm-3 control-label">Location </label>
                               <div class="col-sm-9">
-                                 <select class="form-control border-form">
+                                 <select name="location" class="form-control border-form">
                            
-						   <option>All Location</option>'
+						   <option>All Locations</option>'
             <?php
 				for($i=0;$i<count($locations);$i++){
 					if(isset($_SESSION['location'])){if($locations[$i]==$_SESSION['location']){

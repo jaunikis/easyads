@@ -44,13 +44,13 @@
                   <a href="/easyads/items/Jobs">
                   <i class="fa fa-briefcase"></i>Jobs
                   </a>
-                  <a href="categories.html">
+                  <a href="/easyads/items/Electronics/Mobile phones">
                   <i class="fa fa-mobile"></i>Mobiles
                   </a>
-                  <a href="categories.html">
+                  <a href="/easyads/items/Electronics/Laptops">
                   <i class="fa fa-laptop"></i>Laptop
                   </a>
-                  <a href="categories.html">
+                  <a href="/easyads/items/Real Estate">
                   <i class="fa fa-building-o"></i>Property
                   </a>
                </div>
