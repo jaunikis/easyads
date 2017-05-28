@@ -44,16 +44,19 @@ while ($row = $result3->fetch_assoc()) {
 				echo '>'.$json['cat1'][$i].'</option>';
 				}
             ?>
+					<option>Other</option>
 					</select>
 					
 				
 					<select id="cat2" style="margin-bottom:6px;<?php if($cat1=='cat1'){echo 'display:none;';}?>"  class="form-control border-form">
 			<?php
+				echo '<option>All '.$cat1.'</option>';
 				for($i=0;$i<count($json[$cat1]);$i++){
 					echo '<option ';
 					if($json[$cat1][$i]==$cat2){echo 'selected';}
 				echo '>'.$json[$cat1][$i].'</option>';
 				}
+				echo '<option>Other '.$cat1.'</option>';
             ?>
 					</select>
 					
@@ -65,21 +68,25 @@ while ($row = $result3->fetch_assoc()) {
 					$cat2=='Laptops' ||
 					$cat2=='Laptop Parts'){echo 'display:block;';}else{echo 'display:none;';}?>"  class="form-control border-form">
 			<?php
+				echo '<option>All '.$cat2.'</option>';
 				for($i=0;$i<count($json[$cat2]);$i++){
 					echo '<option ';
 					if($json[$cat2][$i]==$cat3){echo 'selected';}
 				echo '>'.$json[$cat2][$i].'</option>';
 				}
+				echo '<option>Other '.$cat2.'</option>';
             ?>		
 					</select>
 					
 					<select id="cat4" style="margin-bottom:6px;<?php if($cat2=='Cars' && $cat3!=='make'){echo 'display:block;';}else{echo 'display:none;';}?>"  class="form-control border-form">
 			<?php
+				echo '<option>All '.$cat3.'</option>';
 				for($i=0;$i<count($json[$cat3]);$i++){
 					echo '<option ';
 					if($json[$cat3][$i]==$cat4){echo 'selected';}
 				echo '>'.$json[$cat3][$i].'</option>';
 				}
+				echo '<option>Other '.$cat3.'</option>';
             ?>
 					</select>
 						
@@ -211,10 +218,14 @@ while ($row = $result3->fetch_assoc()) {
 		//alert(myObj[parinktas].length);
 		if($("#cat1").val()!=='All Category'){
 			$("#cat2").css("display","block");
+			var item=$("<option></option>").text('All '+parinktas);
+			$("#cat2").append(item);
 			for(x=0;x<myObj[parinktas].length;x++){
 				var item=$("<option></option>").text(myObj[parinktas][x]);
 				$("#cat2").append(item);
 			}
+			var item=$("<option></option>").text('Other '+parinktas);
+			$("#cat2").append(item);
 		}else{$("#cat2").css("display","none");}
 		//$("#refine").submit();
 		var link='';
@@ -244,10 +255,14 @@ while ($row = $result3->fetch_assoc()) {
 			//alert($("#cat1").val());
 		if($("#cat2").val()=='Cars' || $("#cat2").val()=='Breaking & Repairables'){ 
 			$("#cat3").css("display","block");
+			var item=$("<option></option>").text('All '+parinktas);
+			$("#cat3").append(item);
 			for(x=0;x<myObj[parinktas].length;x++){
 				var item=$("<option></option>").text(myObj[parinktas][x]);
 				$("#cat3").append(item);
 			}
+			var item=$("<option></option>").text('Other '+parinktas);
+			$("#cat3").append(item);
 		}
 			//$("#refine").submit();
 			var link=$("#cat1").val();
@@ -266,11 +281,14 @@ while ($row = $result3->fetch_assoc()) {
 		//alert($("#cat3").val().substring(0,3));
 		if($("#cat3").val().substring(0,3)!=='All'){
 			$("#cat4").css("display","block");
-			
+			var item=$("<option></option>").text('All '+parinktas);
+			$("#cat4").append(item);
 			for(x=0;x<myObj[parinktas].length;x++){
 				var item=$("<option></option>").text(myObj[parinktas][x]);
 				$("#cat4").append(item);
 			}
+			var item=$("<option></option>").text('Other '+parinktas);
+			$("#cat4").append(item);
 		}
 			//$("#refine").submit();
 			var link=$("#cat1").val();
@@ -283,7 +301,7 @@ while ($row = $result3->fetch_assoc()) {
 			var link=$("#cat1").val();
 			link+='/'+$("#cat2").val();
 			link+='/'+$("#cat3").val();
-			link+='/'+$("#cat4").val();
+			if($(this).val().substring(0,3)!=='All'){link+='/'+$("#cat4").val();}
 			window.location.href = "/easyads/items/"+link;
 	}); // cat4 change
 	
