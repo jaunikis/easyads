@@ -7,6 +7,10 @@ require_once ('incl/elapsed.php');
 			$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 			$segments = explode('/', $path);
 			//echo  (str_replace("%20"," ",$segments[3]));
+			$pMin=0;$pMax=9999999;
+			if(isset($priceMin)){if($priceMin!=='No Min'){$pMin=$priceMin;}}
+			if(isset($priceMax)){if($priceMax!=='No Max'){$pMax=$priceMax;}}
+			
 			$cat1='cat1';
 			$cat2='cat2'; 
 			$make='make';
@@ -30,7 +34,7 @@ require_once ('incl/elapsed.php');
 			if(isset($segments[6])){if($segments[6]!==''){$model='"'.str_replace("%20"," ",$segments[6]).'"';}}
 			//echo '<h1>'.$search.'</h1>';
 			
-			$sql="SELECT * FROM skelbimai WHERE cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND location=$location AND (description LIKE '$search' OR title LIKE '$search') ORDER BY id DESC";
+			$sql="SELECT * FROM skelbimai WHERE cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY id DESC";
 			$result=sqlconnect($sql);
 			
 			$ad_count = $result->num_rows;
@@ -48,12 +52,11 @@ require_once ('incl/elapsed.php');
                      <ul class="listing-actions-nav col-xs-6 text-right">
                         
                         <li class="dropdown">
-                           <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown"> Recently Published <b class="caret"></b></a>
+                           <a id="sort" aria-expanded="false" href="www.google.ie" class="dropdown-toggle" data-toggle="dropdown"> Recently Published <b class="caret"></b></a>
                            <ul class="dropdown-menu">
-                              <li><a href="#">Price Low to High</a></li>
-                              <li><a href="#">Price High to Low</a></li>
-                              <li><a href="#">Price High to Low</a></li>
-                              <li><a href="#">Recently Published</a></li>
+                              <li><a id="sortPriceL" href="#">Low Price First</a></li>
+                              <li><a id="sortPriceH" href="#">High Price First</a></li>
+                              <li><a id="sortRecently" href="#">Recently Published</a></li>
                            </ul>
                         </li>
                      </ul>
@@ -218,8 +221,20 @@ include('left_search.php');
       <!-- End Category List -->
 	  
 <script>
-	
+	$("#sortPriceL").click(function(){
+		event.preventDefault();
+		$("#sort").html($(this).text()+' <b class="caret"></b>');
+	});
     
+	$("#sortPriceH").click(function(){
+		event.preventDefault();
+		$("#sort").html($(this).text()+' <b class="caret"></b>');
+	});
+	
+	$("#sortRecently").click(function(){
+		event.preventDefault();
+		$("#sort").html($(this).text()+' <b class="caret"></b>');
+	});
 	
 	//$("#clear_all").click(function(){
 	//	this.parentNode.remove();

@@ -91,7 +91,7 @@
 <?php
 session_start();
 if(isset($_COOKIE['user'])){$_SESSION['user']=$_COOKIE['user'];}
-require_once ('incl/defined_vars.php');
+//require_once ('incl/defined_vars.php');
 
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $segments = explode('/', $path);

@@ -112,25 +112,40 @@ while ($row = $result3->fetch_assoc()) {
 			<option selected>No Min</option>
 			<?php
 			if(!isset($priceMin)){$priceMin=0;} if($priceMin=='No Min'){$priceMin=0;}
-			if(!isset($priceMax)){$priceMax=20000;} if($priceMax=='No Max'){$priceMax=20000;}
-				for($i=0;$i<=$priceMax;$i+=500){
+			if(!isset($priceMax)){$priceMax=300000;} if($priceMax=='No Max'){$priceMax=300000;}
+				
+				
+			for($i=0;$i<count($json["prices"]);$i++){
+				echo '<option ';
+				if($json["prices"][$i]==$priceMin && $i!==0){echo 'selected';}
+				echo'>'.$json["prices"][$i].'</option>';
+			}
+			
+			/*	for($i=1000;$i<=$priceMax;$i+=500){
 					if($i>10000){$i+=500;}
 					echo '<option ';
 					if(isset($priceMin)){if($i==$priceMin && $i!==0){echo 'selected';}}
 					echo '>'.$i.'</option>';
-				}
+				} */
             ?>
 			</select>
 			
 			<select style="margin-bottom:6px; width:48%;display:inline;margin-left:2px;" name="priceMax" id="priceMax" class="form-control border-form">
 			<option selected>No Max</option>
 			<?php
-				for($i=$priceMin+500;$i<=20000;$i+=500){
+				
+			for($i=0;$i<count($json["prices"]);$i++){
+				echo '<option ';
+				if($json["prices"][$i]==$priceMax && $json["prices"][$i]!==300000){echo 'selected';}
+				echo'>'.$json["prices"][$i].'</option>';
+			}	
+				
+			/*	for($i=$priceMin+500;$i<=20000;$i+=500){
 					if($i>10000){$i+=500;}
 					echo '<option ';
 					if(isset($priceMax)){if($i==$priceMax && $priceMax!==20000){echo 'selected';}}
 					echo '>'.$i.'</option>';
-				}
+				}	*/
             ?>
 			</select>
 					

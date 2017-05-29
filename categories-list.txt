@@ -1,4 +1,5 @@
 {
+"prices":[0,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700,800,900,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,20000,30000,40000,50000,100000,150000,200000,250000,300000],
 "locations":["Antrim","Armagh","Carlow","Cavan","Clare","Cork","Derry","Donegal","Down","Dublin","Fermanagh","Galway","Kerry","Kildare",
 "Kilkenny","Laois","Leitrim","Limerick","Londonderry","Longford","Louth","Mayo","Meath","Monaghan",
 "Offaly","Roscommon","Sligo","Tipperary","Tyrone","Waterford","Westmeath","Wexford","Wicklow","All Locations"],
