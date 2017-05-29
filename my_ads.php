@@ -139,7 +139,7 @@ function delete_ad(id,th){
 
 			if(hr.readyState == 4 && hr.status == 200) {
 				var return_data = hr.responseText;
-				var p=th.parentNode.parentNode.parentNode;
+				var p=th.parentNode.parentNode;
 				p.parentNode.removeChild(p);
 				//window.location = "/easyads/my_ads";
 				wait.style.display="none";

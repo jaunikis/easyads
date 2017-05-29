@@ -45,6 +45,8 @@ $.ajax({url: "/easyads/categories-list.txt", success: function(result){
 		$("#cat4").empty();
 		$("#cat33").css("display","none");
 		$("#cat44").css("display","none");
+		$("#year1").hide();
+		$("#fuel1").hide();
 		var parinktas=$("#cat1").val();
 		//alert(myObj[parinktas].length);
 		if($("#cat1").val()!=='Please Choose'){
@@ -69,10 +71,16 @@ $.ajax({url: "/easyads/categories-list.txt", success: function(result){
 		$("#cat4").empty();
 		$("#cat33").css("display","none");
 		$("#cat44").css("display","none");
+		$("#year1").hide();
+		$("#fuel1").hide();
 		var parinktas=$("#cat2").val();
 		//var a=myObj[parinktas].length; //speciali klaida kad sustotu skriptas
 		if($("#cat2").val()=='Cars' || $("#cat2").val()=='Breaking & Repairables' || $("#cat2").val()=='Mobile phones' || $("#cat2").val()=='Laptops' || $("#cat2").val()=='Furniture' ){ 
 			$("#cat33").show();
+			if($("#cat2").val()=='Cars' || $("#cat2").val()=='Breaking & Repairables'){
+				$("#year1").show();
+				$("#fuel1").show();
+			}
 			var item=$("<option></option>").text('All '+parinktas);
 			$("#cat3").append(item);
 			for(x=0;x<myObj[parinktas].length;x++){

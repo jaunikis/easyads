@@ -21,7 +21,7 @@ $json = json_decode($string, true);
 										<label class="col-sm-3 control-label">Ad Title <span class="required">*</span></label>
 										<div class="col-sm-9">
 											<input name="title" id="title" type="text" placeholder="What are you selling e.g. Apple iPhone SE 2017" required="required" class="form-control border-form">
-											<p>Suggestions: <span id="txtHint"></span></p>	
+											<p style="Display:none;">Suggestions: <span id="txtHint"></span></p>	
 										</div>
 									</div>
 									
@@ -81,6 +81,20 @@ for($i=1994;$i<2017;$i++){
 	echo '<option>'.$i.'</option>';
 }
 ?>
+											</select>
+										</div>
+									</div>
+									
+									
+									<div class="form-group" id="fuel1" style="display:none">
+										<label class="col-sm-3 control-label">Fuel </label>
+										<div class="col-sm-9">
+											<select name="fuel" id="fuel" class="form-control border-form">
+												<option value="0" disabled selected style="display: none;">Please Choose</option>
+												<option>Diesel</option>
+												<option>Petrol</option>
+												<option>Electric</option>
+												<option>Gas</option>
 											</select>
 										</div>
 									</div>

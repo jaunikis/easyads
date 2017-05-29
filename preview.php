@@ -8,7 +8,7 @@ $time=date("H:i:sa");
 $ip=$_SERVER['REMOTE_ADDR'];
 $user='test user';
 $cat1='cat1';$cat2='cat2';
-$make='';$model='';$year=0;$condition='';
+$make='';$model='';$year=0;$fuel='';$condition='';
 $price='';$location='All';
 $images=[''];$cover=0;
 $name='';$email='';$phone='';
@@ -20,6 +20,7 @@ if(isset($_POST['cat2'])){$cat2=$_POST['cat2'];}
 if(isset($_POST['make'])){$make=$_POST['make'];}
 if(isset($_POST['model'])){$model=$_POST['model'];}
 if(isset($_POST['year'])){$year=$_POST['year'];}
+if(isset($_POST['fuel'])){$fuel=$_POST['fuel'];}
 if(isset($_POST['condition'])){$condition=$_POST['condition'];}
 if(isset($_POST['price'])){$price=$_POST['price'];}
 if(isset($_POST['location'])){$location=$_POST['location'];}
@@ -52,7 +53,7 @@ if(isset($_SESSION['images'])){ $images=$_SESSION['images'];}
 $date = new DateTime();$timestamp2=$date->getTimestamp();
 
 //save to db
-$sql = "INSERT INTO skelbimai (ip,user,title,cat1,cat2,cover,make,model,year,price,location,condition2,description,name,email,phone,active,timestamp2) VALUES ('$ip','$user','$title','$cat1','$cat2','$images[$cover]','$make','$model','$year','$price','$location','$condition','$description','$name','$email','$phone','Active',$timestamp2)";
+$sql = "INSERT INTO skelbimai (ip,user,title,cat1,cat2,cover,make,model,year,fuel,price,location,condition2,description,name,email,phone,active,timestamp2) VALUES ('$ip','$user','$title','$cat1','$cat2','$images[$cover]','$make','$model','$year','$fuel','$price','$location','$condition','$description','$name','$email','$phone','Active',$timestamp2)";
 
 $result=sqlconnect($sql);
 
