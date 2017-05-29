@@ -66,7 +66,9 @@ while ($row = $result3->fetch_assoc()) {
 					$cat2=='Mobile phones' ||
 					$cat2=='Cars' ||
 					$cat2=='Laptops' ||
-					$cat2=='Laptop Parts'){echo 'display:block;';}else{echo 'display:none;';}?>"  class="form-control border-form">
+					$cat2=='Laptop Parts' ||
+					$cat2=='Furniture'
+					){echo 'display:block;';}else{echo 'display:none;';}?>"  class="form-control border-form">
 			<?php
 				echo '<option>All '.$cat2.'</option>';
 				for($i=0;$i<count($json[$cat2]);$i++){
@@ -137,11 +139,11 @@ while ($row = $result3->fetch_assoc()) {
 			<select style="margin-bottom:6px; width:48%;display:inline-block;" name="yearMin" id="yearMin" class="form-control border-form">
 			<option selected>No Min</option>
 			<?php
-			if(!isset($yearMin)){$yearMin=date("Y")-20;} if($yearMin=='No Min'){$yearMin=0;}
+			if(!isset($yearMin)){$yearMin=date("Y")-20;} if($yearMin=='No Min'){$yearMin=date("Y")-20;}
 			if(!isset($yearMax)){$yearMax=date("Y");} if($yearMax=='No Max'){$yearMax=date("Y");}
 				//$year_min=2006;
 				//if(isset($year)){$year_min=$_GET['yearMin'];echo $year_min;}
-				for($i=$yearMin;$i<=$yearMax;$i++){
+				for($i=date("Y")-20;$i<=$yearMax;$i++){
 					echo '<option ';
 					if(isset($yearMin)){if($i==$yearMin && $i!==date("Y")-20){echo 'selected';}}
 					echo '>'.$i.'</option>';
@@ -238,6 +240,8 @@ while ($row = $result3->fetch_assoc()) {
 		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
 		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
 		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
+		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
+		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
 		if(vars=='?'){vars='';}
 		window.location.href = "/easyads/items/"+link+vars;
 	}); // cat1.change
@@ -253,7 +257,7 @@ while ($row = $result3->fetch_assoc()) {
 		//var a=myObj[parinktas].length; //speciali klaida kad sustotu skriptas
 		
 			//alert($("#cat1").val());
-		if($("#cat2").val()=='Cars' || $("#cat2").val()=='Breaking & Repairables'){ 
+		if($("#cat2").val()=='Cars' || $("#cat2").val()=='Breaking & Repairables' || $("#cat2").val()=='Mobile phones' || $("#cat2").val()=='Laptops' || $("#cat2").val()=='Furniture'){ 
 			$("#cat3").css("display","block");
 			var item=$("<option></option>").text('All '+parinktas);
 			$("#cat3").append(item);
@@ -269,7 +273,14 @@ while ($row = $result3->fetch_assoc()) {
 			//alert(link);
 			if($("#cat2").val().substring(0,3)!=='All'){link+='/'+$("#cat2").val();}
 			//alert(link);
-			window.location.href = "/easyads/items/"+link;
+			var vars='?';
+		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
+		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
+		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
+		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
+		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
+		if(vars=='?'){vars='';}
+			window.location.href = "/easyads/items/"+link+vars;
 	}); //cat2.change
 	
 	$("#cat3").change(function(){
@@ -279,7 +290,7 @@ while ($row = $result3->fetch_assoc()) {
 		var parinktas=$("#cat3").val();
 		//var a=myObj[parinktas].length; //speciali klaida kad sustotu skriptas
 		//alert($("#cat3").val().substring(0,3));
-		if($("#cat3").val().substring(0,3)!=='All'){
+		if($("#cat3").val().substring(0,3)!=='All' && $("#cat1").val()=='Cars & Motor'){
 			$("#cat4").css("display","block");
 			var item=$("<option></option>").text('All '+parinktas);
 			$("#cat4").append(item);
@@ -294,7 +305,14 @@ while ($row = $result3->fetch_assoc()) {
 			var link=$("#cat1").val();
 			link+='/'+$("#cat2").val();
 			if($("#cat3").val().substring(0,3)!=='All'){link+='/'+$("#cat3").val();}
-			window.location.href = "/easyads/items/"+link;
+			var vars='?';
+		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
+		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
+		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
+		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
+		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
+		if(vars=='?'){vars='';}
+			window.location.href = "/easyads/items/"+link+vars;
 	}); // cat3.change
 	
 	$("#cat4").change(function(){
@@ -302,7 +320,14 @@ while ($row = $result3->fetch_assoc()) {
 			link+='/'+$("#cat2").val();
 			link+='/'+$("#cat3").val();
 			if($(this).val().substring(0,3)!=='All'){link+='/'+$("#cat4").val();}
-			window.location.href = "/easyads/items/"+link;
+			var vars='?';
+		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
+		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
+		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
+		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
+		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
+		if(vars=='?'){vars='';}
+			window.location.href = "/easyads/items/"+link+vars;
 	}); // cat4 change
 	
 	$("#yearMin").change(function(){
