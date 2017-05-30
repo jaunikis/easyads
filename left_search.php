@@ -258,7 +258,9 @@ while ($row = $result3->fetch_assoc()) {
 		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
 		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
 		
-		$("#sort").text('dfdf');
+		var sort=$("#sort").text();
+		if(sort==' Low Price First '){vars+='&sortBy=priceLow';}
+		if(sort==' High Price First '){vars+='&sortBy=priceHigh';}
 		
 		if(vars=='?'){vars='';}
 		window.location.href = "/easyads/items/"+link+vars;
@@ -297,6 +299,11 @@ while ($row = $result3->fetch_assoc()) {
 		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
 		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
 		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
+		
+		var sort=$("#sort").text();
+		if(sort==' Low Price First '){vars+='&sortBy=priceLow';}
+		if(sort==' High Price First '){vars+='&sortBy=priceHigh';}
+		
 		if(vars=='?'){vars='';}
 			window.location.href = "/easyads/items/"+link+vars;
 	}); //cat2.change
@@ -329,6 +336,11 @@ while ($row = $result3->fetch_assoc()) {
 		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
 		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
 		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
+		
+		var sort=$("#sort").text();
+		if(sort==' Low Price First '){vars+='&sortBy=priceLow';}
+		if(sort==' High Price First '){vars+='&sortBy=priceHigh';}
+		
 		if(vars=='?'){vars='';}
 			window.location.href = "/easyads/items/"+link+vars;
 	}); // cat3.change
@@ -344,6 +356,11 @@ while ($row = $result3->fetch_assoc()) {
 		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
 		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
 		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
+		
+		var sort=$("#sort").text();
+		if(sort==' Low Price First '){vars+='&sortBy=priceLow';}
+		if(sort==' High Price First '){vars+='&sortBy=priceHigh';}
+		
 		if(vars=='?'){vars='';}
 			window.location.href = "/easyads/items/"+link+vars;
 	}); // cat4 change

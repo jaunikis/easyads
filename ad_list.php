@@ -280,7 +280,8 @@ include('left_search.php');
 		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
 		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
 		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
-		vars+='&sortBy=recently';
+		//vars+='&sortBy=recently';
+		if(vars=='?'){vars=''}
 		window.location.href = "/easyads/items/"+link+vars;
 	});
 	
