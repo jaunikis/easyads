@@ -34,7 +34,12 @@ require_once ('incl/elapsed.php');
 			if(isset($segments[6])){if($segments[6]!==''){$model='"'.str_replace("%20"," ",$segments[6]).'"';}}
 			//echo '<h1>'.$search.'</h1>';
 			
-			$sql="SELECT * FROM skelbimai WHERE cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY id DESC";
+			$sort='id DESC';$sortTxt='Recently Published';
+			if(isset($sortBy)){if($sortBy=='priceLow'){$sort='price ASC';$sortTxt='Low Price First';}}
+			if(isset($sortBy)){if($sortBy=='priceHigh'){$sort='price DESC';$sortTxt='High Price First';}}
+			if(isset($sortBy)){if($sortBy=='recently'){$sort='id DESC';$sortTxt='Recently Published';}}
+			
+			$sql="SELECT * FROM skelbimai WHERE cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY $sort ";
 			$result=sqlconnect($sql);
 			
 			$ad_count = $result->num_rows;
@@ -51,8 +56,9 @@ require_once ('incl/elapsed.php');
                      </div>
                      <ul class="listing-actions-nav col-xs-6 text-right">
                         
+						
                         <li class="dropdown">
-                           <a id="sort" aria-expanded="false" href="www.google.ie" class="dropdown-toggle" data-toggle="dropdown"> Recently Published <b class="caret"></b></a>
+                           <a id="sort" aria-expanded="false" href="www.google.ie" class="dropdown-toggle" data-toggle="dropdown"> <?php echo $sortTxt; ?> <b class="caret"></b></a>
                            <ul class="dropdown-menu">
                               <li><a id="sortPriceL" href="#">Low Price First</a></li>
                               <li><a id="sortPriceH" href="#">High Price First</a></li>
@@ -224,16 +230,58 @@ include('left_search.php');
 	$("#sortPriceL").click(function(){
 		event.preventDefault();
 		$("#sort").html($(this).text()+' <b class="caret"></b>');
+		var link='';
+		if($("#cat1").val()=='Cars'){
+			link='Cars & Motor/Cars';
+		}else{
+			if($("#cat1").val()!=='All Category'){link=$("#cat1").val();}
+		}
+		var vars='?';
+		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
+		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
+		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
+		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
+		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
+		vars+='&sortBy=priceLow';
+		window.location.href = "/easyads/items/"+link+vars;
 	});
     
 	$("#sortPriceH").click(function(){
 		event.preventDefault();
 		$("#sort").html($(this).text()+' <b class="caret"></b>');
+		var link='';
+		if($("#cat1").val()=='Cars'){
+			link='Cars & Motor/Cars';
+		}else{
+			if($("#cat1").val()!=='All Category'){link=$("#cat1").val();}
+		}
+		var vars='?';
+		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
+		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
+		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
+		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
+		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
+		vars+='&sortBy=priceHigh';
+		window.location.href = "/easyads/items/"+link+vars;
 	});
 	
 	$("#sortRecently").click(function(){
 		event.preventDefault();
 		$("#sort").html($(this).text()+' <b class="caret"></b>');
+		var link='';
+		if($("#cat1").val()=='Cars'){
+			link='Cars & Motor/Cars';
+		}else{
+			if($("#cat1").val()!=='All Category'){link=$("#cat1").val();}
+		}
+		var vars='?';
+		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
+		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
+		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
+		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
+		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
+		vars+='&sortBy=recently';
+		window.location.href = "/easyads/items/"+link+vars;
 	});
 	
 	//$("#clear_all").click(function(){

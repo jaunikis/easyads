@@ -223,7 +223,7 @@ while ($row = $result3->fetch_assoc()) {
 		$("#refine").submit();
 	});
 	
-	$("#cat1").change(function(){
+	$("#cat1").change(function(){ 
 		
 		$("#cat2").empty();
 		$("#cat3").empty();
@@ -257,6 +257,9 @@ while ($row = $result3->fetch_assoc()) {
 		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
 		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
 		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
+		
+		$("#sort").text('dfdf');
+		
 		if(vars=='?'){vars='';}
 		window.location.href = "/easyads/items/"+link+vars;
 	}); // cat1.change
