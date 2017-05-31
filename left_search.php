@@ -179,8 +179,9 @@ while ($row = $result3->fetch_assoc()) {
 			</div> <!-- cars -->
 		
 					<br>
-					</form>
-					</div> <!-- form group -->	
+				<input id="sortBy" name="sortBy" style="display:none;"></input>	
+				</form>
+				</div> <!-- form group -->	
 						   
 						  
                         </div>
@@ -220,6 +221,9 @@ while ($row = $result3->fetch_assoc()) {
 	
 		
 	$("#location").change(function(){
+		var sort=$("#sort").text();
+		if(sort==' Low Price First '){$("#sortBy").val('priceLow');}
+		if(sort==' High Price First '){$("#sortBy").val('priceHigh');}
 		$("#refine").submit();
 	});
 	
@@ -377,6 +381,11 @@ while ($row = $result3->fetch_assoc()) {
 			$("#yearMax").append(item);
 		}
 		$("#yearMax").val(yearMax);
+		
+		var sort=$("#sort").text();
+		if(sort==' Low Price First '){$("#sortBy").val('priceLow');}
+		if(sort==' High Price First '){$("#sortBy").val('priceHigh');}
+		
 		$("#refine").submit();
 	}); // yearMin
 	
@@ -394,6 +403,11 @@ while ($row = $result3->fetch_assoc()) {
 			$("#yearMin").append(item);
 		}
 		$("#yearMin").val(yearMin);
+		
+		var sort=$("#sort").text();
+		if(sort==' Low Price First '){$("#sortBy").val('priceLow');}
+		if(sort==' High Price First '){$("#sortBy").val('priceHigh');}
+		
 		$("#refine").submit();
 	}); // yearMax
 	
@@ -410,6 +424,11 @@ while ($row = $result3->fetch_assoc()) {
 			$("#priceMax").append(item);
 		}
 		$("#priceMax").val(priceMax);
+		
+		var sort=$("#sort").text();
+		if(sort==' Low Price First '){$("#sortBy").val('priceLow');}
+		if(sort==' High Price First '){$("#sortBy").val('priceHigh');}
+		
 		$("#refine").submit();
 	}); // priceMin
 	
@@ -426,6 +445,11 @@ while ($row = $result3->fetch_assoc()) {
 			$("#priceMin").append(item);
 		}
 		$("#priceMin").val(priceMin);
+		
+		var sort=$("#sort").text();
+		if(sort==' Low Price First '){$("#sortBy").val('priceLow');}
+		if(sort==' High Price First '){$("#sortBy").val('priceHigh');}
+		
 		$("#refine").submit();
 	}); // priceMax
 	

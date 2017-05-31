@@ -237,7 +237,7 @@ include('left_search.php');
 			if($("#cat1").val()!=='All Category'){link=$("#cat1").val();}
 		}
 		var vars='?';
-		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
+		if($("#location").val().substring(0,3)!=='All'){vars+='&location='+$("#location").val();}
 		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
 		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
 		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
@@ -256,7 +256,7 @@ include('left_search.php');
 			if($("#cat1").val()!=='All Category'){link=$("#cat1").val();}
 		}
 		var vars='?';
-		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
+		if($("#location").val().substring(0,3)!=='All'){vars+='&location='+$("#location").val();}
 		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
 		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
 		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
@@ -275,7 +275,7 @@ include('left_search.php');
 			if($("#cat1").val()!=='All Category'){link=$("#cat1").val();}
 		}
 		var vars='?';
-		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
+		if($("#location").val().substring(0,3)!=='All'){vars+='&location='+$("#location").val();}
 		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
 		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
 		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
