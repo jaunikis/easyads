@@ -11,6 +11,10 @@ require_once ('incl/elapsed.php');
 			if(isset($priceMin)){if($priceMin!=='No Min'){$pMin=$priceMin;}}
 			if(isset($priceMax)){if($priceMax!=='No Max'){$pMax=$priceMax;}}
 			
+			$yMin=0;$yMax=date("Y");
+			if(isset($yearMin)){if($yearMin!=='No Min'){$yMin=$yearMin;}}
+			if(isset($yearMax)){if($yearMax!=='No Max'){$pMax=$yearMax;}}
+			
 			$cat1='cat1';
 			$cat2='cat2'; 
 			$make='make';
@@ -39,7 +43,7 @@ require_once ('incl/elapsed.php');
 			if(isset($sortBy)){if($sortBy=='priceHigh'){$sort='price DESC';$sortTxt='High Price First';}}
 			if(isset($sortBy)){if($sortBy=='recently'){$sort='id DESC';$sortTxt='Recently Published';}}
 			
-			$sql="SELECT * FROM skelbimai WHERE cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY $sort ";
+			$sql="SELECT * FROM skelbimai WHERE cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND (year BETWEEN '$yMin' AND '$yMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY $sort ";
 			$result=sqlconnect($sql);
 			
 			$ad_count = $result->num_rows;

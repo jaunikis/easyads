@@ -176,6 +176,61 @@ while ($row = $result3->fetch_assoc()) {
 				}
             ?>
 			</select>
+			<div id="fuel">
+				<strong style="display:block;">Fuel:</strong>
+				<select style="margin-bottom:6px;" name="fuel" id="fuel" class="form-control border-form">
+					<option selected>Any</option>
+					<option <?php if(isset($fuel)){if($fuel=='Diesel'){echo 'selected';}} ?>>Diesel</option>
+					<option <?php if(isset($fuel)){if($fuel=='Petrol'){echo 'selected';}} ?>>Petrol</option>
+					<option <?php if(isset($fuel)){if($fuel=='Electric'){echo 'selected';}} ?>>Electric</option>
+					<option <?php if(isset($fuel)){if($fuel=='Hybrid'){echo 'selected';}} ?>>Hybrid</option>
+				</select>
+			</div>
+			
+			<div id="transmission">
+				<strong style="display:block;">Transmission:</strong>
+				<select style="margin-bottom:6px;" name="transmission" id="transmission" class="form-control border-form">
+					<option selected>Any</option>
+					<option <?php if(isset($transmission)){if($transmission=='Manual'){echo 'selected';}} ?>>Manual</option>
+					<option <?php if(isset($transmission)){if($transmission=='Automatic'){echo 'selected';}} ?>>Automatic</option>
+				</select>
+			</div>
+			
+			<div id="bodytype">
+				<strong style="display:block;">Body Type:</strong>
+				<select style="margin-bottom:6px;" name="bodyType" id="bodyType" class="form-control border-form">
+					<option selected>Any</option>
+					<option <?php if(isset($bodyType)){if($bodyType=='Cabriolet'){echo 'selected';}} ?>>Cabriolet</option>
+					<option <?php if(isset($bodyType)){if($bodyType=='Coupe'){echo 'selected';}} ?>>Coupe</option>
+					<option <?php if(isset($bodyType)){if($bodyType=='Saloon'){echo 'selected';}} ?>>Saloon</option>
+					<option <?php if(isset($bodyType)){if($bodyType=='Hatchback'){echo 'selected';}} ?>>Hatchback</option>
+					<option <?php if(isset($bodyType)){if($bodyType=='Estate'){echo 'selected';}} ?>>Estate</option>
+					<option <?php if(isset($bodyType)){if($bodyType=='MPV'){echo 'selected';}} ?>>MPV</option>
+					<option <?php if(isset($bodyType)){if($bodyType=='SUV'){echo 'selected';}} ?>>SUV</option>
+				</select>
+			</div>
+			
+			<div id="color">
+				<strong style="display:block;">Color:</strong>
+				<select style="margin-bottom:6px;" name="color" id="color" class="form-control border-form">
+					<option selected>Any</option>
+					<option <?php if(isset($color)){if($color=='Black'){echo 'selected';}} ?>>Black</option>
+					<option <?php if(isset($color)){if($color=='White'){echo 'selected';}} ?>>White</option>
+					<option <?php if(isset($color)){if($color=='Silver'){echo 'selected';}} ?>>Silver</option>
+					<option <?php if(isset($color)){if($color=='Grey'){echo 'selected';}} ?>>Grey</option>
+					<option <?php if(isset($color)){if($color=='Red'){echo 'selected';}} ?>>Red</option>
+					<option <?php if(isset($color)){if($color=='Blue'){echo 'selected';}} ?>>Blue</option>
+					<option <?php if(isset($color)){if($color=='Brown'){echo 'selected';}} ?>>Brown</option>
+					<option <?php if(isset($color)){if($color=='Maroon'){echo 'selected';}} ?>>Maroon</option>
+					<option <?php if(isset($color)){if($color=='Tan'){echo 'selected';}} ?>>Tan</option>
+					<option <?php if(isset($color)){if($color=='Yellow'){echo 'selected';}} ?>>Yellow</option>
+					<option <?php if(isset($color)){if($color=='Orange'){echo 'selected';}} ?>>Orange</option>
+					<option <?php if(isset($color)){if($color=='Beige'){echo 'selected';}} ?>>Beige</option>
+					<option <?php if(isset($color)){if($color=='Green'){echo 'selected';}} ?>>Green</option>
+					<option <?php if(isset($color)){if($color=='Purple'){echo 'selected';}} ?>>Purple</option>
+				</select>
+			</div>
+			
 			</div> <!-- cars -->
 		
 					<br>
@@ -219,6 +274,33 @@ while ($row = $result3->fetch_assoc()) {
 	//alert(location.search);
 	//alert(location.pathname);
 	
+	$("#fuel").change(function(){
+		var sort=$("#sort").text();
+		if(sort==' Low Price First '){$("#sortBy").val('priceLow');}
+		if(sort==' High Price First '){$("#sortBy").val('priceHigh');}
+		$("#refine").submit();
+	});
+	
+	$("#transmission").change(function(){
+		var sort=$("#sort").text();
+		if(sort==' Low Price First '){$("#sortBy").val('priceLow');}
+		if(sort==' High Price First '){$("#sortBy").val('priceHigh');}
+		$("#refine").submit();
+	});
+	
+	$("#bodyType").change(function(){
+		var sort=$("#sort").text();
+		if(sort==' Low Price First '){$("#sortBy").val('priceLow');}
+		if(sort==' High Price First '){$("#sortBy").val('priceHigh');}
+		$("#refine").submit();
+	});
+	
+	$("#color").change(function(){
+		var sort=$("#sort").text();
+		if(sort==' Low Price First '){$("#sortBy").val('priceLow');}
+		if(sort==' High Price First '){$("#sortBy").val('priceHigh');}
+		$("#refine").submit();
+	});
 		
 	$("#location").change(function(){
 		var sort=$("#sort").text();
@@ -256,7 +338,7 @@ while ($row = $result3->fetch_assoc()) {
 			if($("#cat1").val()!=='All Category'){link=$("#cat1").val();}
 		}
 		var vars='?';
-		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
+		if($("#location").val().substring(0,3)!=='All'){vars+='&location='+$("#location").val();}
 		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
 		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
 		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
@@ -298,7 +380,7 @@ while ($row = $result3->fetch_assoc()) {
 			if($("#cat2").val().substring(0,3)!=='All'){link+='/'+$("#cat2").val();}
 			//alert(link);
 			var vars='?';
-		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
+		if($("#location").val().substring(0,3)!=='All'){vars+='&location='+$("#location").val();}
 		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
 		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
 		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
@@ -335,7 +417,7 @@ while ($row = $result3->fetch_assoc()) {
 			link+='/'+$("#cat2").val();
 			if($("#cat3").val().substring(0,3)!=='All'){link+='/'+$("#cat3").val();}
 			var vars='?';
-		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
+		if($("#location").val().substring(0,3)!=='All'){vars+='&location='+$("#location").val();}
 		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
 		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
 		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
@@ -355,7 +437,7 @@ while ($row = $result3->fetch_assoc()) {
 			link+='/'+$("#cat3").val();
 			if($(this).val().substring(0,3)!=='All'){link+='/'+$("#cat4").val();}
 			var vars='?';
-		if($("#location").val().substring(0,3)!=='All'){vars='&location='+$("#location").val();}
+		if($("#location").val().substring(0,3)!=='All'){vars+='&location='+$("#location").val();}
 		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
 		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
 		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
