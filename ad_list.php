@@ -15,6 +15,11 @@ require_once ('incl/elapsed.php');
 			if(isset($yearMin)){if($yearMin!=='No Min'){$yMin=$yearMin;}}
 			if(isset($yearMax)){if($yearMax!=='No Max'){$pMax=$yearMax;}}
 			
+			if(!isset($fuel)){$fuel='fuel';}else{if($fuel!=='Any'){$fuel='"'.$fuel.'"';}else{$fuel='fuel';}}
+			if(!isset($transmission)){$transmission='transmission';}else{if($transmission!=='Any'){$transmission='"'.$transmission.'"';}else{$transmission='transmission';}}
+			if(!isset($bodyType)){$bodyType='bodyType';}else{if($bodyType!=='Any'){$bodyType='"'.$bodyType.'"';}else{$bodyType='bodyType';}}
+			if(!isset($color)){$color='color';}else{if($color!=='Any'){$color='"'.$color.'"';}else{$color='color';}}
+			
 			$cat1='cat1';
 			$cat2='cat2'; 
 			$make='make';
@@ -43,7 +48,7 @@ require_once ('incl/elapsed.php');
 			if(isset($sortBy)){if($sortBy=='priceHigh'){$sort='price DESC';$sortTxt='High Price First';}}
 			if(isset($sortBy)){if($sortBy=='recently'){$sort='id DESC';$sortTxt='Recently Published';}}
 			
-			$sql="SELECT * FROM skelbimai WHERE cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND (year BETWEEN '$yMin' AND '$yMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY $sort ";
+			$sql="SELECT * FROM skelbimai WHERE cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND fuel=$fuel AND transmission=$transmission AND bodyType=$bodyType AND color=$color AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND (year BETWEEN '$yMin' AND '$yMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY $sort ";
 			$result=sqlconnect($sql);
 			
 			$ad_count = $result->num_rows;

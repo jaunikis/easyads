@@ -68,8 +68,8 @@ $json = json_decode($string, true);
 											</select>
 										</div>
 									</div>
-									
-									<div class="form-group" id="year1" style="display:none">
+								<div id="cars1" style="display:none">	
+									<div class="form-group" id="year1">
 										<label class="col-sm-3 control-label">Year of manufacture </label>
 										<div class="col-sm-9">
 											<select name="year" id="year" class="form-control border-form">
@@ -77,7 +77,7 @@ $json = json_decode($string, true);
 												<option>other</option>
 <?php
 //$ynow=date("Y");
-for($i=1994;$i<2017;$i++){
+for($i=date("Y")-20;$i<date("Y")+1;$i++){
 	echo '<option>'.$i.'</option>';
 }
 ?>
@@ -86,7 +86,7 @@ for($i=1994;$i<2017;$i++){
 									</div>
 									
 									
-									<div class="form-group" id="fuel1" style="display:none">
+									<div class="form-group" id="fuel1">
 										<label class="col-sm-3 control-label">Fuel </label>
 										<div class="col-sm-9">
 											<select name="fuel" id="fuel" class="form-control border-form">
@@ -94,11 +94,61 @@ for($i=1994;$i<2017;$i++){
 												<option>Diesel</option>
 												<option>Petrol</option>
 												<option>Electric</option>
-												<option>Gas</option>
+												<option>Hybrid</option>
 											</select>
 										</div>
 									</div>
 									
+									<div class="form-group" id="transmission1">
+										<label class="col-sm-3 control-label">Transmission </label>
+										<div class="col-sm-9">
+											<select name="transmission" id="transmission" class="form-control border-form">
+												<option value="0" disabled selected style="display: none;">Please Choose</option>
+												<option>Manual</option>
+												<option>Automatic</option>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group" id="bodyType1">
+										<label class="col-sm-3 control-label">Body Type </label>
+										<div class="col-sm-9">
+											<select name="bodyType" id="bodyType" class="form-control border-form">
+												<option value="0" disabled selected style="display: none;">Please Choose</option>
+												<option>Cabriolet</option>
+												<option>Coupe</option>
+												<option>Saloon</option>
+												<option>Hatchback</option>
+												<option>Estate</option>
+												<option>MPV</option>
+												<option>SUV</option>
+											</select>
+										</div>
+									</div>
+									
+									<div class="form-group" id="color1">
+										<label class="col-sm-3 control-label">Color </label>
+										<div class="col-sm-9">
+											<select name="color" id="color" class="form-control border-form">
+												<option value="0" disabled selected style="display: none;">Please Choose</option>
+												<option <?php if(isset($color)){if($color=='Black'){echo 'selected';}} ?>>Black</option>
+													<option>White</option>
+													<option>Silver</option>
+													<option>Grey</option>
+													<option>Red</option>
+													<option>Blue</option>
+													<option>Brown</option>
+													<option>Maroon</option>
+													<option>Tan</option>
+													<option>Yellow</option>
+													<option>Orange</option>
+													<option>Beige</option>
+													<option>Green</option>
+													<option>Purple</option>
+											</select>
+										</div>
+									</div>
+								</div>	<!-- cars1 -->
 									<div class="form-group" id="condition">
 										<label class="col-sm-3 control-label">Condition <span class="required">*</span></label>
 										<div class="col-sm-9">	
@@ -199,11 +249,11 @@ for($i=1994;$i<2017;$i++){
 											<select name="location" class="form-control border-form">
 												<option selected="">All Locations</option>
 			  <?php
-				for($i=0;$i<count($locations);$i++){
-					if(isset($_SESSION['location'])){if($locations[$i]==$_SESSION['location']){
-						echo '<option selected="">'.$locations[$i].'</option>';
+				for($i=0;$i<count($json["locations"]);$i++){
+					if(isset($_SESSION['location'])){if($json["locations"][$i]==$_SESSION['location']){
+						echo '<option selected="">'.$json["locations"][$i].'</option>';
 					}else{
-						echo '<option>'.$locations[$i].'</option>';
+						echo '<option>'.$json["locations"][$i].'</option>';
 					}
 				}
 				}

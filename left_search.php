@@ -180,10 +180,10 @@ while ($row = $result3->fetch_assoc()) {
 				<strong style="display:block;">Fuel:</strong>
 				<select style="margin-bottom:6px;" name="fuel" id="fuel" class="form-control border-form">
 					<option selected>Any</option>
-					<option <?php if(isset($fuel)){if($fuel=='Diesel'){echo 'selected';}} ?>>Diesel</option>
-					<option <?php if(isset($fuel)){if($fuel=='Petrol'){echo 'selected';}} ?>>Petrol</option>
-					<option <?php if(isset($fuel)){if($fuel=='Electric'){echo 'selected';}} ?>>Electric</option>
-					<option <?php if(isset($fuel)){if($fuel=='Hybrid'){echo 'selected';}} ?>>Hybrid</option>
+					<option <?php if(isset($fuel)){if($fuel=='"Diesel"'){echo 'selected';}} ?>>Diesel</option>
+					<option <?php if(isset($fuel)){if($fuel=='"Petrol"'){echo 'selected';}} ?>>Petrol</option>
+					<option <?php if(isset($fuel)){if($fuel=='"Electric"'){echo 'selected';}} ?>>Electric</option>
+					<option <?php if(isset($fuel)){if($fuel=='"Hybrid"'){echo 'selected';}} ?>>Hybrid</option>
 				</select>
 			</div>
 			
@@ -191,8 +191,8 @@ while ($row = $result3->fetch_assoc()) {
 				<strong style="display:block;">Transmission:</strong>
 				<select style="margin-bottom:6px;" name="transmission" id="transmission" class="form-control border-form">
 					<option selected>Any</option>
-					<option <?php if(isset($transmission)){if($transmission=='Manual'){echo 'selected';}} ?>>Manual</option>
-					<option <?php if(isset($transmission)){if($transmission=='Automatic'){echo 'selected';}} ?>>Automatic</option>
+					<option <?php if(isset($transmission)){if($transmission=='"Manual"'){echo 'selected';}} ?>>Manual</option>
+					<option <?php if(isset($transmission)){if($transmission=='"Automatic"'){echo 'selected';}} ?>>Automatic</option>
 				</select>
 			</div>
 			
@@ -200,13 +200,13 @@ while ($row = $result3->fetch_assoc()) {
 				<strong style="display:block;">Body Type:</strong>
 				<select style="margin-bottom:6px;" name="bodyType" id="bodyType" class="form-control border-form">
 					<option selected>Any</option>
-					<option <?php if(isset($bodyType)){if($bodyType=='Cabriolet'){echo 'selected';}} ?>>Cabriolet</option>
-					<option <?php if(isset($bodyType)){if($bodyType=='Coupe'){echo 'selected';}} ?>>Coupe</option>
-					<option <?php if(isset($bodyType)){if($bodyType=='Saloon'){echo 'selected';}} ?>>Saloon</option>
-					<option <?php if(isset($bodyType)){if($bodyType=='Hatchback'){echo 'selected';}} ?>>Hatchback</option>
-					<option <?php if(isset($bodyType)){if($bodyType=='Estate'){echo 'selected';}} ?>>Estate</option>
-					<option <?php if(isset($bodyType)){if($bodyType=='MPV'){echo 'selected';}} ?>>MPV</option>
-					<option <?php if(isset($bodyType)){if($bodyType=='SUV'){echo 'selected';}} ?>>SUV</option>
+					<option <?php if(isset($bodyType)){if($bodyType=='"Cabriolet"'){echo 'selected';}} ?>>Cabriolet</option>
+					<option <?php if(isset($bodyType)){if($bodyType=='"Coupe"'){echo 'selected';}} ?>>Coupe</option>
+					<option <?php if(isset($bodyType)){if($bodyType=='"Saloon"'){echo 'selected';}} ?>>Saloon</option>
+					<option <?php if(isset($bodyType)){if($bodyType=='"Hatchback"'){echo 'selected';}} ?>>Hatchback</option>
+					<option <?php if(isset($bodyType)){if($bodyType=='"Estate"'){echo 'selected';}} ?>>Estate</option>
+					<option <?php if(isset($bodyType)){if($bodyType=='"MPV"'){echo 'selected';}} ?>>MPV</option>
+					<option <?php if(isset($bodyType)){if($bodyType=='"SUV"'){echo 'selected';}} ?>>SUV</option>
 				</select>
 			</div>
 			
