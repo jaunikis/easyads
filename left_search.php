@@ -214,20 +214,20 @@ while ($row = $result3->fetch_assoc()) {
 				<strong style="display:block;">Color:</strong>
 				<select style="margin-bottom:6px;" name="color" id="color" class="form-control border-form">
 					<option selected>Any</option>
-					<option <?php if(isset($color)){if($color=='Black'){echo 'selected';}} ?>>Black</option>
-					<option <?php if(isset($color)){if($color=='White'){echo 'selected';}} ?>>White</option>
-					<option <?php if(isset($color)){if($color=='Silver'){echo 'selected';}} ?>>Silver</option>
-					<option <?php if(isset($color)){if($color=='Grey'){echo 'selected';}} ?>>Grey</option>
-					<option <?php if(isset($color)){if($color=='Red'){echo 'selected';}} ?>>Red</option>
-					<option <?php if(isset($color)){if($color=='Blue'){echo 'selected';}} ?>>Blue</option>
-					<option <?php if(isset($color)){if($color=='Brown'){echo 'selected';}} ?>>Brown</option>
-					<option <?php if(isset($color)){if($color=='Maroon'){echo 'selected';}} ?>>Maroon</option>
-					<option <?php if(isset($color)){if($color=='Tan'){echo 'selected';}} ?>>Tan</option>
-					<option <?php if(isset($color)){if($color=='Yellow'){echo 'selected';}} ?>>Yellow</option>
-					<option <?php if(isset($color)){if($color=='Orange'){echo 'selected';}} ?>>Orange</option>
-					<option <?php if(isset($color)){if($color=='Beige'){echo 'selected';}} ?>>Beige</option>
-					<option <?php if(isset($color)){if($color=='Green'){echo 'selected';}} ?>>Green</option>
-					<option <?php if(isset($color)){if($color=='Purple'){echo 'selected';}} ?>>Purple</option>
+					<option <?php if(isset($color)){if($color=='"Black"'){echo 'selected';}} ?>>Black</option>
+					<option <?php if(isset($color)){if($color=='"White"'){echo 'selected';}} ?>>White</option>
+					<option <?php if(isset($color)){if($color=='"Silver"'){echo 'selected';}} ?>>Silver</option>
+					<option <?php if(isset($color)){if($color=='"Grey"'){echo 'selected';}} ?>>Grey</option>
+					<option <?php if(isset($color)){if($color=='"Red"'){echo 'selected';}} ?>>Red</option>
+					<option <?php if(isset($color)){if($color=='"Blue"'){echo 'selected';}} ?>>Blue</option>
+					<option <?php if(isset($color)){if($color=='"Brown"'){echo 'selected';}} ?>>Brown</option>
+					<option <?php if(isset($color)){if($color=='"Maroon"'){echo 'selected';}} ?>>Maroon</option>
+					<option <?php if(isset($color)){if($color=='"Tan"'){echo 'selected';}} ?>>Tan</option>
+					<option <?php if(isset($color)){if($color=='"Yellow"'){echo 'selected';}} ?>>Yellow</option>
+					<option <?php if(isset($color)){if($color=='"Orange"'){echo 'selected';}} ?>>Orange</option>
+					<option <?php if(isset($color)){if($color=='"Beige"'){echo 'selected';}} ?>>Beige</option>
+					<option <?php if(isset($color)){if($color=='"Green"'){echo 'selected';}} ?>>Green</option>
+					<option <?php if(isset($color)){if($color=='"Purple"'){echo 'selected';}} ?>>Purple</option>
 				</select>
 			</div>
 			
