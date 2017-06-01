@@ -239,59 +239,21 @@ include('left_search.php');
 	$("#sortPriceL").click(function(){
 		event.preventDefault();
 		$("#sort").html($(this).text()+' <b class="caret"></b>');
-		var link='';
-		if($("#cat1").val()=='Cars'){
-			link='Cars & Motor/Cars';
-		}else{
-			if($("#cat1").val()!=='All Category'){link=$("#cat1").val();}
-		}
-		var vars='?';
-		if($("#location").val().substring(0,3)!=='All'){vars+='&location='+$("#location").val();}
-		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
-		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
-		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
-		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
-		vars+='&sortBy=priceLow';
-		window.location.href = "/easyads/items/"+link+vars;
+		$("#sortBy").val('priceLow');
+		$("#refine").submit();
 	});
     
 	$("#sortPriceH").click(function(){
 		event.preventDefault();
 		$("#sort").html($(this).text()+' <b class="caret"></b>');
-		var link='';
-		if($("#cat1").val()=='Cars'){
-			link='Cars & Motor/Cars';
-		}else{
-			if($("#cat1").val()!=='All Category'){link=$("#cat1").val();}
-		}
-		var vars='?';
-		if($("#location").val().substring(0,3)!=='All'){vars+='&location='+$("#location").val();}
-		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
-		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
-		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
-		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
-		vars+='&sortBy=priceHigh';
-		window.location.href = "/easyads/items/"+link+vars;
+		$("#sortBy").val('priceHigh');
+		$("#refine").submit();
 	});
 	
 	$("#sortRecently").click(function(){
 		event.preventDefault();
 		$("#sort").html($(this).text()+' <b class="caret"></b>');
-		var link='';
-		if($("#cat1").val()=='Cars'){
-			link='Cars & Motor/Cars';
-		}else{
-			if($("#cat1").val()!=='All Category'){link=$("#cat1").val();}
-		}
-		var vars='?';
-		if($("#location").val().substring(0,3)!=='All'){vars+='&location='+$("#location").val();}
-		if($("#yearMin").val().substring(0,2)!=='No'){vars+='&yearMin='+$("#yearMin").val();}
-		if($("#yearMax").val().substring(0,2)!=='No'){vars+='&yearMax='+$("#yearMax").val();}
-		if($("#priceMin").val().substring(0,2)!=='No'){vars+='&priceMin='+$("#priceMin").val();}
-		if($("#priceMax").val().substring(0,2)!=='No'){vars+='&priceMax='+$("#priceMax").val();}
-		//vars+='&sortBy=recently';
-		if(vars=='?'){vars=''}
-		window.location.href = "/easyads/items/"+link+vars;
+		$("#refine").submit();
 	});
 	
 	//$("#clear_all").click(function(){
