@@ -42,6 +42,14 @@ while ($row = $result->fetch_assoc()) {
     $src=$row['src'];$images[]=$src;
 	}
 ?>
+<!-- Overlay window for photos -->
+<div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeModal()">&times;</a>
+  <div class="overlay-content">
+    <img id="image" src=""></img>
+	<a href="#">About</a>
+  </div>
+</div>
 
 <!-- Category List -->
       <section class="category-grid">
@@ -116,7 +124,7 @@ include('reklama.php');
 <?php
 $images_length=count($images);
 for($i=0;$i<$images_length;$i++){
-echo '<div class="item"><a href="/easyads/ads_images/big_'.$images[$i].'" target="blank"><img alt="" src="/easyads/ads_images/small_'.$images[$i].'" class="img-responsive img-center"></a></div>';
+echo '<div class="item"><a href="/easyads/ads_images/big_'.$images[$i].'" onclick="openModal(this)" target="blank"><img alt="" src="/easyads/ads_images/small_'.$images[$i].'" class="img-responsive img-center"></a></div>';
 }
 ?>
                                  </div>
@@ -218,6 +226,16 @@ echo '<div class="item"><a href="/easyads/ads_images/big_'.$images[$i].'" target
 	  <div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;"><img src='/easyads/images/loading3.gif' width="64" height="64" /><br>Loading..</div>
 	  
 <script>
+function openModal(th){
+	event.preventDefault();
+	//console.log(th.href);
+	$("#image").attr("src",th.href);
+	document.getElementById("myNav").style.height = "100%";
+	}
+function closeModal() {
+    document.getElementById("myNav").style.height = "0%";
+}
+
 function save_ad(a,id){
 	var wait=document.getElementById("wait");
 	var xmlhttp = new XMLHttpRequest();
