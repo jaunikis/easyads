@@ -42,12 +42,56 @@ while ($row = $result->fetch_assoc()) {
     $src=$row['src'];$images[]=$src;
 	}
 ?>
+
 <!-- Overlay window for photos -->
 <div id="myNav" class="overlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeModal()">&times;</a>
   <div class="overlay-content">
-    <img id="image" src=""></img>
-	<a href="#">About</a>
+    
+	<div class="container">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+<?php
+	$images_length=count($images);
+	for($i=0;$i<$images_length;$i++){
+		$class="";if($i==0){$class=' class="active"';}
+		echo '<li data-target="#myCarousel" data-slide-to="'.$i.'"'.$class.'></li>';
+	}
+?>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+<?php
+	$images_length=count($images);
+	for($i=0;$i<$images_length;$i++){
+		$class='class="item"';if($i==0){$class=' class="item active"';}
+?>
+      <div <?php echo $class;?>>
+        <img src="/easyads/ads_images/big_<?php echo $images[$i];?>" style="width:100%;">
+        <div class="carousel-caption">
+          
+        </div>
+      </div>
+<?php
+	}
+?>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+	
   </div>
 </div>
 
@@ -229,7 +273,7 @@ echo '<div class="item"><a href="/easyads/ads_images/big_'.$images[$i].'" onclic
 function openModal(th){
 	event.preventDefault();
 	//console.log(th.href);
-	$("#image").attr("src",th.href);
+	//$("#image").attr("src",th.href);
 	document.getElementById("myNav").style.height = "100%";
 	}
 function closeModal() {
