@@ -150,10 +150,17 @@ if(isset($_COOKIE['user'])){$_SESSION['user']=$_COOKIE['user'];}
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $segments = explode('/', $path);
 //echo($path);
-//echo '<br>';
+//echo $segments[3];
 //for($a=1;$a<count($segments);$a++){echo $a.'  -  '.$segments[$a].'<br>';}
 
 switch($segments[2]){
+case 'blog':
+    require('top_nav.php');
+	$_SESSION['heading']='Blog';
+    require('breadcumb.php');
+    if(isset($segments[3])){require('blog1.php');}else{require('blog.php');}
+    require('footer_short.php');
+    break;
 case 'favourite':
     require('top_nav.php');
     require('left_profile.php');

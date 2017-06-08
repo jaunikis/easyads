@@ -14,18 +14,7 @@
                <ul class="nav navbar-nav">
                   <li><a href="/easyads/">Home</a></li>
 				  <li><a href="/easyads/items">All Adverts</a></li>
-                  <li class="dropdown">
-                     <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">Blog <b class="caret"></b></a>
-                     <ul class="dropdown-menu">
-                        <li>
-                           <a href="blog.html"><i class="fa fa-fw fa-angle-right"></i> Blog</a>
-                        </li>
-                        <li>
-                           <a href="blog_details.html"><i class="fa fa-fw fa-angle-right"></i> Blog Details</a>
-                        </li>
-                     </ul>
-                  </li>
-                  
+                  <li><a href="/easyads/blog">Blog</a></li>
                   <li><a href="pricing.html">Pricing</a></li>
                   <li><a href="faq.html">FAQ</a></li>
                   <li><a href="/easyads/post_ad"><button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Post Free Ad</button></a></li>

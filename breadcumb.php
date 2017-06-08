@@ -1,4 +1,10 @@
 <!-- Breadcumb -->
+<?php
+$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$segments2 = explode('?', $actual_link);
+$links=explode('/',$segments2[0]);
+
+?>
 
 		<section class="breadcumb_area">
 			<div class="container">
@@ -13,6 +19,12 @@
 									<li><a href="/easyads/">Home</a></li>
 									<li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
 									<li><?php echo $_SESSION['heading'];?></li>
+							<?php
+								if(isset($links[5])){
+									echo '<li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+									<li>'.str_replace("-"," ",$links[5]).'</li>';
+								}
+							?>
 								</ul>
 							</div>
 						</div>
