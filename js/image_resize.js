@@ -48,7 +48,7 @@ function resize(th){
 			  ctx.restore();
 				ctx.font = "bold 18pt Arial";
 				ctx.fillStyle = "rgba(100, 100, 150, 0.3)";
-				ctx.fillText("Easyads.ie",canvas.width-130,canvas.height-10);
+				ctx.fillText("Easyads.ie",50,50);
 			  var imag2=document.getElementById("images2");
 			  //images2.appendChild(canvas);
 			  		
@@ -86,7 +86,7 @@ function resize(th){
 			  ctx.restore();
 				ctx.font = "bold 18pt Arial";
 				ctx.fillStyle = "rgba(100, 100, 150, 0.3)";
-				ctx.fillText("Easyads.ie",canvas.width-130,canvas.height-10);
+				ctx.fillText("Easyads.ie",50,50);
 			  var imag2=document.getElementById("images2");
 			  //imag2.appendChild(canvas);
 			  		
