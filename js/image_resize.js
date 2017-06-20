@@ -98,6 +98,11 @@ function resize(th){
 			
 			var dataurl=canvas.toDataURL('image/jpeg', 0.8);
 		
+			var div=document.createElement('div');
+			div.height="210";
+			div.className="img_divas";
+			imag2.appendChild(div);
+			
 			var img=document.createElement('img');
 			img.src=dataurl;
 			nr++;
@@ -105,7 +110,7 @@ function resize(th){
 			img.className="thumbnail2";
 			img.width="200";
 			img.onclick=function() { rotate(this); };
-			imag2.appendChild(img);
+			div.appendChild(img);
 	
 			 //alert(request.readyState);
             }

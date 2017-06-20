@@ -82,12 +82,22 @@
   }
 }
    
-   
+.img_divas {
+	height:235px;
+	width:235px;
+	margin-bottom:15px;
+	margin-right:10px;
+	display:inline-block;
+	border-radius: 5px;
+	border-style:solid;
+	border-width:1px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}   
    
 .thumbnail2 {
 	margin: 15px;
 	border-radius: 5px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	
 }
   
    .card .card-image{
