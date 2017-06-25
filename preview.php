@@ -12,6 +12,7 @@ $make='';$model='';$year=0;$fuel='';$condition='';
 $price='';$location='All';
 $images=[''];$cover=0;
 $name='';$email='';$phone='';
+$transmission='';$bodyType='';$color='';
 if(isset($_SESSION['user'])){$user=$_SESSION['user'];}
 
 if(isset($_POST['title'])){$title=$_POST['title'];}
@@ -31,7 +32,7 @@ if(isset($_POST['description'])){$description=$_POST['description'];}
 if(isset($_POST['name'])){$name=$_POST['name'];}
 if(isset($_POST['email'])){$email=$_POST['email'];}
 if(isset($_POST['phone'])){$phone=$_POST['phone'];}
-if(isset($_POST['cover'])){$cover=$_POST['cover']-1;}
+if(isset($_POST['cover'])){$cover=$_POST['cover'];}
 
 /*
 echo 'form:<hr>';
@@ -50,6 +51,7 @@ if(isset($email)){echo 'email: '.$email.'<br>';}
 if(isset($phone)){echo 'phone: '.$phone.'<br>';}
 if(isset($cover)){echo 'cover: '.$cover.'<br>';}
 */
+if(isset($cover)){echo 'cover: '.$cover.'<br>';}
 
 if(isset($_SESSION['images'])){ $images=$_SESSION['images'];}
 
@@ -75,7 +77,7 @@ echo '<br>';
 //echo json_encode($images);
 //echo '<br>';
 $arrlength = count($images);
-
+echo'<p>arrlength='.$arrlength.'</p>';
 for($x = 0; $x < $arrlength; $x++) {
     $coverim='';
 	if($x==$cover){$coverim='yes';echo '<b>';}
@@ -97,5 +99,6 @@ if($model!==''){$link.='/'.$model;}
 $link.='?item='.$last_id;
 //echo 'link='.$link;
 
-header($link);
+//header($link);
+echo '<p><a href="/easyads/items?item='.$last_id.'"> testi </a></p>';
 ?>

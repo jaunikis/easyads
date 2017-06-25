@@ -8,7 +8,7 @@
       <meta name="author" content="Marius Vorosilovas">
       <title>Easyads classified free adverts</title>
       
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	 <script src="/easyads/js/jquery-3.2.1.js"></script>
 	  
 	  <!-- Favicon Icon -->
       <link rel="apple-touch-icon" sizes="76x76" href="/easyads/images/apple-icon.png">
@@ -258,10 +258,10 @@ case 'items':
       <!-- Post Ad -->	
       <a href="/easyads/post_ad/" data-toggle="tooltip" data-placement="left" title="Post Your Ad" class="btn btn-primary btn-lg post-free-add-btn"><i class="fa fa-pencil"></i></a>
       <!-- jQuery -->
-      <script src="/easyads/js/jquery.js"></script>
-      <!-- Custom js -->
+      
+      <!-- Custom js--> 
       <script src="/easyads/js/custom.js"></script>
-      <!-- Bootstrap JavaScript <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --> 
+      <!-- Bootstrap JavaScript <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  -->
 	  <script src="/easyads/js/bootstrap.min.js"></script>
       
       <!-- Owl Carousel -->

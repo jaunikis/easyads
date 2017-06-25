@@ -35,7 +35,7 @@ $.ajax({url: "/easyads/categories-list.txt", success: function(result){
 	}); // title.keyup
 	
 	
-	$("#cat1").change(function(){ alert('cat1c');
+	$("#cat1").change(function(){
 		$("#txtHint").text('stop');
 		change_cat1();
 	}); //cat1.change

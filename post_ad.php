@@ -9,6 +9,7 @@ if(!isset($_SESSION['user'])){
 $string = file_get_contents("categories-list.txt");
 $json = json_decode($string, true);
 ?>
+<link href="/easyads/css/style2.css" rel="stylesheet">
 		<!-- Create Post -->
 		<section class="create-post">
 			<div class="container">
@@ -174,13 +175,20 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 									<div class="form-group">
 										<label  class="col-sm-3 control-label">Add Photos</label>
 										<div class="col-sm-9">
-											<input type="file" onchange="resize(this)" class="filestyle" accept="image/jpeg, image/png" multiple />
+											<input id="inputFile" type="file" onchange="resize(this)" class="filestyle" accept="image/jpeg, image/png" multiple />
 											<span class="help-block"></span>
 											
 										</div>
 									</div>
 									
 			<!-- adding images --> 							
+			
+	<div id="images-div" class="images-div">
+		<div class="img-div">
+			<div id="inputFile" onclick="$('#inputFile').click();" class="mygt mygt-center"><span class="symb">+</span></div>
+		</div>
+	</div>
+			
 			<div id="images2">
 			</div>
 		
@@ -290,11 +298,14 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 									</div>
 									<div class="form-group">
 										<div class="col-sm-offset-3 col-sm-9">
+											<input id="cover" name="cover" style="display:block;"></input>
 											<button type="button" class="btn btn-primary"><i class="fa fa-table"></i> Preview</button>
 											<button type="button" onclick="save()" class="btn btn-success"><i class="fa fa-save"></i> Create ad</button>
 										</div>
 									</div>
 								</form>
+							<button onclick="save_p()"> Save </button>
+											<ol></ol>
 							</div>
 						</div>
 					</div>
@@ -305,10 +316,31 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 		<div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;"><img src='/easyads/images/loading3.gif' width="64" height="64" /><br>Loading..</div>
 		
 <script src="/easyads/js/ads_categories.js"></script>
+<script src="/easyads/js/js.js"></script>
+
 <script>
+function savee(){
+	alert('save');
+	$("#cover").val("555");
+}
+
+function save_ooo(){
+	$.ajax({
+   type: "POST",
+   data: {images1:images1},
+   url: "proc.php",
+   success: function(msg){
+     alert(msg);
+   }
+});
+}
+
+
 function save(){
 	 //alert(image.length);
-	for(i=0;i<images2.length;i++){
+	 //ideda i images session
+	 //alert(images1.length);
+	for(i=0;i<images1.length;i++){
 	var formData = new FormData();
 		formData.append('photo1', images1[i]);
 		formData.append('photo2', images2[i]);
@@ -326,109 +358,7 @@ function save(){
 	}
 	
  }
-function rotate(th){
-	//image1 rotate;
-	var canvas = document.createElement('canvas');
-	
-	blobToDataURL(images1[th.id], function(dataurl){
-		//alert(dataurl);
-		var img=document.createElement('img');
-			img.src=dataurl;
-			img.onload=function(){
-			//document.body.appendChild(img);
-			canvas.width=img.height;
-			canvas.height=img.width;
-		ctx = canvas.getContext("2d");
-		ctx.save();
-		ctx.translate(canvas.width/2,canvas.height/2);
-		ctx.rotate(90*Math.PI/180);
-		//ctx.drawImage(imga,-width/2,-height/2,width,height);
-		ctx.drawImage(img,-img.width/2,-img.height/2,img.width,img.height);
-		ctx.restore();
-		ctx.font = "bold 18pt Arial";
-				ctx.fillStyle = "rgba(100, 100, 150, 0.3)";
-				ctx.fillText("Easyads.ie",50,50);
-		//document.body.appendChild(canvas);
-		
-		canvas.toBlob(function (blob) {
-				images1[th.id]=blob;
-				//alert(blob);
-			}, 'image/jpeg', 0.8);
-	};//image onload
-			});
-				
-	//image2 rotate
-	//alert('rotate '+th.id);
-	var canvas = document.createElement('canvas');
-	var img = document.createElement('img');
-	blobToDataURL(images2[th.id], function(dataurl){
-		//alert(dataurl);
-		var img=document.createElement('img');
-			img.src=dataurl;
-			//document.body.appendChild(img);
-			canvas.width=img.height;
-			canvas.height=img.width;
-		ctx = canvas.getContext("2d");
-		ctx.save();
-		ctx.translate(canvas.width/2,canvas.height/2);
-		ctx.rotate(90*Math.PI/180);
-		//ctx.drawImage(imga,-width/2,-height/2,width,height);
-		ctx.drawImage(img,-img.width/2,-img.height/2,img.width,img.height);
-		ctx.restore();
-		ctx.font = "bold 18pt Arial";
-				ctx.fillStyle = "rgba(100, 100, 150, 0.3)";
-				ctx.fillText("Easyads.ie",50,50);
-		//document.body.appendChild(canvas);
-		
-		var imag2=document.getElementById("images2");
-		//imag2.appendChild(canvas);
-		canvas.toBlob(function (blob) {
-				images2[th.id]=blob;
-				//alert(images2[th.id]);
-					blobToDataURL(images2[th.id], function(dataurl2){
-						th.src=dataurl2;
-						//var img2=document.createElement('img');
-						//img2.src=dataurl2;
-						//document.body.appendChild(img2);
-		});	
-			}, 'image/jpeg', 0.8);
-			
-		});
-		
-//    console.log(dataurl);
-	
-	
-}
-function persukti(t,x){
-	//alert('persukti');
-	var p=t.parentNode.parentNode.parentNode;
-	var img=p.getElementsByTagName('img');
-	var th=img[0];
-	
-	var hr = new XMLHttpRequest();
-		// Create some variables we need to send to our PHP file
-		var wait=document.getElementById("wait");
-		var url = "/easyads/rotate.php";
-		var vars = "x="+x;
-		hr.open("POST", url, true);
-		hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		// Access the onreadystatechange event for the XMLHttpRequest object
-		hr.onreadystatechange = function() {
-			//alert(hr);
 
-			if(hr.readyState == 4 && hr.status == 200) {
-				var return_data = hr.responseText;
-				//var p=th.parentNode.parentNode.parentNode;
-				//p.parentNode.removeChild(p);
-				th.src=return_data+'?'+ new Date().getTime();
-				//alert(return_data);
-				wait.style.display="none";
-			}
-		}
-		// Send the data to PHP now... and wait for response to update the status div
-		hr.send(vars); // Actually execute the request
-		wait.style.display="block";
-}
 
 function showHint(str) {
     if (str.length == 0) { 
@@ -605,8 +535,8 @@ function model_parinkimas(){
 	<script src="/easyads/js/resize.js"></script>
 	<script src="/easyads/js/app.js"></script>		-->
 
-	<!-- jQuery -->
-		<script src="/easyads/js/jquery.js"></script>
+	
+		
 		
 		
 		<!-- Filestyle -->
