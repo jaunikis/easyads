@@ -324,11 +324,19 @@ function savee(){
 	$("#cover").val("555");
 }
 
-function save_ooo(){
-	$.ajax({
+function save(){
+images11 = [];
+images11[0] = '0-hi';
+images11[1] = '1-hello';
+images11[2]='2-antr';
+
+var data_to_send=JSON.stringify({ images1: images11 });
+alert (data_to_send);
+
+$.ajax({
    type: "POST",
-   data: {images1:images1},
-   url: "proc.php",
+   data: {img:data_to_send},
+   url: "/easyads/proc.php",
    success: function(msg){
      alert(msg);
    }
@@ -336,7 +344,7 @@ function save_ooo(){
 }
 
 
-function save(){
+function saveee(){
 	 //alert(image.length);
 	 //ideda i images session
 	 //alert(images1.length);
