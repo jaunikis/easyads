@@ -17,7 +17,7 @@ $json = json_decode($string, true);
 					<div class="col-sm-8 col-sm-offset-2">
 						<div class="login-panel widget top-space">
 							<div class="login-body">
-								<form id="forma" action="/easyads/preview.php" method="POST" class="row">
+								<form id="forma" action="/easyads/save_add.php" method="POST" class="row">
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Ad Title <span class="required">*</span></label>
 										<div class="col-sm-9">
@@ -150,7 +150,7 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 										</div>
 									</div>
 								</div>	<!-- cars1 -->
-									<div class="form-group" id="condition">
+									<div style="display:none" class="form-group" id="condition">
 										<label class="col-sm-3 control-label">Condition <span class="required">*</span></label>
 										<div class="col-sm-9">	
 											<div class="radio radio-info radio-inline">
@@ -168,7 +168,7 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 										<div class="col-sm-9">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="fa fa-euro"></i></span>
-												<input name="price" type="text" placeholder="e.g. 999" required="required" class="form-control border-form">
+												<input id="price" name="price" type="text" placeholder="e.g. 999" required="required" class="form-control border-form">
 											</div>
 										</div>
 									</div>
@@ -192,69 +192,12 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 			<div id="images2">
 			</div>
 		
-		<!--		
-		<div class="col-sm-3">
-            <div class="card">
-                <div class="card-image">
-                    <img class="img-responsive" src="http://lorempixel.com/555/300/sports">
-                </div>
-                <div class="card-content" style="background-color:palegoldenrod">
-                    <span class="card-title"><b>Cover</b></span>                    
-                    <span class="card-title pull-right">Remove</span>
-                </div>
-            </div>
-        </div>
 		
-		
-		<div class="col-md-3">
-            <div class="card">
-                <div class="card-image">
-                    <img class="img-responsive" src="http://lorempixel.com/555/300/sports">
-                </div>
-                <div class="card-content">
-                    <span class="card-title">cover</span>                    
-                    <span class="card-title pull-right">Edit Remove</span>
-                </div> 
-            </div>
-        </div>
-		
-		
-		<div class="col-sm-3">
-            <div class="card">
-                <div class="card-image">
-                    <img class="img-responsive" src="http://lorempixel.com/555/300/sports">
-                </div>
-                <div class="card-content">
-                    <span class="card-title">Cover</span>                    
-                    <span class="card-title pull-right">Edit Remove</span>
-                </div><
-            </div>
-        </div>
-		
-		-->
-		
-						<!-- add image 			
-						<div class="col-sm-2">
-                           <div class="item-ads-grid icon-brown">
-                              <div class="item-img-grid">
-                                 <img alt="" src="/easyads/images/categories/cars/1.png" class="img-responsive img-center">
-                              </div>
-                             
-                              <div class="item-meta">
-                                 <ul>
-                                    <li class="item-date"><i class="fa fa-file"></i> 1.143Kb</li>
-                                 </ul>
-                              </div>
-                           </div>
-                        </div>
-						-->
-						
-									
-									
+			
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Location <span class="required">*</span></label>
 										<div class="col-sm-9">
-											<select name="location" class="form-control border-form">
+											<select id="location" name="location" class="form-control border-form">
 												<option selected="">All Locations</option>
 			  <?php
 				for($i=0;$i<count($json["locations"]);$i++){
@@ -272,40 +215,37 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Ad Description <span class="required">*</span></label>
 										<div class="col-sm-9">
-											<textarea name="description" value="description1" placeholder="Include the brand, model, age and any included accessories." class="form-control border-form"></textarea>
+											<textarea id="description" name="description" value="description1" placeholder="Include the brand, model, age and any included accessories." class="form-control border-form"></textarea>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Your Name <span class="required">*</span></label>
 										<div class="col-sm-9">
-											<input name="name" type="text" placeholder="e.g. Jhone Doe" value="<?php if(isset($_SESSION['user'])){echo $_SESSION['user'];} ?>" class="form-control border-form">
+											<input id="name" name="name" type="text" placeholder="e.g. Jhone Doe" value="<?php if(isset($_SESSION['user'])){echo $_SESSION['user'];} ?>" class="form-control border-form">
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Your email </label>
 										<div class="col-sm-9">
-											<input name="email" type="text" placeholder="e.g. jon@gmail.com" value="<?php if(isset($_SESSION['email'])){echo $_SESSION['email'];} ?>" class="form-control border-form">
+											<input id="email" name="email" type="text" placeholder="e.g. jon@gmail.com" value="<?php if(isset($_SESSION['email'])){echo $_SESSION['email'];} ?>" class="form-control border-form">
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Phone number <span class="required">*</span></label>
 										<div class="col-sm-9">
 											<div class="input-group">
-												
-												<input name="phone" type="text" placeholder="e.g. 123456789" value="<?php if(isset($_SESSION['phone'])){echo $_SESSION['phone'];} ?>" class="form-control border-form">
+												<input id="phone" name="phone" type="text" placeholder="e.g. 123456789" value="<?php if(isset($_SESSION['phone'])){echo $_SESSION['phone'];} ?>" class="form-control border-form">
 											</div>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-sm-offset-3 col-sm-9">
-											<input id="cover" name="cover" style="display:block;"></input>
+											
 											<button type="button" class="btn btn-primary"><i class="fa fa-table"></i> Preview</button>
 											<button type="button" onclick="save()" class="btn btn-success"><i class="fa fa-save"></i> Create ad</button>
 										</div>
 									</div>
 								</form>
-							<button onclick="save_p()"> Save </button>
-											<ol></ol>
 							</div>
 						</div>
 					</div>
@@ -319,53 +259,43 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 <script src="/easyads/js/js.js"></script>
 
 <script>
-function savee(){
-	alert('save');
-	$("#cover").val("555");
-}
-
 function save(){
-images11 = [];
-images11[0] = '0-hi';
-images11[1] = '1-hello';
-images11[2]='2-antr';
-
-var data_to_send=JSON.stringify({ images1: images11 });
-alert (data_to_send);
-
-$.ajax({
-   type: "POST",
-   data: {img:data_to_send},
-   url: "/easyads/proc.php",
-   success: function(msg){
-     alert(msg);
-   }
-});
-}
-
-
-function saveee(){
-	 //alert(image.length);
-	 //ideda i images session
-	 //alert(images1.length);
-	for(i=0;i<images1.length;i++){
-	var formData = new FormData();
-		formData.append('photo1', images1[i]);
-		formData.append('photo2', images2[i]);
-		var request = new XMLHttpRequest();
-		request.onreadystatechange = function() {
-			if (request.readyState === 4) {
-				document.getElementById("forma").submit();
-				//callback(request.response);
-				//alert('done');
-			}
-		}
-		request.open('POST', '/easyads/process.php');
-		request.responseType = 'json';
-		request.send(formData);
-	}
+	//alert(images1[0]);
+	var title=$('#title').val();
+	var cat1=$('#cat1').val();
+	var cat2=$('#cat2').val();
+	var cat3=$('#cat3').val();
+	var cat4=$('#cat4').val();
+	var year=$('#year').val();
+	var fuel=$('#fuel').val();
+	var transmission=$('#transmission').val();
+	var bodyType=$('#bodyType').val();
+	var color=$('#color').val();
+	var price=$('#price').val();
+	var location=$('#location').val();
+	var description=$('#description').val();
+	var name=$('#name').val();
+	var email=$('#email').val();
+	var phone=$('#phone').val();
 	
- }
+	if (typeof cover == 'undefined'){cover=0;} 
+	//alert(cover);
+	//cover=0;
+	$.ajax({
+		type: "POST",
+		data: {title:title,cover:cover,cat1:cat1,cat2:cat2,cat3:cat3,cat4:cat4,
+				year:year,fuel:fuel,transmission:transmission,bodyType:bodyType,
+				color:color,price:price,location:location,description:description,
+				name:name,email:email,phone:phone,
+				images1:images1,images2:images2},
+		url: "/easyads/save_ad.php",
+		success: function(msg){
+			//alert(msg);
+			window.location = "/easyads/items?item="+msg;
+			//document.getElementById("forma").submit();
+		}
+	});
+}
 
 
 function showHint(str) {

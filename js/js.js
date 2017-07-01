@@ -4,11 +4,11 @@ function click_cover(th){
 	par=th.parentElement;
 	gran=th.parentElement.parentElement;
 	childs=gran.children;
+	
 	var num=par.previousSibling;
-	var i = 0;
-	while(num.className != null ){i++;num=num.previousSibling;}
-	//alert(i);
-	$("#cover").val(i);
+	cover = 0;
+	while(num.className != null ){cover++;num=num.previousSibling;}
+	//alert(cover);
 	
 	//perstumia cover i pirma vieta
 	//gran.insertBefore(par,gran.firstChild);
@@ -70,10 +70,9 @@ function click_rotate(th){
 	
 	//rotate image1
 	canvas = document.createElement('canvas');
-	blobToDataURL(images2[i], function(dataurl){
-		//alert(dataurl);
+	
 		var img=document.createElement('img');
-			img.src=dataurl;
+			img.src=images2[i];
 			img.onload=function(){
 			//document.body.appendChild(img);
 			var	width = img.width;
@@ -104,8 +103,9 @@ function click_rotate(th){
 		//document.body.appendChild(canvas);
 		
 		canvas.toBlob(function (blob) {
-				images1[i]=blob;
-				blobToDataURL(images1[i], function(dataURL){
+				//images1[i]=blob;
+				blobToDataURL(blob, function(dataURL){
+					images1[i]=dataURL;
 					var pvs=par.firstChild;
 					pvs.src=dataURL;
 					//$("ol").append('<li><img src="'+dataURL+'" width="100"></img></li>');
@@ -113,15 +113,14 @@ function click_rotate(th){
 				});
 			}, 'image/jpeg', 0.8);
 	};//image onload
-			});
+			
 	
 	
 	//rotate image2
 	canvas2 = document.createElement('canvas');
-	blobToDataURL(images2[i], function(dataurl){
-		//alert(dataurl);
+	
 		var img=document.createElement('img');
-			img.src=dataurl;
+			img.src=images2[i];
 			img.onload=function(){
 			//document.body.appendChild(img);
 			//alert(img.width);
@@ -138,18 +137,16 @@ function click_rotate(th){
 		//document.body.appendChild(canvas2);
 		
 		canvas2.toBlob(function (blob) {
-				images2[i]=blob;
-			//	blobToDataURL(images2[i], function(dataURL){
+				//images2[i]=blob;
+				blobToDataURL(blob, function(dataURL){		
+					images2[i]=dataURL;
 			//		var pvs=par.firstChild;
 			//		pvs.src=dataURL;
 					//$("ol").append('<li><img src="'+dataURL+'" width="100"></img></li>');
 					//alert(par.firstChild.className)
-			//	});
+				});
 			}, 'image/jpeg', 0.8);
 	};//image onload
-			});
-	
-	
-	
-	
+			
 }
+

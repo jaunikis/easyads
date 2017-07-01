@@ -66,7 +66,7 @@ while ($row = $result->fetch_assoc()) {
 	while ($row = $result->fetch_assoc()) {
 				$id=$row['id'];
 				$title=$row['title'];
-				$cover=$row['cover'];if($cover==''){$cover='no-image3.gif';}
+				$cover=$row['cover'];if($cover==''){$cover='ads_images/no-image.png';}
 				$price=$row['price'];
 				$location=$row['location'];
 				$timestamp2=$row['timestamp2'];
@@ -82,7 +82,7 @@ while ($row = $result->fetch_assoc()) {
 						<a href="/easyads/items?item=<?php echo $id;?>">
                            <div class="item-ads-grid icon-<?php echo $color;?>">
                               <div class="item-img-grid">
-                                 <img alt="" src="<?php echo '/easyads/ads_images/small_'.$cover;?>" class="img-responsive img-center">
+                                 <img alt="" src="<?php echo $cover;?>" class="img-responsive img-center">
                               </div>
                               <div class="item-title">
                                     <h4><?php echo $title;?></h4>

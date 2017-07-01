@@ -48,9 +48,8 @@ require_once ('incl/elapsed.php');
 			if(isset($sortBy)){if($sortBy=='priceHigh'){$sort='price DESC';$sortTxt='High Price First';}}
 			if(isset($sortBy)){if($sortBy=='recently'){$sort='id DESC';$sortTxt='Recently Published';}}
 			
-			$sql="SELECT * FROM skelbimai WHERE cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND fuel=$fuel AND transmission=$transmission AND bodyType=$bodyType AND color=$color AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND (year BETWEEN '$yMin' AND '$yMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY $sort ";
+			$sql="SELECT * FROM skelbimai WHERE active='Active' AND cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND fuel=$fuel AND transmission=$transmission AND bodyType=$bodyType AND color=$color AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND (year BETWEEN '$yMin' AND '$yMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY $sort ";
 			$result=sqlconnect($sql);
-			
 			$ad_count = $result->num_rows;
 ?>
       <section class="category-grid">
@@ -185,7 +184,7 @@ include('left_search.php');
 			while ($row = $result->fetch_assoc()) {
 				$id=$row['id'];
 				$title=$row['title'];
-				$cover=$row['cover'];if($cover==''){$cover='no-image3.gif';}
+				$cover=$row['cover'];if($cover==''){$cover='ads_images/no-image.png';}
 				$price=$row['price'];
 				$location=$row['location'];
 				$timestamp=$row['timestamp'];
@@ -204,7 +203,7 @@ include('left_search.php');
                               </div>
 							  <a href="/easyads/items?item=<?php echo $id; ?>">
                               <div class="item-img-grid">
-                                 <img alt="" width="350" src="<?php echo '/easyads/ads_images/small_'.$cover; ?>" class="img-responsive img-center">
+                                 <img alt="" width="350" src="<?php echo $cover; ?>" class="img-responsive img-center">
                               </div>
                               <div class="item-title">
                                  

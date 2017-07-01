@@ -15,7 +15,7 @@ $result=sqlconnect($sql);
 while ($row = $result->fetch_assoc()) {
 	$id=$row['id'];
     $title=$row['title'];
-	$cover=$row['cover'];if($cover==''){$cover='no-image3.gif';}
+	$cover=$row['cover'];if($cover==''){$cover='ads_images/no-image.png';}
 	$price=$row['price'];
 	$timestamp=$row['timestamp'];
 	$cat1=$row['cat1'];
@@ -35,12 +35,18 @@ while ($row = $result->fetch_assoc()) {
 	$timestamp2=$row['timestamp2'];
 	
 }
-$images[]=$cover;
-$sql="SELECT * FROM images WHERE (addid='$item' AND cover<>'yes')";
-$result=sqlconnect($sql);
-while ($row = $result->fetch_assoc()) {
-    $src=$row['src'];$images[]=$src;
+
+	$images=[];
+	$images2=[];
+	//$images[]=$cover;
+	$sql2="SELECT * FROM images WHERE ad_id=$id";
+	$result2=sqlconnect($sql2);
+	while ($row2 = $result2->fetch_assoc()) {
+		$images[]=$row2['images1'];
+		$images2[]=$row2['images2'];
 	}
+	//if(count($images)==0){$images[]='ads_images/no-image.png';}
+	//echo count($images);
 ?>
 
 
@@ -65,13 +71,13 @@ include('reklama.php');
 			while ($row = $result->fetch_assoc()) {
 				$id2=$row['id'];
 				$title2=$row['title'];
-				$cover2=$row['cover'];if($cover2==''){$cover2='no-image3.gif';}
+				$cover2=$row['cover'];if($cover2==''){$cover2='ads_images/no-image.png';}
 				$price2=$row['price'];
 ?>
 						   <div class="similar-ads">
                               <a href="/easyads/items?item=<?php echo $id2;?>">
                                  <div class="similar-ad-left">
-                                    <img class="img-responsive img-center" src="<?php echo'/easyads/ads_images/small_'.$cover2;?>" alt="">
+                                    <img class="img-responsive img-center" src="<?php echo $cover2;?>" alt="">
                                  </div>
                                  <div class="similar-ad-right">
                                     <h4><?php echo $title2;?></h4>
@@ -117,7 +123,7 @@ include('reklama.php');
 <?php
 $images_length=count($images);
 for($i=0;$i<$images_length;$i++){
-echo '<div class="item"><a href="/easyads/ads_images/big_'.$images[$i].'" target="blank"><img alt="" src="/easyads/ads_images/small_'.$images[$i].'" class="img-responsive img-center"></a></div>';
+echo '<div class="item"><a href="'.$images2[$i].'" target="blank"><img alt="" src="'.$images[$i].'" class="img-responsive img-center"></a></div>';
 }
 ?>
                                  </div>
@@ -125,7 +131,7 @@ echo '<div class="item"><a href="/easyads/ads_images/big_'.$images[$i].'" target
 <?php           
 								$images_length=count($images);
 								for($i=0;$i<$images_length;$i++){
-								echo '<div class="item"><img alt="" src="/easyads/ads_images/small_'.$images[$i].'" class="img-responsive img-center"></div>';
+								echo '<div class="item"><img alt="" src="'.$images[$i].'" class="img-responsive img-center"></div>';
                                 }
 ?>
                                  </div>

@@ -7,7 +7,7 @@
 while ($row = $result_my_ads->fetch_assoc()) {
 				$id=$row['id'];
 				$title=$row['title'];
-				$cover=$row['cover'];if($cover==''){$cover='no-image3.gif';}
+				$cover=$row['cover'];if($cover==''){$cover='ads_images/no-image.png';}
 				$price=$row['price'];
 				$saved=$row['saved'];
 				$timestamp=$row['timestamp'];
@@ -22,7 +22,7 @@ while ($row = $result_my_ads->fetch_assoc()) {
 ?>
 							
 							<div class="remas">  
-                            <img class="list-image" src="<?php echo '/easyads/ads_images/small_'.$cover; ?>" alt=""></td>
+                            <img class="list-image" src="<?php echo $cover; ?>" alt=""></td>
                                 
                         <div class=""><a data-placement="top" data-toggle="tooltip" data-original-title="View Ad" href="/easyads/items?item=<?php echo $id; ?>"><strong><?php echo $title;?></strong></a>
 						

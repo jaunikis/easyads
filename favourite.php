@@ -7,16 +7,20 @@
 				   
                         
 <?php
+if(!isset($_SESSION['email'])){$_SESSION['link']='/easyads/my_ads';echo('<script>window.location = "/easyads/login";</script>');exit;}
 
+$email=$_SESSION['email'];
+require_once ('incl/server.php');
 require_once ('incl/elapsed.php');
-//if(isset($_SESSION['saved'])){$saved=$_SESSION['saved'];echo $saved;}else{$saved='';}
-
-
-
-while ($row = $result_favourite->fetch_assoc()) {
+if(isset($_SESSION['saved'])){$saved=$_SESSION['saved'];}else{$saved='';}
+//echo $saved;
+$sql="SELECT * FROM skelbimai WHERE id IN ($saved) ORDER BY id DESC";
+//$sql="SELECT * FROM skelbimai";
+$result=sqlconnect($sql);
+while ($row = $result->fetch_assoc()) {
 				$id=$row['id'];
 				$title=$row['title'];
-				$cover=$row['cover'];if($cover==''){$cover='no-image3.gif';}
+				$cover=$row['cover'];if($cover==''){$cover='ads_images/no-image.png';}
 				$price=$row['price'];
 				$location=$row['location'];
 				$timestamp=$row['timestamp'];
@@ -31,7 +35,7 @@ while ($row = $result_favourite->fetch_assoc()) {
    <div class="remas">
      
 			
-		<img class="list-image" src="<?php echo '/easyads/ads_images/small_'.$cover; ?>" class="" alt="<?php echo $title;?>">
+		<img class="list-image" src="<?php echo $cover; ?>" class="" alt="<?php echo $title;?>">
 	
 	
 		<div class=""><a href="/easyads/items?item=<?php echo $id; ?>"><strong><?php echo $title;?></strong></a></div>
@@ -50,7 +54,7 @@ while ($row = $result_favourite->fetch_assoc()) {
 								
 							<span> | </span>
 										
-											<span class="" data-placement="top" data-toggle="tooltip" style="cursor:pointer;" onclick="unfavourite(<?php echo $id; ?>,this)" data-original-title="Unfavourite">Unsave <i class="fa fa-close"></i></span>
+											<span class="" data-placement="top" data-toggle="tooltip" onclick="unfavourite(<?php echo $id; ?>,this)" data-original-title="Unfavourite">Unsave <i class="fa fa-close"></i></span>
 										</div>
                                        
 	
@@ -85,7 +89,7 @@ var hr = new XMLHttpRequest();
 
 			if(hr.readyState == 4 && hr.status == 200) {
 				var return_data = hr.responseText;
-				var p=th.parentNode.parentNode;
+				var p=th.parentNode.parentNode.parentNode;
 				p.parentNode.removeChild(p);
 				//alert(return_data);
 				wait.style.display="none";
