@@ -25,11 +25,11 @@ function resize(th){
       // get an image file from the user
       // this uses drag/drop, but you could substitute file-browsing
       var reader = new FileReader();
-      reader.onload = (function(image) {
+      reader.onload = (function(imga) {
         return function(e) {
-          image.onload = function() { 
-			width = image.width;if(width<200){ alert('Image too small!');return;}
-			height = image.height;
+          imga.onload = function() { 
+			width = imga.width;if(width<200){ alert('Image too small!');return;}
+			height = imga.height;
             
 			 var canvas = document.createElement('canvas');
 				canvas.width=600;
@@ -53,7 +53,7 @@ function resize(th){
 					ctx.save();
 					ctx.translate(canvas.width/2,canvas.height/2);
 					ctx.rotate(90*Math.PI/180);
-					ctx.drawImage(image,-height/2,-width/2,height,width);
+					ctx.drawImage(imga,-height/2,-width/2,height,width);
 					ctx.restore();
 				}else{
 					var ratio=width/height;
@@ -71,24 +71,24 @@ function resize(th){
 					  ctx.save();
 					  ctx.translate(canvas.width/2,canvas.height/2);
 					  if(ori==3){ctx.rotate(180*Math.PI/180);}
-					  ctx.drawImage(image,-width/2,-height/2,width,height);
+					  ctx.drawImage(imga,-width/2,-height/2,width,height);
 					  ctx.restore();
 				}//else
 					
-					var dataURL = canvas.toDataURL();
-						//images1.push(dataURL);
-					canvas.toBlob(function (blob) {
-						blobToDataURL(blob, function(dataURL){
-							images1.push(dataURL);
-						});
+					var dataurl = canvas.toDataURL('image/jpeg', 0.8);
+						images1.push(dataurl);
+				//	canvas.toBlob(function (blob) {
+				//		blobToDataURL(blob, function(dataURL){
+				//			images1.push(dataURL);
+				//		});
 						//images1.push(blob);
 						//alert(images1[i-1]);
-					}, 'image/jpeg', 0.8);
+				//	}, 'image/jpeg', 0.8);
 				
 			 
 		//second image
-			var	width = image.width;
-			var	height = image.height;
+			var	width = imga.width;
+			var	height = imga.height;
 			var canvas2 = document.createElement('canvas');
 				canvas2.width=1280;
 				canvas2.height=960;
@@ -121,7 +121,7 @@ function resize(th){
 			  ctx.translate(canvas2.width/2,canvas2.height/2);
 			  if(ori==6){ctx.rotate(90*Math.PI/180);}
 			  if(ori==3){ctx.rotate(180*Math.PI/180);}
-			  ctx.drawImage(image,-width/2,-height/2,width,height);
+			  ctx.drawImage(imga,-width/2,-height/2,width,height);
 			  ctx.restore();
 				//ctx.font = "bold 18pt Arial";
 				//ctx.fillStyle = "rgba(100, 100, 150, 0.3)";
@@ -129,15 +129,17 @@ function resize(th){
 			  var imag2=document.getElementById("images-div");
 			  		
 			
-			canvas2.toBlob(function (blob) {
-				blobToDataURL(blob, function(dataURL){
-							images2.push(dataURL);
-						});
+			var dataurl2=canvas2.toDataURL('image/jpeg', 0.8);
+			images2.push(dataurl2);
+		//	canvas2.toBlob(function (blob) {
+		//		blobToDataURL(blob, function(dataURL){
+		//					images2.push(dataURL);
+		//				});
 				//images2.push(blob);
 				//alert(blob);
-			}, 'image/jpeg', 0.8);
+		//	}, 'image/jpeg', 0.8);
 			
-			var dataurl=canvas.toDataURL('image/jpeg', 0.8);
+			
 		
 			var img_div=document.createElement('div');
 			img_div.className="img-div";
@@ -175,7 +177,7 @@ function resize(th){
 			nr++;
             }
             // e.target.result is a dataURL for the image
-          image.src = e.target.result;
+          imga.src = e.target.result;
 		  //window.location.href=aImg.src;
         };
       })(img);
