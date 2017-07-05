@@ -10,14 +10,14 @@ parse_str($segments[1]);
 //$item=$_SESSION['last_id'];
 require_once ('incl/server.php');
 require_once ('incl/elapsed.php');
-$sql="SELECT * FROM skelbimai WHERE id='$item'";
+$sql="SELECT id,title,cover1file,price,cat1,cat2,make,model,location,condition2,ad_views,description,saved,phone,name,user,timestamp2 FROM skelbimai WHERE id='$item'";
 $result=sqlconnect($sql);
 while ($row = $result->fetch_assoc()) {
 	$id=$row['id'];
     $title=$row['title'];
-	$cover=$row['cover'];if($cover==''){$cover='ads_images/no-image.png';}
+	$cover=$row['cover1file'];if($cover==''){$cover='no-image.png';}
 	$price=$row['price'];
-	$timestamp=$row['timestamp'];
+	//$timestamp=$row['timestamp'];
 	$cat1=$row['cat1'];
 	$cat2=$row['cat2'];
 	$make=$row['make'];
@@ -39,11 +39,11 @@ while ($row = $result->fetch_assoc()) {
 	$images=[];
 	$images2=[];
 	//$images[]=$cover;
-	$sql2="SELECT * FROM images WHERE ad_id=$id";
+	$sql2="SELECT images1file,images2file FROM images WHERE ad_id=$id";
 	$result2=sqlconnect($sql2);
 	while ($row2 = $result2->fetch_assoc()) {
-		$images[]=$row2['images1'];
-		$images2[]=$row2['images2'];
+		$images1[]=$row2['images1file'];
+		$images2[]=$row2['images2file'];
 	}
 	//if(count($images)==0){$images[]='ads_images/no-image.png';}
 	//echo count($images);
@@ -66,18 +66,18 @@ include('reklama.php');
                         <div class="widget-body">
 <?php
 			require_once ('incl/server.php');
-			$sql="SELECT * FROM skelbimai ORDER BY id DESC LIMIT 5";
+			$sql="SELECT id,title,price,cover1file FROM skelbimai ORDER BY id DESC LIMIT 5";
 			$result=sqlconnect($sql);
 			while ($row = $result->fetch_assoc()) {
 				$id2=$row['id'];
 				$title2=$row['title'];
-				$cover2=$row['cover'];if($cover2==''){$cover2='ads_images/no-image.png';}
+				$cover2=$row['cover1file'];if($cover2==''){$cover2='no-image.png';}
 				$price2=$row['price'];
 ?>
 						   <div class="similar-ads">
                               <a href="/easyads/items?item=<?php echo $id2;?>">
                                  <div class="similar-ad-left">
-                                    <img class="img-responsive img-center" src="<?php echo $cover2;?>" alt="">
+                                    <img class="img-responsive img-center" src="<?php echo 'ads_images/'.$cover2;?>" alt="">
                                  </div>
                                  <div class="similar-ad-right">
                                     <h4><?php echo $title2;?></h4>
@@ -121,17 +121,17 @@ include('reklama.php');
 		
                                  <div id="sync1" class="carousel">
 <?php
-$images_length=count($images);
+$images_length=count($images1);
 for($i=0;$i<$images_length;$i++){
-echo '<div class="item"><a href="'.$images2[$i].'" target="blank"><img alt="" src="'.$images[$i].'" class="img-responsive img-center"></a></div>';
+echo '<div class="item"><a href="ads_images/'.$images2[$i].'" target="blank"><img alt="" src="ads_images/'.$images1[$i].'" class="img-responsive img-center"></a></div>';
 }
 ?>
                                  </div>
                                  <div id="sync2" class="carousel">
 <?php           
-								$images_length=count($images);
+								$images_length=count($images1);
 								for($i=0;$i<$images_length;$i++){
-								echo '<div class="item"><img alt="" src="'.$images[$i].'" class="img-responsive img-center"></div>';
+								echo '<div class="item"><img alt="" src="ads_images/'.$images1[$i].'" class="img-responsive img-center"></div>';
                                 }
 ?>
                                  </div>

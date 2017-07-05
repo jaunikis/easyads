@@ -184,7 +184,7 @@ include('left_search.php');
 			while ($row = $result->fetch_assoc()) {
 				$id=$row['id'];
 				$title=$row['title'];
-				$cover=$row['cover'];if($cover==''){$cover='ads_images/no-image.png';}
+				$cover=$row['cover1file'];if($cover==''){$cover='no-image.png';}
 				$price=$row['price'];
 				$location=$row['location'];
 				$timestamp=$row['timestamp'];
@@ -203,7 +203,7 @@ include('left_search.php');
                               </div>
 							  <a href="/easyads/items?item=<?php echo $id; ?>">
                               <div class="item-img-grid">
-                                 <img alt="" width="350" src="<?php echo $cover; ?>" class="img-responsive img-center">
+                                 <img alt="" width="350" src="<?php echo 'ads_images/'.$cover; ?>" class="img-responsive img-center">
                               </div>
                               <div class="item-title">
                                  

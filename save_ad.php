@@ -2,6 +2,9 @@
 require_once ('incl/server.php');
 session_start();
 
+$images1file=[];
+$images2file=[];
+
 $date = new DateTime();$timestamp2=$date->getTimestamp();
 $tdate=date("d/m/Y");
 $time=date("H:i:sa");
@@ -17,7 +20,6 @@ $description='';
 
 if(isset($_SESSION['user'])){$user=$_SESSION['user'];}
 
-define('UPLOAD_DIR', 'img/');
 $cover=$_POST['cover'];
 $title=$_POST['title'];
 $cat1=$_POST['cat1'];
@@ -38,21 +40,43 @@ $phone=$_POST['phone'];
 $images1 = $_POST['images1'];
 $images2 = $_POST['images2'];
 
-$sql = "INSERT INTO skelbimai (cover,ip,user,title,cat1,cat2,make,model,year,fuel,transmission,bodyType,color,price,location,condition2,description,name,email,phone,active,timestamp2) VALUES ('$images1[$cover]','$ip','$user','$title','$cat1','$cat2','$make','$model','$year','$fuel','$transmission','$bodyType','$color','$price','$location','$condition','$description','$name','$email','$phone','Active',$timestamp2)";
+//save images to files
+	define('UPLOAD_DIR', 'ads_images/');
+	for($i=0;$i<count($images1);$i++){
+		$date = new DateTime();$timestamp2=$date->getTimestamp();
+		$img=$images1[$i];
+		list($type, $img) = explode(';', $img);
+		list(, $img)      = explode(',', $img);
+		$data = base64_decode($img);
+		$file = $timestamp2.'-'. uniqid() . '-'.$i.'-small.jpg';
+		$success = file_put_contents(UPLOAD_DIR.$file, $data);
+		$images1file[]=$file;
+	}
+	for($i=0;$i<count($images2);$i++){
+		$date = new DateTime();$timestamp2=$date->getTimestamp();
+		$img=$images2[$i];
+		list($type, $img) = explode(';', $img);
+		list(, $img)      = explode(',', $img);
+		$data = base64_decode($img);
+		$file = $timestamp2.'-'. uniqid() . '-'.$i.'-large.jpg';
+		$success = file_put_contents(UPLOAD_DIR.$file, $data);
+		$images2file[]=$file;
+	}
+
+$sql = "INSERT INTO skelbimai (cover,cover1file,ip,user,title,cat1,cat2,make,model,year,fuel,transmission,bodyType,color,price,location,condition2,description,name,email,phone,active,timestamp2) VALUES ('$images1[$cover]','$images1file[$cover]','$ip','$user','$title','$cat1','$cat2','$make','$model','$year','$fuel','$transmission','$bodyType','$color','$price','$location','$condition','$description','$name','$email','$phone','Active',$timestamp2)";
 $ad_id=sqlconnect($sql);
 //echo '<h3>'.$ad_id.'</h3>';
 
-
-	//first image
-	
-	
+	//save image to db
 	//echo count($images1).'   ';
 	for($i=0;$i<count($images1);$i++){
 		$x='';
 		if($i==$cover){$x='cover';}
 		$img1=$images1[$i];
 		$img2=$images2[$i];
-		$sql = "INSERT INTO images (images1,images2,ad_id,cover) VALUES ('$img1','$img2','$ad_id','$x')";
+		$file1=$images1file[$i];
+		$file2=$images2file[$i];
+		$sql = "INSERT INTO images (images1,images2,ad_id,cover,images1file,images2file) VALUES ('$img1','$img2','$ad_id','$x','$file1','$file2')";
 		$result=sqlconnect($sql);
 		//echo $result.'   ';
 		$_SESSION['last_id']=$result;
@@ -61,21 +85,10 @@ $ad_id=sqlconnect($sql);
 		
 	}
 	
-	//second image2
-	/*
-	for($i=0;$i<count($images2);$i++){
-		$date = new DateTime();$timestamp2=$date->getTimestamp();
-		$img=$images2[$i];
-		$x='';
-		if($i==$cover){$x='cover';}
-		//echo $img;
-		list($type, $img) = explode(';', $img);
-		list(, $img)      = explode(',', $img);
-		$data = base64_decode($img);
-		$file = UPLOAD_DIR .$timestamp2.'-'. uniqid() . '-'.$i.$x.'.jpg';
-		$success = file_put_contents($file, $data);
-	}
-	*/
-	//print $success ? $file : 'Unable to save the file.';
-	echo $ad_id;
+	
+	
+	
+	print $success ? $file : 'Unable to save the file.';
+	//echo $ad_id;
+	
 ?>

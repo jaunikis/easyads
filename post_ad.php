@@ -290,8 +290,8 @@ function save(){
 				images1:images1,images2:images2},
 		url: "/easyads/save_ad.php",
 		success: function(msg){
-			//alert(msg);
-			window.location = "/easyads/items?item="+msg;
+			alert(msg);
+			//window.location = "/easyads/items?item="+msg;
 			//document.getElementById("forma").submit();
 		}
 	});
