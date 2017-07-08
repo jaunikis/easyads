@@ -61,16 +61,16 @@ while ($row = $result->fetch_assoc()) {
                   </div>
                      <div id="owl-carousel-featured" class="owl-carousel categories-list-page">
     <?php
-	$sql="SELECT * FROM skelbimai ORDER BY id DESC LIMIT 3";
+	$sql="SELECT id,title,cover1file,price,location,timestamp2,cat1,cat2 FROM skelbimai ORDER BY id DESC LIMIT 3";
 	$result=sqlconnect($sql);
 	while ($row = $result->fetch_assoc()) {
 				$id=$row['id'];
 				$title=$row['title'];
-				$cover=$row['cover'];if($cover==''){$cover='ads_images/no-image.png';}
+				$cover=$row['cover1file'];if($cover==''){$cover='ads_images/no-image.png';}
 				$price=$row['price'];
 				$location=$row['location'];
 				$timestamp2=$row['timestamp2'];
-				$condition2=$row['condition2'];
+				//$condition2=$row['condition2'];
 				$cat1=$row['cat1'];
 				$cat2=$row['cat2'];
 				
@@ -82,7 +82,7 @@ while ($row = $result->fetch_assoc()) {
 						<a href="/easyads/items?item=<?php echo $id;?>">
                            <div class="item-ads-grid icon-<?php echo $color;?>">
                               <div class="item-img-grid">
-                                 <img alt="" src="<?php echo $cover;?>" class="img-responsive img-center">
+                                 <img alt="" src="<?php echo 'ads_images/'.$cover;?>" class="img-responsive img-center">
                               </div>
                               <div class="item-title">
                                     <h4><?php echo $title;?></h4>
@@ -94,7 +94,7 @@ while ($row = $result->fetch_assoc()) {
                                     <li class="item-date"><i class="fa fa-clock-o"></i> <?php echo elapsed($timestamp2); ?></li>
                                     <li class="item-cat"><i class="fa fa-list-ul"></i> <a href="/easyads/items/<?php echo $cat1;?>"><?php echo $cat1; ?></a> > <a href="/easyads/items/<?php echo $cat1.'/'.$cat2;?>"><?php echo $cat2; ?></a></li>
                                     <li class="item-location"><a href="categories.html"><i class="fa fa-map-marker"></i> <?php echo $location; ?> </a></li>
-                                    <li class="item-type"><i class="fa fa-bookmark"></i> <?php echo $condition2; ?></li>
+                                    
                                  </ul>
                               </div>
                            </div>

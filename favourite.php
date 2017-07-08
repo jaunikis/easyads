@@ -20,7 +20,7 @@ $result=sqlconnect($sql);
 while ($row = $result->fetch_assoc()) {
 				$id=$row['id'];
 				$title=$row['title'];
-				$cover=$row['cover'];if($cover==''){$cover='ads_images/no-image.png';}
+				$cover=$row['cover1file'];if($cover==''){$cover='ads_images/no-image.png';}
 				$price=$row['price'];
 				$location=$row['location'];
 				$timestamp=$row['timestamp'];
@@ -35,7 +35,7 @@ while ($row = $result->fetch_assoc()) {
    <div class="remas">
      
 			
-		<img class="list-image" src="<?php echo $cover; ?>" class="" alt="<?php echo $title;?>">
+		<img class="list-image" src="<?php echo 'ads_images/'.$cover; ?>" class="" alt="<?php echo $title;?>">
 	
 	
 		<div class=""><a href="/easyads/items?item=<?php echo $id; ?>"><strong><?php echo $title;?></strong></a></div>

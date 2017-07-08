@@ -222,12 +222,21 @@ echo '<div class="item"><a href="ads_images/'.$images2[$i].'" target="blank"><im
          </div>
       </section>
       <!-- End Category List -->
-	  <div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;"><img src='/easyads/images/loading3.gif' width="64" height="64" /><br>Loading..</div>
-	  
+	 
+	  <img id="wait" class="waitas" src='/easyads/images/loading3.gif'/>
 <script>
-
+jQuery.fn.center = function () {
+    this.css("position","absolute");
+    this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + 
+                                                $(window).scrollTop()) + "px");
+    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + 
+                                                $(window).scrollLeft()) + "px");
+    return this;
+}
 
 function save_ad(a,id){
+		$("#wait").center();
+		$("#wait").show();
 	var wait=document.getElementById("wait");
 	var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
@@ -237,12 +246,14 @@ function save_ad(a,id){
 				//if(saved="already saved"){alert("Already saved in your saved ads list.";}
 				a.innerHTML=saved+' <i class="fa fa-heart"></i>';
 				wait.style.display="none";
+				//$("#wait").hide();
 		   }
         };
 		
         xmlhttp.open("GET", "/easyads/incl/save_ad.php?id=" + id, true);
         xmlhttp.send();
 		wait.style.display="block";
+		
 	
 	//alert(id);
 	

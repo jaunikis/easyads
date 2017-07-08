@@ -200,14 +200,18 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 											<select id="location" name="location" class="form-control border-form">
 												<option selected="">All Locations</option>
 			  <?php
+			  $rand=rand(0,count($json["locations"]));
+			  
 				for($i=0;$i<count($json["locations"]);$i++){
-					if(isset($_SESSION['location'])){if($json["locations"][$i]==$_SESSION['location']){
+					//if(isset($_SESSION['location'])){if($json["locations"][$i]==$_SESSION['location']){
+						if($rand==$i){
 						echo '<option selected="">'.$json["locations"][$i].'</option>';
 					}else{
 						echo '<option>'.$json["locations"][$i].'</option>';
 					}
 				}
-				}
+				//}
+				
             ?>
 											</select>
 										</div>
@@ -253,13 +257,35 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 			</div>
 		</section>
 		<!-- End Create Post -->
-		<div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;"><img src='/easyads/images/loading3.gif' width="64" height="64" /><br>Loading..</div>
+		
+		<div id="darken" class="darken"></div>
+		<img id="wait" class="waitas" src='/easyads/images/loading3.gif'/>
 		
 <script src="/easyads/js/ads_categories.js"></script>
 <script src="/easyads/js/js.js"></script>
 
 <script>
+var tekstas=Math.random().toString(36).substr(2, 8);
+$("#title").val(tekstas);
+var tekstas=Math.random().toString(36).substr(2, 15)+' '+Math.random().toString(36).substr(2, 15)+' ';
+$("#description").val(tekstas);
+
+var len2=$("#cat1 option").length
+	alert(len2);
+
+jQuery.fn.center = function () {
+    this.css("position","absolute");
+    this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + 
+                                                $(window).scrollTop()) + "px");
+    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + 
+                                                $(window).scrollLeft()) + "px");
+    return this;
+}
+
 function save(){
+	$("#darken").show();
+	$("#wait").center();
+	$("#wait").show();
 	//alert(images1[0]);
 	var title=$('#title').val();
 	var cat1=$('#cat1').val();
@@ -290,6 +316,8 @@ function save(){
 				images1:images1,images2:images2},
 		url: "/easyads/save_ad.php",
 		success: function(msg){
+			$("#wait").hide();
+			$("#darken").hide();
 			alert(msg);
 			//window.location = "/easyads/items?item="+msg;
 			//document.getElementById("forma").submit();
@@ -465,6 +493,9 @@ function model_parinkimas(){
         xmlhttp.send();
 	}
     }
+	
+	
+	
 </script>	
 
 
