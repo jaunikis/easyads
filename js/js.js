@@ -32,6 +32,16 @@ function click_remove(th){
 	while(num.className != null ){i++;num=num.previousSibling;}
 	//alert(i);
 	//if(num.className!=null){alert('okk');}
+	
+	$.ajax({
+		type: "POST",
+		data: {i,i},
+		url: "/easyads/incl/remove_image.php",
+		success: function(msg){
+			//alert(msg);
+		}
+	});
+	
 	images1.splice(i,1);
 	images2.splice(i,1);
 	childs=par.children;
@@ -61,7 +71,7 @@ function click_rotate(th){
 	grand=th.parentElement.parentElement;
 	par=th.parentElement;
 	var num=par.previousSibling;
-	var i = 0;
+	i = 0;
 	while(num.className != null ){i++;num=num.previousSibling;}
 	//alert(i);
 	//blobToDataURL(images1[i], function(dataURL){
@@ -102,16 +112,12 @@ function click_rotate(th){
 		
 		//document.body.appendChild(canvas);
 		
-		canvas.toBlob(function (blob) {
-				//images1[i]=blob;
-				blobToDataURL(blob, function(dataURL){
-					images1[i]=dataURL;
-					var pvs=par.firstChild;
-					pvs.src=dataURL;
-					//$("ol").append('<li><img src="'+dataURL+'" width="100"></img></li>');
-					//alert(par.firstChild.className)
-				});
-			}, 'image/jpeg', 0.8);
+		var dataURL=canvas.toDataURL('image/jpeg', 0.8);
+			images1[i]=dataURL;
+			var pvs=par.firstChild;
+			pvs.src=dataURL;
+			
+		
 	};//image onload
 			
 	
@@ -136,16 +142,22 @@ function click_rotate(th){
 		
 		//document.body.appendChild(canvas2);
 		
-		canvas2.toBlob(function (blob) {
-				//images2[i]=blob;
-				blobToDataURL(blob, function(dataURL){		
-					images2[i]=dataURL;
-			//		var pvs=par.firstChild;
-			//		pvs.src=dataURL;
-					//$("ol").append('<li><img src="'+dataURL+'" width="100"></img></li>');
-					//alert(par.firstChild.className)
-				});
-			}, 'image/jpeg', 0.8);
+		var dataURL=canvas2.toDataURL('image/jpeg', 0.8);
+			images2[i]=dataURL;
+		
+		$.ajax({
+		type: "POST",
+		data: {i:i,images1:images1[i],images2:images2[i]},
+		url: "/easyads/incl/rotate_image.php",
+		success: function(msg){
+			//alert(msg);
+			document.getElementById(i).style.opacity="1";
+		}
+	});
+		
+	//alert(i);
+	document.getElementById(i).style.opacity="0.3";
+	
 	};//image onload
 			
 }
