@@ -203,7 +203,7 @@ include('left_search.php');
                               </div>
 							  <a href="/easyads/items?item=<?php echo $id; ?>">
                               <div class="item-img-grid">
-                                 <img alt="" width="350" src="<?php echo 'ads_images/'.$cover; ?>" class="img-responsive img-center">
+                                 <img alt="" width="220" src="<?php echo 'ads_images/'.$cover; ?>" class="img-responsive img-center">
                               </div>
                               <div class="item-title">
                                  
@@ -213,10 +213,13 @@ include('left_search.php');
                               </div>
                               <div class="item-meta">
                                  <ul>
-                                    <li class="item-date"><i class="fa fa-clock-o"></i> <?php echo elapsed($timestamp2); ?></li>
-                                    <li class="item-cat"><i class="fa fa-book"></i> <a href="categories2.html"><?php echo $cat1; ?></a> , <a href="categories2.html"><?php echo $cat2; ?></a></li>
-                                    <li class="item-location"><a href="categories2.html"><i class="fa fa-map-marker"></i> <?php echo $location; ?> </a></li>
-                                    <li class="item-type"><i class="fa fa-bookmark"></i> <?php echo $condition2; ?></li>
+                                    <li class="item-date"><i class="fa fa-clock-o"></i><?php echo elapsed($timestamp2); ?>
+									 <a href="categories2.html"><i class="fa fa-map-marker"></i><?php echo $location; ?> </a>
+									 <a href="categories2.html"><i class="fa fa-book"></i><?php echo $cat1; ?></a> , <a href="categories2.html"><?php echo $cat2; ?></a>
+									 </li>
+                                    
+                                   
+                                    
                                  </ul>
                               </div>
 							  </a>

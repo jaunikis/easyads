@@ -1,5 +1,7 @@
 <?php
-if(isset($_SESSION['images'])){unset($_SESSION['images']);}
+if(isset($_SESSION['images1'])){unset($_SESSION['images1']);}
+if(isset($_SESSION['images2'])){unset($_SESSION['images2']);}
+
 if(!isset($_SESSION['user'])){
 	echo '<h2>nera user</h2>';
 	$_SESSION['link']='/easyads/post';
@@ -17,7 +19,7 @@ $json = json_decode($string, true);
 					<div class="col-sm-8 col-sm-offset-2">
 						<div class="login-panel widget top-space">
 							<div class="login-body">
-								<form id="forma" action="/easyads/save_add.php" method="POST" class="row">
+								<form id="forma" action="/easyads/save_ad2.php" method="POST" class="row">
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Ad Title <span class="required">*</span></label>
 										<div class="col-sm-9">
@@ -175,7 +177,7 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 									<div class="form-group">
 										<label  class="col-sm-3 control-label">Add Photos</label>
 										<div class="col-sm-9">
-											<input id="inputFile" type="file" onchange="resize(this)" class="filestyle" accept="image/jpeg, image/png" multiple />
+											<input id="inputFile" type="file" onchange="resize(this)" class="filestyle55" accept="image/jpeg, image/png" multiple style="display:none" />
 											<span class="help-block"></span>
 											
 										</div>
@@ -244,9 +246,9 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 									</div>
 									<div class="form-group">
 										<div class="col-sm-offset-3 col-sm-9">
-											
+											<input id="cover" name="cover" style="display:none"></input>
 											<button type="button" class="btn btn-primary"><i class="fa fa-table"></i> Preview</button>
-											<button type="button" onclick="save()" class="btn btn-success"><i class="fa fa-save"></i> Create ad</button>
+											<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Create ad</button>
 										</div>
 									</div>
 								</form>
@@ -271,7 +273,9 @@ var tekstas=Math.random().toString(36).substr(2, 15)+' '+Math.random().toString(
 $("#description").val(tekstas);
 
 var len2=$("#cat1 option").length
-	alert(len2);
+var x=Math.floor((Math.random() * len2) + 1);
+$("#cat1 option:eq("+x+")").prop('selected', true);
+//change_cat1();
 
 jQuery.fn.center = function () {
     this.css("position","absolute");

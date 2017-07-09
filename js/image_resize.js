@@ -1,12 +1,13 @@
 images1=[];
 images2=[];
-var nr=0;
+nr=0;
+nr2=0;
 function resize(th){
 	//alert(th);
 	var files=th.files;
 	//alert(files.length);
 	for (var i = 0; i < files.length; i++) {
-		
+		(function(i) {
 		getOrientation(files[i], function(orientation) {
 			ori=orientation;
 			//alert('orientation: ' + ori);
@@ -32,8 +33,8 @@ function resize(th){
 			height = imga.height;
             
 			 var canvas = document.createElement('canvas');
-				canvas.width=600;
-				canvas.height=450;
+				canvas.width=560;
+				canvas.height=420;
 			
 				//alert(ori);
 				if(ori==6){
@@ -131,19 +132,26 @@ function resize(th){
 			
 			var dataurl2=canvas2.toDataURL('image/jpeg', 0.8);
 			images2.push(dataurl2);
-		//	canvas2.toBlob(function (blob) {
-		//		blobToDataURL(blob, function(dataURL){
-		//					images2.push(dataURL);
-		//				});
-				//images2.push(blob);
-				//alert(blob);
-		//	}, 'image/jpeg', 0.8);
+		
+		
+		//upload images
+		$.ajax({
+		type: "POST",
+		data: {dataurl:dataurl,dataurl2:dataurl2},
+		url: "/easyads/incl/upload_image.php",
+		success: function(msg){
+			//$("#description").val(msg);
+			//alert(nr2);
 			
-			
+			document.getElementById(nr2).style.opacity="1";
+			nr2++;
+			}
+			});
 		
 			var img_div=document.createElement('div');
 			img_div.className="img-div";
 			img_div.id=nr;
+			img_div.style.opacity="0.3";
 			
 			var mygt_left=document.createElement('div');
 			mygt_left.className="mygt mygt-left";
@@ -175,6 +183,9 @@ function resize(th){
 			img_div.appendChild(mygt_left_bottom);
 			
 			nr++;
+			
+			
+			
             }
             // e.target.result is a dataURL for the image
           imga.src = e.target.result;
@@ -182,6 +193,7 @@ function resize(th){
         };
       })(img);
       reader.readAsDataURL(file);
+		 })(i);
 	}//for
 }
 

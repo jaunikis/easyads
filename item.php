@@ -39,7 +39,7 @@ while ($row = $result->fetch_assoc()) {
 	$images=[];
 	$images2=[];
 	//$images[]=$cover;
-	$sql2="SELECT images1file,images2file FROM images WHERE ad_id=$id";
+	$sql2="SELECT images1file,images2file FROM images WHERE ad_id=$id ORDER BY cover DESC";
 	$result2=sqlconnect($sql2);
 	while ($row2 = $result2->fetch_assoc()) {
 		$images1[]=$row2['images1file'];

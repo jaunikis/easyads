@@ -9,7 +9,7 @@ function click_cover(th){
 	cover = 0;
 	while(num.className != null ){cover++;num=num.previousSibling;}
 	//alert(cover);
-	
+	$("#cover").val(cover);
 	//perstumia cover i pirma vieta
 	//gran.insertBefore(par,gran.firstChild);
 	
