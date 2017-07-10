@@ -203,7 +203,7 @@ include('left_search.php');
                               </div>
 							  <a href="/easyads/items?item=<?php echo $id; ?>">
                               <div class="item-img-grid">
-                                 <img alt="" width="220" src="<?php echo 'ads_images/'.$cover; ?>" class="img-responsive img-center">
+                                 <img alt="" width="220" src="<?php echo '/easyads/ads_images/'.$cover; ?>" class="img-responsive img-center">
                               </div>
                               <div class="item-title">
                                  

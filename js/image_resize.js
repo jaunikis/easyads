@@ -1,7 +1,13 @@
-images1=[];
-images2=[];
-nr=0;
-nr2=0;
+
+$(function() {
+	images1=[];
+	images2=[];
+	
+	//nr=0;
+	//nr2=0;
+	//alert(nr);
+});
+
 function resize(th){
 	//alert(th);
 	var files=th.files;
@@ -160,7 +166,7 @@ function resize(th){
 			
 			var mygt_right=document.createElement('div');
 			mygt_right.className="mygt mygt-right";
-			mygt_right.onclick=function() { click_remove(this); };
+			mygt_right.onclick=function() { click_remove(this,''); };
 			mygt_right.innerHTML='<i class="fa fa-times symb" aria-hidden="true"></i>';
 			//alert(nr);
 			var mygt_left_bottom=document.createElement('div');

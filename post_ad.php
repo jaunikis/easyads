@@ -3,7 +3,7 @@ if(isset($_SESSION['images1'])){unset($_SESSION['images1']);}
 if(isset($_SESSION['images2'])){unset($_SESSION['images2']);}
 
 if(!isset($_SESSION['user'])){
-	echo '<h2>nera user</h2>';
+	//echo '<h2>nera user</h2>';
 	$_SESSION['link']='/easyads/post';
 	//header('Location: /easyads/login');
 	echo('<script>location.href = "/easyads/login";</script>');
@@ -267,6 +267,9 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 <script src="/easyads/js/js.js"></script>
 
 <script>
+nr=0;
+nr2=0;
+
 var tekstas=Math.random().toString(36).substr(2, 8);
 $("#title").val(tekstas);
 var tekstas=Math.random().toString(36).substr(2, 15)+' '+Math.random().toString(36).substr(2, 15)+' ';

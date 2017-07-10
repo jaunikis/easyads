@@ -36,7 +36,7 @@ while ($row = $result->fetch_assoc()) {
 	
 }
 
-	$images=[];
+	$images1=[];
 	$images2=[];
 	//$images[]=$cover;
 	$sql2="SELECT images1file,images2file FROM images WHERE ad_id=$id ORDER BY cover DESC";

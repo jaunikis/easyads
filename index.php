@@ -171,6 +171,12 @@ case 'blog':
     if(isset($segments[3])){require('blog1.php');}else{require('blog.php');}
     require('footer_short.php');
     break;
+case 'edit':
+    require('top_nav.php');
+    require('left_profile.php');
+    require('edit.php');
+    require('footer_short.php');
+    break;
 case 'favourite':
     require('top_nav.php');
     require('left_profile.php');

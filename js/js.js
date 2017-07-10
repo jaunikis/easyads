@@ -2,12 +2,18 @@ function click_cover(th){
 	elem=th.firstChild;
 	//alert(elem.className);
 	par=th.parentElement;
+	//alert(par.className);
 	gran=th.parentElement.parentElement;
+	//alert(gran.childElementCount);
 	childs=gran.children;
 	
-	var num=par.previousSibling;
-	cover = 0;
-	while(num.className != null ){cover++;num=num.previousSibling;}
+	//var num=par.previousSibling;
+	var num=par.nextSibling;
+	//num.style.border="dashed";
+	//alert(num.className);
+	//cover = 0;
+	//while(num.className != null ){cover++;num=num.previousSibling;}
+	cover=Array.from(par.parentNode.children).indexOf(par);
 	//alert(cover);
 	$("#cover").val(cover);
 	//perstumia cover i pirma vieta
@@ -22,7 +28,7 @@ function click_cover(th){
 		}
 }
 
-function click_remove(th){
+function click_remove(th,xx){
 	//alert('remov');
 	
 	grand=th.parentElement.parentElement;
@@ -32,18 +38,34 @@ function click_remove(th){
 	while(num.className != null ){i++;num=num.previousSibling;}
 	//alert(i);
 	//if(num.className!=null){alert('okk');}
+	//alert(xx);
+	if(xx==''){
+		//alert(i);
+		$.ajax({
+			type: "POST",
+			data: {i,i},
+			url: "/easyads/incl/remove_image.php",
+			success: function(msg){
+				//alert(msg);
+			}
+		});
 	
-	$.ajax({
-		type: "POST",
-		data: {i,i},
-		url: "/easyads/incl/remove_image.php",
-		success: function(msg){
-			//alert(msg);
-		}
-	});
-	
-	images1.splice(i,1);
-	images2.splice(i,1);
+		images1.splice(i,1);
+		images2.splice(i,1);
+	}else{
+		//i=document.getElementById("images-div").childElementCount-1;
+		//pa=par;for (var i=0; (pa=pa.previousElementSibling); i++);
+		i=par.id;
+		alert(i);
+		$.ajax({
+			type: "POST",
+			data: {i,i},
+			url: "/easyads/incl/remove_image_from_update.php",
+			success: function(msg){
+				alert(msg);
+			}
+		});
+	}
 	childs=par.children;
 	checked=childs[3].firstChild.className;
 	elem=th.firstChild;
