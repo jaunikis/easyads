@@ -90,12 +90,13 @@ function click_remove(th,xx){
 }
 
 function click_rotate_update(th,id){
+	grand=th.parentElement.parentElement;
+	par=th.parentElement;
+	par.style.opacity="0.3";
 	cover=th.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.className;
 	cov='';
 	if(cover=='fa fa-check-square-o symb'){cov='cover';}
 	//alert(cover);
-	grand=th.parentElement.parentElement;
-	par=th.parentElement;
 	var num=par.previousSibling;
 	canvas = document.createElement('canvas');
 	var img3=new Image();
@@ -138,15 +139,15 @@ function click_rotate_update(th,id){
 		ctx.drawImage(img3,-height/2,-width/2,height,width);
 		ctx.restore();
 		
-		document.body.appendChild(canvas);
+		//document.body.appendChild(canvas);
 		
 		//document.body.appendChild(img);
 		
 		var dataURL=canvas.toDataURL('image/jpeg', 0.8);
-			images1=dataURL;
+			images11=dataURL;
 			//alert(images1);
 			//var pvs=par.firstChild;
-			th.previousSibling.previousSibling.src=dataURL;
+			//th.previousSibling.previousSibling.src=dataURL;
 	
 			
 	
@@ -171,11 +172,11 @@ function click_rotate_update(th,id){
 		//document.body.appendChild(canvas2);
 		
 		var dataURL=canvas2.toDataURL('image/jpeg', 0.8);
-			images2=dataURL;
+			images22=dataURL;
 		
 		$.ajax({
 		type: "POST",
-		data: {id:id,cov:cov,images1:images1,images2:images2,fileName1:fileName1,fileName2:fileName2},
+		data: {id:id,cov:cov,images1:images11,images2:images22,fileName1:fileName1,fileName2:fileName2},
 		url: "/easyads/incl/rotate_image_update.php",
 		success: function(msg){
 			//alert(msg);
@@ -187,7 +188,7 @@ function click_rotate_update(th,id){
 		
 	//alert(i);
 	//document.getElementById(i).style.opacity="0.3";
-	par.style.opacity="0.3";
+	
 	
 	};//image2 onload
 	};//image1 onload
