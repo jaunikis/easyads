@@ -35,26 +35,27 @@ if(isset($_POST['phone'])){$phone=$_POST['phone'];}
 if(isset($_POST['ad_id'])){$ad_id=$_POST['ad_id'];}
 
 if(isset($_SESSION['user'])){$user=$_SESSION['user'];}
-if(isset($_SESSION['images_to_delete'])){$images_to_delete=$_SESSION['images_to_delete'];}
 
-//db images result
-$sql="SELECT images1file,images2file FROM images WHERE id='$ad_id'";
-$result2=sqlconnect($sql);
-$row2 = $result2->fetch_assoc();
-	$images1=$row2['images1file'];
-	$images2=$row2['images2file'];
-unlink('ads_images/'.$images1); //delete image
-unlink('ads_images/'.$images2); //delete image
+if(isset($_SESSION['images_to_delete'])){$images_to_delete=$_SESSION['images_to_delete'];
+	//db images result
+	$sql="SELECT images1file,images2file FROM images WHERE id='$ad_id'";
+	$result2=sqlconnect($sql);
+	$row2 = $result2->fetch_assoc();
+		$images1=$row2['images1file'];
+		$images2=$row2['images2file'];
+	unlink('ads_images/'.$images1); //delete image
+	unlink('ads_images/'.$images2); //delete image
 
-$str='';
-for($a=0;$a<count($images_to_delete);$a++){
-	$str.=$images_to_delete[$a].',';
+
+	$str='';
+	for($a=0;$a<count($images_to_delete);$a++){
+		$str.=$images_to_delete[$a].',';
+	}
+	$str=rtrim($str,',');
+	$sql='DELETE FROM images WHERE id IN ('.$str.')';
+	$result2=sqlconnect($sql);
+	//echo $sql;
 }
-$str=rtrim($str,',');
-$sql='DELETE FROM images WHERE id IN ('.$str.')';
-$result2=sqlconnect($sql);
-//echo $sql;
-
 
 
 //echo $title;
@@ -71,11 +72,14 @@ while ($row2 = $result2->fetch_assoc()) {
 	}
 
 //echo $images1[$cover];
-if(isset($_SESSION['images1'])){$images1file=$_SESSION['images1'];
+//add new images
+if(isset($_SESSION['images1'])){
+	$images1file=$_SESSION['images1'];
 	$images2file=$_SESSION['images2'];
 
 //save image to db
 	//echo count($images1).'   ';
+	
 //nutriname visus cover
 if($cover>$xx){
 $sql="UPDATE images SET cover='' WHERE ad_id='$ad_id'";
@@ -101,8 +105,18 @@ $res=sqlconnect($sql);
 		//$_SESSION['ad_id']=$ad_id;
 	}
 }
+$coveris=$images1[$cover];
+//echo 'cover: '.$cover;
 
-$coveris=$images1[$cover];	
+//nutrina cover
+$sql="UPDATE images SET cover='' WHERE ad_id='$ad_id'";
+$res=sqlconnect($sql);
+
+//ideda cover
+$sql="UPDATE images SET cover='cover' WHERE images1file='$coveris'";
+$res=sqlconnect($sql);
+
+	
 $sql="UPDATE skelbimai SET cover1file='$coveris',title='$title',cat1='$cat1',cat2='$cat2',make='$make',model='$model',year='$year',fuel='$fuel',
 transmission='$transmission',bodyType='$bodyType',color='$color',price='$price',location='$location',description='$description',
 name='$name',email='$email',phone='$phone' WHERE id='$ad_id'";

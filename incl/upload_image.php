@@ -13,7 +13,8 @@ $date = new DateTime();$timestamp2=$date->getTimestamp();
 		list($type, $img) = explode(';', $img);
 		list(, $img)      = explode(',', $img);
 		$data = base64_decode($img);
-		$file = $timestamp2.'-'. uniqid() . '-small.jpg';
+		$rnd=$timestamp2.'-'. uniqid();
+		$file = $rnd . '-small.jpg';
 		$success = file_put_contents(UPLOAD_DIR.$file, $data);
 		if($success){$_SESSION['images1'][]=$file;}
 		
@@ -24,7 +25,7 @@ $date = new DateTime();$timestamp2=$date->getTimestamp();
 		list($type, $img) = explode(';', $img);
 		list(, $img)      = explode(',', $img);
 		$data = base64_decode($img);
-		$file = $timestamp2.'-'. uniqid() . '-large.jpg';
+		$file = $rnd . '-large.jpg';
 		$success = file_put_contents(UPLOAD_DIR.$file, $data);
 		if($success){$_SESSION['images2'][]=$file;}	
 

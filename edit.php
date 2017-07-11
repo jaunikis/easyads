@@ -40,6 +40,7 @@ if(!$x=='ok'){
 $sql="SELECT id,title,cover1file,price,cat1,cat2,make,model,year,fuel,transmission,bodyType,color,location,condition2,ad_views,description,saved,phone,name,user,timestamp2 FROM skelbimai WHERE id='$ad_id'";
 $result=sqlconnect($sql);
 $row = $result->fetch_assoc();
+$id=$row['id'];
 $title=$row['title'];
 $cover=$row['cover1file'];if($cover==''){$cover='no-image.png';}
 $price=$row['price'];
@@ -290,7 +291,7 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 	?>
 	<div id="<?php echo $images1id[$i];?>" class="img-div">
 	<img class="img" src="<?php echo '/easyads/ads_images/'.$images1[$i]; ?>">
-	<div onclick="click_rotate(this)" class="mygt mygt-left"><i class="fa fa-refresh symb" aria-hidden="true"></i></div>
+	<div onclick="click_rotate_update(this,'<?php echo $id; ?>')" class="mygt mygt-left"><i class="fa fa-refresh symb" aria-hidden="true"></i></div>
 	<div onclick="click_remove(this,'update')" class="mygt mygt-right"><i class="fa fa-times symb" aria-hidden="true"></i></div>
 	<div onclick="click_cover(this)" class="mygt mygt-left-bottom"><i class="fa fa-<?php echo $x;?>square-o symb" aria-hidden="true"></i></div>
 	</div>
