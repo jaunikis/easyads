@@ -6,6 +6,13 @@ require_once ('incl/server.php');
 require_once ('incl/elapsed.php');
 			$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 			$segments = explode('/', $path);
+			
+			//parse vars from address bar
+			$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+			$segments2 = explode('?', $actual_link);
+			//echo $segments[1];
+			if(isset($segments2[1])){parse_str($segments2[1]);}
+			
 			//echo  (str_replace("%20"," ",$segments[3]));
 			$pMin=0;$pMax=9999999;
 			if(isset($priceMin)){if($priceMin!=='No Min'){$pMin=$priceMin;}}
@@ -48,9 +55,22 @@ require_once ('incl/elapsed.php');
 			if(isset($sortBy)){if($sortBy=='priceHigh'){$sort='price DESC';$sortTxt='High Price First';}}
 			if(isset($sortBy)){if($sortBy=='recently'){$sort='id DESC';$sortTxt='Recently Published';}}
 			
-			$sql="SELECT * FROM skelbimai WHERE active='Active' AND cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND fuel=$fuel AND transmission=$transmission AND bodyType=$bodyType AND color=$color AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND (year BETWEEN '$yMin' AND '$yMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY $sort ";
+			$sql="SELECT id FROM skelbimai WHERE active='Active' AND cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND fuel=$fuel AND transmission=$transmission AND bodyType=$bodyType AND color=$color AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND (year BETWEEN '$yMin' AND '$yMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY $sort ";
 			$result=sqlconnect($sql);
 			$ad_count = $result->num_rows;
+			
+			if(!isset($page)){$page=1;}
+			$page_max=intval($ad_count/10);
+			if($page_max<1){$page_max=1;}
+			if($page>$page_max){echo ' <script> location.replace("?page='.$page_max.'"); </script>';}
+			if($page<1){echo ' <script> location.replace("?page=1"); </script>';}
+			$db_limit=10;
+			$db_start=$page*10-$db_limit;
+			
+			$sql="SELECT * FROM skelbimai WHERE active='Active' AND cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND fuel=$fuel AND transmission=$transmission AND bodyType=$bodyType AND color=$color AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND (year BETWEEN '$yMin' AND '$yMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY $sort LIMIT $db_start,$db_limit";
+			$result=sqlconnect($sql);
+			
+			
 ?>
       <section class="category-grid">
          <div class="container">
@@ -230,6 +250,51 @@ include('left_search.php');
 			?>
 					 </div>
                   </div>
+		<center>		  
+
+
+<?php
+$minus='';
+$minus_link=' href="?page='.($page-1).'"';
+if($page<=1){$minus=' disabled';$minus_link='';}
+
+$plus='';
+$plus_link=' href="?page='.($page+1).'"';
+if($page>=$page_max){$plus=' disabled';$plus_link='';}
+
+?>
+		
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+	<li class="page-item<?php echo $minus;?>">
+      <a class="page-link"<?php echo $minus_link ?> aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <?php
+	$page_start=$page-2;
+	
+	if($page_start>$page_max-4){$page_start=$page_max-4;}
+	if($page_start<1){$page_start=1;}
+	for($i=$page_start;$i<=$page_start+4;$i++){
+		$x='';$link=' href="?page='.$i.'"';
+		if($i==$page){$x=' active';$link='';}
+		if($i>$page_max){$x=' disabled';$link='';}
+		echo '<li class="page-item'.$x.'"><a class="page-link" '.$link.'">'.$i.'</a></li>';
+	}
+	?>
+    <li class="page-item<?php echo $plus;?>">
+      <a class="page-link"<?php echo $plus_link;?> aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</center>
+				  
+				  
                   <a class="btn-primary  btn-block btn-lg text-center" href="#">LOAD MORE ADS</a>
                </div>
             </div>
