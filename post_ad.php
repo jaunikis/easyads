@@ -6,7 +6,7 @@ if(!isset($_SESSION['user'])){
 	//echo '<h2>nera user</h2>';
 	$_SESSION['link']='/easyads/post';
 	//header('Location: /easyads/login');
-	echo('<script>location.href = "/easyads/login";</script>');
+	//echo('<script>location.href = "/easyads/login";</script>');
 	}
 $string = file_get_contents("categories-list.txt");
 $json = json_decode($string, true);

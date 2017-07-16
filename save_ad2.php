@@ -38,8 +38,11 @@ if(isset($_POST['phone'])){$phone=$_POST['phone'];}
 $cover=intval($cover);
 $images1file=$_SESSION['images1'];
 $images2file=$_SESSION['images2'];
+
+$valid_till=intval($timestamp2+(86400*30));
+$bump_days=2;
 //$sql = "INSERT INTO skelbimai (cover,cover1file,ip,user,title,cat1,cat2,make,model,year,fuel,transmission,bodyType,color,price,location,condition2,description,name,email,phone,active,timestamp2) VALUES ('$images1[$cover]','$images1file[$cover]','$ip','$user','$title','$cat1','$cat2','$make','$model','$year','$fuel','$transmission','$bodyType','$color','$price','$location','$condition','$description','$name','$email','$phone','Active',$timestamp2)";
-$sql = "INSERT INTO skelbimai (cover1file,ip,user,title,cat1,cat2,make,model,year,fuel,transmission,bodyType,color,price,location,condition2,description,name,email,phone,active,timestamp2) VALUES ('$images1file[$cover]','$ip','$user','$title','$cat1','$cat2','$make','$model','$year','$fuel','$transmission','$bodyType','$color','$price','$location','$condition','$description','$name','$email','$phone','Active',$timestamp2)";
+$sql = "INSERT INTO skelbimai (cover1file,ip,user,title,cat1,cat2,make,model,year,fuel,transmission,bodyType,color,price,location,condition2,description,name,email,phone,active,timestamp2,valid_till,bump_days) VALUES ('$images1file[$cover]','$ip','$user','$title','$cat1','$cat2','$make','$model','$year','$fuel','$transmission','$bodyType','$color','$price','$location','$condition','$description','$name','$email','$phone','Active','$timestamp2','$valid_till','$bump_days')";
 $ad_id=sqlconnect($sql);
 //echo '<h3>'.$ad_id.'</h3>';
 

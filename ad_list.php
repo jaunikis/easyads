@@ -4,6 +4,24 @@
 <?php
 require_once ('incl/server.php');
 require_once ('incl/elapsed.php');
+
+//pataisome timestamp2 bump skelbimuose
+$date = new DateTime();
+$current=$date->getTimestamp();
+$sql="SELECT id, timestamp2, valid_till, bump_days FROM skelbimai WHERE ($current-timestamp2)>(bump_days*86400) ORDER BY id DESC";
+$result=sqlconnect($sql);
+$ad_count = $result->num_rows;
+//echo 'total: '.$ad_count.'<hr>';
+while ($row = $result->fetch_assoc()) {
+	$id=$row['id'];
+	$timestamp2=$row['timestamp2'];
+	$valid_till=$row['valid_till'];
+	$bump_days=$row['bump_days'];if($bump_days==0){$bump_days=3;}
+	$new_timestamp=$current-(($current-$timestamp2)%($bump_days*86400));
+	$sql="UPDATE skelbimai SET timestamp2='$new_timestamp' WHERE id='$id'";
+	sqlconnect($sql);
+}
+
 			$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 			$segments = explode('/', $path);
 			
@@ -50,10 +68,10 @@ require_once ('incl/elapsed.php');
 			if(isset($segments[6])){if($segments[6]!==''){$model='"'.str_replace("%20"," ",$segments[6]).'"';}}
 			//echo '<h1>'.$search.'</h1>';
 			
-			$sort='id DESC';$sortTxt='Recently Published';
+			$sort='timestamp2 DESC';$sortTxt='Recently Published';
 			if(isset($sortBy)){if($sortBy=='priceLow'){$sort='price ASC';$sortTxt='Low Price First';}}
 			if(isset($sortBy)){if($sortBy=='priceHigh'){$sort='price DESC';$sortTxt='High Price First';}}
-			if(isset($sortBy)){if($sortBy=='recently'){$sort='id DESC';$sortTxt='Recently Published';}}
+			if(isset($sortBy)){if($sortBy=='recently'){$sort='timestamp2 DESC';$sortTxt='Recently Published';}}
 			
 			$sql="SELECT id FROM skelbimai WHERE active='Active' AND cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND fuel=$fuel AND transmission=$transmission AND bodyType=$bodyType AND color=$color AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND (year BETWEEN '$yMin' AND '$yMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY $sort ";
 			$result=sqlconnect($sql);
