@@ -77,13 +77,16 @@ while ($row = $result->fetch_assoc()) {
 			$result=sqlconnect($sql);
 			$ad_count = $result->num_rows;
 			
+			//pagination
+			$ads_per_page=15;
 			if(!isset($page)){$page=1;}
-			$page_max=intval($ad_count/10);
+			$page_max=intval($ad_count/$ads_per_page);
+			if($ad_count/$ads_per_page>intval($ad_count/$ads_per_page)){$page_max+=1;}
 			if($page_max<1){$page_max=1;}
 			if($page>$page_max){echo ' <script> location.replace("?page='.$page_max.'"); </script>';}
 			if($page<1){echo ' <script> location.replace("?page=1"); </script>';}
-			$db_limit=10;
-			$db_start=$page*10-$db_limit;
+			$db_limit=$ads_per_page;
+			$db_start=$page*$ads_per_page-$db_limit;
 			
 			$sql="SELECT * FROM skelbimai WHERE active='Active' AND cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND fuel=$fuel AND transmission=$transmission AND bodyType=$bodyType AND color=$color AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND (year BETWEEN '$yMin' AND '$yMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY $sort LIMIT $db_start,$db_limit";
 			$result=sqlconnect($sql);
@@ -313,7 +316,7 @@ if($page>=$page_max){$plus=' disabled';$plus_link='';}
 </center>
 				  
 				  
-                  <a class="btn-primary  btn-block btn-lg text-center" href="#">LOAD MORE ADS</a>
+                  
                </div>
             </div>
          </div>
