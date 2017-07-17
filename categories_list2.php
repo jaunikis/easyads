@@ -7,12 +7,18 @@ $sql="SELECT id FROM skelbimai";
 $result2=sqlconnect($sql);
 $ad_count = $result2->num_rows;	
 
+$categ=array();
+$cat_count2=array();
+
 //get car ad count
 $sql="SELECT cat2 FROM skelbimai WHERE cat2='Cars'";
 $result2=sqlconnect($sql);
-$count_cars = $result2->num_rows;	
+$count_cars = $result2->num_rows;
+$categ[]='Cars';
+$cat_count2[]=$count_cars;
 
 //get categories
+/*
 $sql="SELECT COUNT(id), cat1
 FROM skelbimai
 GROUP BY cat1
@@ -23,6 +29,7 @@ while ($row = $result->fetch_assoc()) {
 	$cat1=$row['cat1'];
 	$count_id=$row['COUNT(id)'];
 }
+*/
 ?>	
 
       <section class="categories-list-bg main-categories-list">
@@ -47,9 +54,14 @@ $cat_count = $result->num_rows;
 while ($row = $result->fetch_assoc()) {
 	$cat1=$row['cat1'];
 	$count_id=$row['COUNT(id)'];
+	$categ[]=$cat1;
+	$cat_count2[]=$count_id;
 ?>	
                            <li><a href="/easyads/items/<?php echo $cat1.'">'.$cat1;?> <span class="item-numbers"><?php echo $count_id;?></span></a></li>
-<?php } ?>
+<?php } 
+$_SESSION['categ']=$categ;
+$_SESSION['cat_count2']=$cat_count2;
+?>
                         </ul>
                      </div>
                   </div>

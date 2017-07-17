@@ -107,7 +107,7 @@ while ($row = $result3->fetch_assoc()) {
 					</select>
 					
 			
-			<strong style="display:block;">Price:</strong>
+			<strong style="display:block;">Price range:</strong>
 			<select style="margin-bottom:6px; width:48%;display:inline-block;" name="priceMin" id="priceMin" class="form-control border-form">
 			<option selected>No Min</option>
 			<?php

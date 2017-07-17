@@ -201,7 +201,7 @@ case 'my_details':
     require('home_search_box.php');
     require('categories_list2.php');
     require('featured.php');
-    require('app_store.php');
+    //require('app_store.php');
     require('footer.php');
     break;
   case 'login':

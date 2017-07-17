@@ -4,6 +4,24 @@
 <?php
 require_once ('incl/server.php');
 require_once ('incl/elapsed.php');
+
+//pataisome timestamp2 bump skelbimuose
+$date = new DateTime();
+$current=$date->getTimestamp();
+$sql="SELECT id, timestamp2, valid_till, bump_days FROM skelbimai WHERE ($current-timestamp2)>(bump_days*86400) ORDER BY id DESC";
+$result=sqlconnect($sql);
+$ad_count = $result->num_rows;
+//echo 'total: '.$ad_count.'<hr>';
+while ($row = $result->fetch_assoc()) {
+	$id=$row['id'];
+	$timestamp2=$row['timestamp2'];
+	$valid_till=$row['valid_till'];
+	$bump_days=$row['bump_days'];if($bump_days==0){$bump_days=3;}
+	$new_timestamp=$current-(($current-$timestamp2)%($bump_days*86400));
+	$sql="UPDATE skelbimai SET timestamp2='$new_timestamp' WHERE id='$id'";
+	sqlconnect($sql);
+}
+
 			$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 			$segments = explode('/', $path);
 			
@@ -50,22 +68,25 @@ require_once ('incl/elapsed.php');
 			if(isset($segments[6])){if($segments[6]!==''){$model='"'.str_replace("%20"," ",$segments[6]).'"';}}
 			//echo '<h1>'.$search.'</h1>';
 			
-			$sort='id DESC';$sortTxt='Recently Published';
+			$sort='timestamp2 DESC';$sortTxt='Recently Published';
 			if(isset($sortBy)){if($sortBy=='priceLow'){$sort='price ASC';$sortTxt='Low Price First';}}
 			if(isset($sortBy)){if($sortBy=='priceHigh'){$sort='price DESC';$sortTxt='High Price First';}}
-			if(isset($sortBy)){if($sortBy=='recently'){$sort='id DESC';$sortTxt='Recently Published';}}
+			if(isset($sortBy)){if($sortBy=='recently'){$sort='timestamp2 DESC';$sortTxt='Recently Published';}}
 			
 			$sql="SELECT id FROM skelbimai WHERE active='Active' AND cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND fuel=$fuel AND transmission=$transmission AND bodyType=$bodyType AND color=$color AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND (year BETWEEN '$yMin' AND '$yMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY $sort ";
 			$result=sqlconnect($sql);
 			$ad_count = $result->num_rows;
 			
+			//pagination
+			$ads_per_page=15;
 			if(!isset($page)){$page=1;}
-			$page_max=intval($ad_count/10);
+			$page_max=intval($ad_count/$ads_per_page);
+			if($ad_count/$ads_per_page>intval($ad_count/$ads_per_page)){$page_max+=1;}
 			if($page_max<1){$page_max=1;}
 			if($page>$page_max){echo ' <script> location.replace("?page='.$page_max.'"); </script>';}
 			if($page<1){echo ' <script> location.replace("?page=1"); </script>';}
-			$db_limit=10;
-			$db_start=$page*10-$db_limit;
+			$db_limit=$ads_per_page;
+			$db_start=$page*$ads_per_page-$db_limit;
 			
 			$sql="SELECT * FROM skelbimai WHERE active='Active' AND cat1=$cat1 AND cat2=$cat2 AND make=$make AND model=$model AND fuel=$fuel AND transmission=$transmission AND bodyType=$bodyType AND color=$color AND location=$location AND (price BETWEEN '$pMin' AND '$pMax') AND (year BETWEEN '$yMin' AND '$yMax') AND(description LIKE '$search' OR title LIKE '$search') ORDER BY $sort LIMIT $db_start,$db_limit";
 			$result=sqlconnect($sql);
@@ -103,96 +124,7 @@ require_once ('incl/elapsed.php');
 <?php
 include('left_search.php');
 ?>
-                    <div id="filter"> 
-					 <div class="widget listing-filter-block">
-                        <div class="widget-header">
-                           <h1>Restaurant</h1>
-                        </div>
-                        <div class="widget-body">
-                           <ul class="trends">
-                              <li>
-                                 <div class="checkbox checkbox-primary">
-                                    <input id="checkbox1" type="checkbox">
-                                    <label for="checkbox1">
-                                    Cafe
-                                    </label>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="checkbox checkbox-primary">
-                                    <input id="checkbox2" type="checkbox" checked="">
-                                    <label for="checkbox2">
-                                    Fast Food
-                                    </label>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="checkbox checkbox-primary">
-                                    <input id="checkbox3" type="checkbox">
-                                    <label for="checkbox3">
-                                    Restaurants
-                                    </label>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="checkbox checkbox-primary">
-                                    <input id="checkbox4" type="checkbox">
-                                    <label for="checkbox4">
-                                    Pubs
-                                    </label>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="checkbox checkbox-primary">
-                                    <input id="checkbox5" type="checkbox" checked="">
-                                    <label for="checkbox5">
-                                    Food Truck
-                                    </label>
-                                 </div>
-                              </li>
-                           </ul>
-                        </div>
-                     </div>
-                     <div class="widget listing-filter-block">
-                        <div class="widget-header">
-                           <h1>Condition </h1>
-                        </div>
-                        <div class="widget-body">
-                           <ul class="trends">
-                              <li>
-                                 <div class="radio radio-primary radio-inline">
-                                    <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
-                                    <label for="inlineRadio1"> Brand New </label>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="radio radio-primary radio-inline">
-                                    <input type="radio" id="inlineRadio2" value="option1" name="radioInline" checked="">
-                                    <label for="inlineRadio2"> Used </label>
-                                 </div>
-                              </li>
-                           </ul>
-                        </div>
-                     </div>
-                     <div class="widget listing-filter-block">
-                        <div class="widget-header">
-                           <h1>Price Range</h1>
-                        </div>
-                        <div class="widget-body">
-                           <div class="range-widget">
-                              <div class="form-group">
-                                 <div class="range-inputs row">
-                                    <div class="col-md-6"><input class="form-control border-form" type="text" placeholder="From"></div>
-                                    <div class="col-md-6"><input class="form-control border-form" type="text" placeholder="To"></div>
-                                 </div>
-                              </div>
-                              <div class="form-group">
-                                 <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-search"></i> Search</button>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+ 
                </div>
 			   </div>
                <div class="col-lg-9 col-md-9 col-sm-9">
@@ -295,7 +227,7 @@ if($page>=$page_max){$plus=' disabled';$plus_link='';}
 </center>
 				  
 				  
-                  <a class="btn-primary  btn-block btn-lg text-center" href="#">LOAD MORE ADS</a>
+                  
                </div>
             </div>
          </div>
