@@ -270,6 +270,12 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 nr=0;
 nr2=0;
 
+var tekstas=Math.floor((Math.random() * 999999) + 111111);
+$("#phone").val(tekstas);
+
+var tekstas=Math.floor((Math.random() * 260000) + 1);
+$("#price").val(tekstas);
+
 var tekstas=Math.random().toString(36).substr(2, 8);
 $("#title").val(tekstas);
 var tekstas=Math.random().toString(36).substr(2, 15)+' '+Math.random().toString(36).substr(2, 15)+' ';

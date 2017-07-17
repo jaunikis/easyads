@@ -45,7 +45,7 @@ function generateRandomString($length = 10) {
 if(!isset($_SESSION['user'])){$ad_code=generateRandomString(6);}
 
 $valid_till=intval($timestamp2+(86400*30));
-$bump_days=2;
+$bump_days=rand(1,6);
 //$sql = "INSERT INTO skelbimai (cover,cover1file,ip,user,title,cat1,cat2,make,model,year,fuel,transmission,bodyType,color,price,location,condition2,description,name,email,phone,active,timestamp2) VALUES ('$images1[$cover]','$images1file[$cover]','$ip','$user','$title','$cat1','$cat2','$make','$model','$year','$fuel','$transmission','$bodyType','$color','$price','$location','$condition','$description','$name','$email','$phone','Active',$timestamp2)";
 $sql = "INSERT INTO skelbimai (ad_code,cover1file,ip,user,title,cat1,cat2,make,model,year,fuel,transmission,bodyType,color,price,location,condition2,description,name,email,phone,active,timestamp2,valid_till,bump_days) VALUES ('$ad_code','$images1file[$cover]','$ip','$user','$title','$cat1','$cat2','$make','$model','$year','$fuel','$transmission','$bodyType','$color','$price','$location','$condition','$description','$name','$email','$phone','Active','$timestamp2','$valid_till','$bump_days')";
 $ad_id=sqlconnect($sql);
