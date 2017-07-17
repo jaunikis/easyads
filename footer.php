@@ -7,7 +7,7 @@
                      <div class="footer-widget">
                         <h3 class="block-title">About</h3>
                         <div class="textwidget">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lobortis tincidunt est, et euismod purus suscipit quis. Etiam euismod ornare elementum. Sed ex est,  Sed ex est, consectetur eget consectetur eget facilisis sed, auctor ut purus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lobortis tincidunt est, et euismod purus suscipit quis. Etiam euismod ornare elementum. Sed ex est, consectetur eget facilisis sed, auctor ut purus.</p>
+                           <p>Easyads.ie is all about you. Our aim is to empower every person in the country to independently connect with buyers and sellers online. We care about you — and the transactions that bring you closer to your dreams. Want to buy your first car? We’re here for you. Want to sell commercial property to buy your dream home? We’re here for you. Whatever job you’ve got, we promise to get it done.</p>
                         </div>
                      </div>
                   </div>
@@ -15,18 +15,18 @@
                      <div class="footer-widget">
                         <h3 class="block-title">Quick Links</h3>
                         <ul class="menu">
-                           <li><a href="#">Home</a></li>
-                           <li><a href="#">About</a></li>
-                           <li><a href="#">FAQ</a></li>
-                           <li><a href="#">Careers</a></li>
-                           <li><a href="#">Pricing Plans</a></li>
-                           <li><a href="#">Categories</a></li>
-                           <li><a href="#">Services</a></li>
-                           <li><a href="#">Team</a></li>
-                           <li><a href="#">Contact</a></li>
-                           <li><a href="#">Blog</a></li>
-                           <li><a href="#">Help</a></li>
-                           <li><a href="#">Advertise With Us</a></li>
+                           <li><a href="/easyads/home">Home</a></li>
+                           <li><a href="/easyads/about">About</a></li>
+                           <li><a href="/easyads/faq">FAQ</a></li>
+                           <li><a href="/easyads/careers">Careers</a></li>
+                           <li><a href="/easyads/pricing">Pricing Plans</a></li>
+                           <li><a href="/easyads/items">Categories</a></li>
+                           <li><a href="/easyads/services">Services</a></li>
+                           <li><a href="/easyads/team">Team</a></li>
+                           <li><a href="/easyads/contact">Contact</a></li>
+                           <li><a href="/easyads/blog">Blog</a></li>
+                           <li><a href="/easyads/faq">Help</a></li>
+                           <li><a href="/easyads/post_ad">Advertise With Us</a></li>
                         </ul>
                      </div>
                   </div>
@@ -34,18 +34,15 @@
                      <div class="footer-widget">
                         <h3 class="block-title">Categories</h3>
                         <ul class="menu">
-                           <li><a href="#"><span>562</span> Restaurant</a></li>
-                           <li><a href="#"><span>451</span> Real Estate</a></li>
-                           <li><a href="#"><span>352</span> Cars</a></li>
-                           <li><a href="#"><span>312</span> Shopping</a></li>
-                           <li><a href="#"><span>262</span> Job</a></li>
-                           <li><a href="#"><span>152</span> Hotels</a></li>
-                           <li><a href="#"><span>102</span> Services</a></li>
-                           <li><a href="#"><span>100</span> Pets</a></li>
-                           <li><a href="#"><span>95</span> Cars</a></li>
-                           <li><a href="#"><span>85</span> Shopping</a></li>
-                           <li><a href="#"><span>50</span> Job</a></li>
-                           <li><a href="#"><span>25</span> Hotels</a></li>
+						<?php
+						$categ=$_SESSION["categ"];
+						$cat_count2=$_SESSION["cat_count2"];
+                        echo '<li><a href="#"><span>'.$cat_count2[0].'</span> '.$categ[0].'</a></li>';
+						for($i=1;$i<count($categ);$i++){
+							 echo '<li><a href="#"><span>'.$cat_count2[$i].'</span> '.$categ[$i].'</a></li>';
+						}
+						?>
+                           
                         </ul>
                      </div>
                   </div>
