@@ -247,7 +247,7 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 									<div class="form-group">
 										<div class="col-sm-offset-3 col-sm-9">
 											<input id="cover" name="cover" style="display:none"></input>
-											<button type="button" class="btn btn-primary"><i class="fa fa-table"></i> Preview</button>
+											<button id="preview" type="button" class="btn btn-primary"><i class="fa fa-table"></i> Preview</button>
 											<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Create ad</button>
 										</div>
 									</div>
@@ -259,6 +259,98 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 			</div>
 		</section>
 		<!-- End Create Post -->
+		
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+	<h2></h2>
+    <p>Some text in the Modal..</p>
+	<p>more text..</p>
+	<p>more text 2..</p>
+	
+	               <div class="col-lg-6 col-md-6 col-sm-6">
+                  <div class="row">
+                     <div class="col-lg-12">
+                        <div class="item single-ads top-space">
+                           <div class="item-ads-grid icon-blue">
+                              <div class="item-title">
+                                 <span class="close">&times;</span>
+                                    <h2 id="m_title"></h2>
+                                 
+                                 <div class="item-meta">
+                                    <ul>
+                                       <li class="item-date"><i class="fa fa-clock-o"></i> 0 min.</li>
+                                       <li class="item-cat"><i class="fa fa-book"></i> <a href="">cat1</a> , <a href="">cat2</a></li>
+                                       <li class="item-location"><a href="#"><i class="fa fa-map-marker"></i> location </a></li>
+                                       <li class="item-type"><i class="fa fa-bookmark"></i> </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                              <div class="item-img-grid">
+                                 <div class="favourite-icon">
+                                    <a class="fav-btn" title="" data-placement="bottom" data-toggle="tooltip" data-original-title="Save Ad">0<i class="fa fa-heart"></i></a>
+                                 </div>
+								 
+							
+		
+                                 <div id="sync1" class="carousel">
+
+								<div class="item"><a href="" target="blank"><img id="m_img" alt="" src="" class="img-responsive img-center"></a></div>
+
+                                 </div>
+                                 <div id="sync2" class="carousel">
+
+								<div class="item"><img alt="" src="" class="img-responsive img-center"></div>
+                                 </div>
+								 
+                              </div>
+                              <div class="single-item-meta">
+                                 <h4><strong>Spesification</strong></h4>
+                                 <table class="table table-condensed table-hover">
+                                    <tbody>
+                                       <tr>
+                                          <td>Classified ID</td>
+                                          <td></td>
+                                       </tr>
+                                       
+                                       
+                                    </tbody>
+                                 </table>
+                                 <h4><strong>Description</strong></h4>
+                                 <p>
+                                   
+								</p>
+                              </div>
+                              <div class="item-footer">
+                                 <div class="row">
+                                    <div class="col-xs-12 col-md-5">
+                                       <span class="item-views"> <i class="fa fa-eye"></i> Ad Views : <b>0</b></span>
+                                    </div>
+                                    <div class="col-xs-12 col-md-7 text-right-md">
+                                       <div class="share-widget">
+                                          <span>Share This Ad :</span>
+                                          <div class="social-links social-bg pull-right">
+                                             <ul>
+                                                <li><a class="fa fa-twitter" target="_blank" href="#"></a></li>
+                                                <li><a class="fa fa-facebook" target="_blank" href="#"></a></li>
+                                                <li><a class="fa fa-google-plus" target="_blank" href="#"></a></li>
+                                                <li><a class="fa fa-instagram" target="_blank" href="#"></a></li>
+                                             </ul>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+  </div>
+
+</div>
 		
 		<div id="darken" class="darken"></div>
 		<img id="wait" class="waitas" src='/easyads/images/loading3.gif'/>
@@ -282,7 +374,7 @@ var tekstas=Math.random().toString(36).substr(2, 15)+' '+Math.random().toString(
 $("#description").val(tekstas);
 
 var len2=$("#cat1 option").length
-var x=Math.floor((Math.random() * len2) + 1);
+var x=Math.floor((Math.random() * (len2-1)) + 2);
 $("#cat1 option:eq("+x+")").prop('selected', true);
 //change_cat1();
 
@@ -293,6 +385,27 @@ jQuery.fn.center = function () {
     this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + 
                                                 $(window).scrollLeft()) + "px");
     return this;
+}
+
+var modal = document.getElementById('myModal');
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+
+$("#preview").click(function(){
+	//alert('preview');
+	modal.style.display = "block";
+	$("#m_title").text($("#title").val());
+	var div=document.createElement('div');
+	document.getElementById("sync1").appendChild(div);
+	$("#m_img").attr('src',images1[0]);
+});
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 
 function save(){
