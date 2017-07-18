@@ -248,7 +248,7 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 										<div class="col-sm-offset-3 col-sm-9">
 											<input id="cover" name="cover" style="display:none"></input>
 											<button id="preview" type="button" class="btn btn-primary"><i class="fa fa-table"></i> Preview</button>
-											<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Create ad</button>
+											<button tabindex="1" type="submit" class="btn btn-success"><i class="fa fa-save"></i> Create ad</button>
 										</div>
 									</div>
 								</form>
@@ -263,14 +263,9 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-	<h2></h2>
-    <p>Some text in the Modal..</p>
-	<p>more text..</p>
-	<p>more text 2..</p>
+  
 	
-	               <div class="col-lg-6 col-md-6 col-sm-6">
+	             <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
                   <div class="row">
                      <div class="col-lg-12">
                         <div class="item single-ads top-space">
@@ -282,7 +277,7 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
                                  <div class="item-meta">
                                     <ul>
                                        <li class="item-date"><i class="fa fa-clock-o"></i> 0 min.</li>
-                                       <li class="item-cat"><i class="fa fa-book"></i> <a href="">cat1</a> , <a href="">cat2</a></li>
+                                       <li class="item-cat"><i class="fa fa-book"></i> <a id="m_cat1" href=""></a> , <a id="m_cat2" href=""></a></li>
                                        <li class="item-location"><a href="#"><i class="fa fa-map-marker"></i> location </a></li>
                                        <li class="item-type"><i class="fa fa-bookmark"></i> </li>
                                     </ul>
@@ -297,17 +292,17 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 		
                                  <div id="sync1" class="carousel">
 
-								<div class="item"><a href="" target="blank"><img id="m_img" alt="" src="" class="img-responsive img-center"></a></div>
+								<div class="item"><img id="m_img" class="img-responsive img-center"></div>
 
                                  </div>
                                  <div id="sync2" class="carousel">
 
-								<div class="item"><img alt="" src="" class="img-responsive img-center"></div>
+								<div class="item"><img class="img-responsive img-center"></div>
                                  </div>
 								 
                               </div>
                               <div class="single-item-meta">
-                                 <h4><strong>Spesification</strong></h4>
+                                 <h4><strong>Specification</strong></h4>
                                  <table class="table table-condensed table-hover">
                                     <tbody>
                                        <tr>
@@ -319,9 +314,7 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
                                     </tbody>
                                  </table>
                                  <h4><strong>Description</strong></h4>
-                                 <p>
-                                   
-								</p>
+                                 <p id="m_description"></p>
                               </div>
                               <div class="item-footer">
                                  <div class="row">
@@ -343,12 +336,16 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
                                     </div>
                                  </div>
                               </div>
-                           </div>
+							<p style="padding-top:15px;text-align: center;">
+							<button type="button" class="btn btn-success" onclick="$('#forma').submit();"><i class="fa fa-save"></i> Create ad</button>
+							<button type="button" class="btn btn-default" id="m_close"><i class="fa fa-close"></i> Close</button>
+							</p>
+						   </div>
                         </div>
                      </div>
                   </div>
                </div>
-  </div>
+			
 
 </div>
 		
@@ -359,6 +356,7 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
 <script src="/easyads/js/js.js"></script>
 
 <script>
+cover=0;
 nr=0;
 nr2=0;
 
@@ -395,13 +393,28 @@ $("#preview").click(function(){
 	//alert('preview');
 	modal.style.display = "block";
 	$("#m_title").text($("#title").val());
-	var div=document.createElement('div');
-	document.getElementById("sync1").appendChild(div);
-	$("#m_img").attr('src',images1[0]);
+	$("#m_cat1").text($("#cat1").val());
+	$("#m_cat2").text($("#cat2").val());
+	$("#m_description").text($("#description").val());
+	$("#m_img").attr('src',images1[cover]);
+	
+	$("#sync2").empty();
+	for(i=0;i<images1.length;i++){
+		var div=document.createElement('div');
+		div.className='item';
+		div.style.display="inline-block";
+		div.innerHTML='<img id="m_img'+i+'" src="'+images1[i]+'" width="75px" class="img-responsive img-center">';
+		//$("#m_img").attr('src','test.jpg');
+		document.getElementById("sync2").appendChild(div);
+	}
 });
+
 span.onclick = function() {
     modal.style.display = "none";
 }
+$("#m_close").click(function(){
+	modal.style.display = "none";
+});
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";

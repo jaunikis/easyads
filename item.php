@@ -138,7 +138,7 @@ echo '<div class="item"><a href="ads_images/'.$images2[$i].'" target="blank"><im
 								 
                               </div>
                               <div class="single-item-meta">
-                                 <h4><strong>Spesification</strong></h4>
+                                 <h4><strong>Specification</strong></h4>
                                  <table class="table table-condensed table-hover">
                                     <tbody>
                                        <tr>
