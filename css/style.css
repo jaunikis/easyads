@@ -1521,7 +1521,7 @@ background-color: #2196f3 !important;
 overflow-y: visible;
 }
 .post-free-add-btn, #back-to-top {
-z-index: 2147483647;
+z-index: 4;
 }
 .container {
 width: 100%;

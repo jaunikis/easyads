@@ -263,7 +263,7 @@ case 'items':
 }
 ?>
       <!-- Post Ad -->	
-      <a href="/easyads/post_ad/" data-toggle="tooltip" data-placement="left" title="Post Your Ad" class="btn btn-primary btn-lg post-free-add-btn"><i class="fa fa-pencil"></i></a>
+      <a href="/easyads/post_ad/" data-toggle="tooltip" data-placement="left" title="Post Your Ad" class="btn btn-primary btn-lg post-free-add-btn" style="z-index: 2;"><i class="fa fa-pencil"></i></a>
       <!-- jQuery -->
       
       <!-- Custom js--> 
@@ -273,12 +273,6 @@ case 'items':
       
       <!-- Owl Carousel -->
       <script src="/easyads/plugins/owl-carousel/owl.carousel2.js"></script>
-	  
-	  
-	   <script>
 
- </script>  
-	 
-	 
    </body>
 </html>

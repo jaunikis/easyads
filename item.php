@@ -123,7 +123,7 @@ include('reklama.php');
 <?php
 $images_length=count($images1);
 for($i=0;$i<$images_length;$i++){
-echo '<div class="item"><a href="ads_images/'.$images2[$i].'" target="blank"><img id="a'.$i.'" alt="" src="ads_images/'.$images1[$i].'" class="img-responsive img-center"></a></div>';
+echo '<div class="item"><a onclick="large_photos('.$i.');" style="cursor:zoom-in;"><img id="a'.$i.'" alt="" src="ads_images/'.$images1[$i].'" class="img-responsive img-center"></a></div>';
 }
 ?>
                                  </div>
@@ -228,11 +228,11 @@ echo '<div class="item"><a href="ads_images/'.$images2[$i].'" target="blank"><im
 			<span class="close2">&times;</span>
 			<h1 id="m_title" class="m_title"><?php echo $title;?></h1>
 			<h2 id="m_number" class="m_number">1/6</h2>
-			<a id="left" class="left carousel-control">
+			<a style="z-index: 14;" id="left" class="left carousel-control">
 			  <span class="glyphicon glyphicon-chevron-left"></span>
 			  <span class="sr-only">Previous</span>
 			</a>
-			<a id="right" class="right carousel-control">
+			<a style="z-index: 14;" id="right" class="right carousel-control">
 			  <span class="glyphicon glyphicon-chevron-right"></span>
 			  <span class="sr-only">Next</span>
 			</a>
@@ -260,6 +260,15 @@ while($("#a"+x).length>0){
 	x++;
 }
 
+function large_photos(th){
+	//alert(th);
+	x=th;
+	x_len=m_images.length;
+	modal.style.display = "block";
+	$("#m_number").text(x+1+'/'+x_len);
+	add_image(x);
+}
+
 $("#open_modal").click(function(){
 	//alert('preview');
 	x=0;
@@ -280,33 +289,41 @@ function add_image(x){
 		var height=mo_img.height;
 		var ratio=width/height;
 		if(width>screen.width-100){mo_img.width=screen.width-100;}
-		if(height>screen.height-150){mo_img.width=(screen.height-150)*ratio;}
+		if(height>screen.height-150){mo_img.width=(screen.height-180)*ratio;}
 		m_content.appendChild(mo_img);
+		$("#mo_img_"+x).animate({opacity: 1});
+    
 	}//m_img.onload
 }
 
 function go_left(){
-	$("#mo_img_"+x).animate({
-      left: "-=980"
-    },function(){
-		$("#mo_img_"+x).remove();
-		x--;if(x<0){x=x_len-1;}
-		$("#m_number").text(x+1+'/'+x_len);
-		add_image(x);
-		}
-	);
+	if(x_len>1){
+		$("#mo_img_"+x).animate({
+		  //left: "-=980",
+		  opacity: 0
+		},function(){
+			$("#mo_img_"+x).remove();
+			x--;if(x<0){x=x_len-1;}
+		});
+		var x2=x-1;if(x2<0){x2=x_len-1;}
+		$("#m_number").text(x2+1+'/'+x_len);
+		add_image(x2);
+	}
 }
 
 function go_right(){
-	$("#mo_img_"+x).animate({
-      left: "+=980"
-    },function(){
-		$("#mo_img_"+x).remove();
-		x++;if(x>(x_len-1)){x=0;}
-		$("#m_number").text(x+1+'/'+x_len);
-		add_image(x);
-		}
-	);
+	if(x_len>1){
+		$("#mo_img_"+x).animate({
+		  //left: "+=980",
+		  opacity: 0
+		},function(){
+			$("#mo_img_"+x).remove();
+			x++;if(x>(x_len-1)){x=0;}
+		});
+		var x2=x+1;if(x2>(x_len-1)){x2=0;}
+		$("#m_number").text(x2+1+'/'+x_len);
+		add_image(x2);
+	}
 }
 
 $("#left").click(function(){
