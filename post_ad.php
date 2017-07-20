@@ -11,7 +11,6 @@ if(!isset($_SESSION['user'])){
 $string = file_get_contents("categories-list.txt");
 $json = json_decode($string, true);
 ?>
-<link href="/easyads/css/style2.css" rel="stylesheet">
 		<!-- Create Post -->
 		<section class="create-post">
 			<div class="container">

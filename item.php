@@ -101,7 +101,7 @@ include('reklama.php');
                            <div class="item-ads-grid icon-blue">
                               <div class="item-title">
                                  
-                                    <h2><?php echo strip_tags($title);?></h2>
+                                    <h2><?php echo $title;?></h2>
                                  
                                  <div class="item-meta">
                                     <ul>
@@ -123,7 +123,7 @@ include('reklama.php');
 <?php
 $images_length=count($images1);
 for($i=0;$i<$images_length;$i++){
-echo '<div class="item"><a href="ads_images/'.$images2[$i].'" target="blank"><img alt="" src="ads_images/'.$images1[$i].'" class="img-responsive img-center"></a></div>';
+echo '<div class="item"><a href="ads_images/'.$images2[$i].'" target="blank"><img id="a'.$i.'" alt="" src="ads_images/'.$images1[$i].'" class="img-responsive img-center"></a></div>';
 }
 ?>
                                  </div>
@@ -223,30 +223,119 @@ echo '<div class="item"><a href="ads_images/'.$images2[$i].'" target="blank"><im
       </section>
       <!-- End Category List -->
 	  
-	  <div id="myModal" class="modal">
-		<div class="modal-content">
-		<span class="close">&times;</span>
-		<h2>modal</h2>
-		namas
+	  <div id="myModal" class="modal" style="display:none;">
+		<div id="m_content" class="modal-content">
+			<span class="close2">&times;</span>
+			<h1 id="m_title" class="m_title"><?php echo $title;?></h1>
+			<h2 id="m_number" class="m_number">1/6</h2>
+			<a id="left" class="left carousel-control">
+			  <span class="glyphicon glyphicon-chevron-left"></span>
+			  <span class="sr-only">Previous</span>
+			</a>
+			<a id="right" class="right carousel-control">
+			  <span class="glyphicon glyphicon-chevron-right"></span>
+			  <span class="sr-only">Next</span>
+			</a>
 		</div>
 	  </div>
-	 <button id="testas">preview</button>
+	 <button id="open_modal">preview</button>
 	  <img id="wait" style="display:none;" class="waitas" src='/easyads/images/loading3.gif'/>
 <script>
 
 var modal = document.getElementById('myModal');
 var btn = document.getElementById("myBtn");
-var span = document.getElementsByClassName("close")[0];
-$("#testas").click(function(){
+var span = document.getElementsByClassName("close2")[0];
+var m_content=document.getElementById("m_content");
+var m_title=document.getElementById("m_title");
+
+var x=0;
+m_images=[];
+//alert($("#a3").length);
+while($("#a"+x).length>0){
+	//alert(x);
+	var tt=$("#a"+x).attr('src');
+	var ttt=tt.substring(0,36)+'large.jpg';
+	//alert(ttt);
+	m_images.push(ttt);
+	x++;
+}
+
+$("#open_modal").click(function(){
 	//alert('preview');
+	x=0;
+	x_len=m_images.length;
 	modal.style.display = "block";
+	$("#m_number").text(x+1+'/'+x_len);
+	add_image(x);
 });
+
+function add_image(x){
+	var tt=m_images[x];
+	var mo_img=document.createElement('img');
+	mo_img.id='mo_img_'+x;
+	mo_img.className="m_image";
+	mo_img.src=tt;
+	mo_img.onload=function(){
+		var width=mo_img.width;
+		var height=mo_img.height;
+		var ratio=width/height;
+		if(width>screen.width-100){mo_img.width=screen.width-100;}
+		if(height>screen.height-150){mo_img.width=(screen.height-150)*ratio;}
+		m_content.appendChild(mo_img);
+	}//m_img.onload
+}
+
+function go_left(){
+	$("#mo_img_"+x).animate({
+      left: "-=980"
+    },function(){
+		$("#mo_img_"+x).remove();
+		x--;if(x<0){x=x_len-1;}
+		$("#m_number").text(x+1+'/'+x_len);
+		add_image(x);
+		}
+	);
+}
+
+function go_right(){
+	$("#mo_img_"+x).animate({
+      left: "+=980"
+    },function(){
+		$("#mo_img_"+x).remove();
+		x++;if(x>(x_len-1)){x=0;}
+		$("#m_number").text(x+1+'/'+x_len);
+		add_image(x);
+		}
+	);
+}
+
+$("#left").click(function(){
+	//alert('l');
+	go_left();
+});
+
+$("#right").click(function(){
+	//alert('r');
+	go_right();
+});
+
+$("body").keydown(function(e) {
+  if(e.keyCode == 37) { // left
+    go_left();
+  }
+  else if(e.keyCode == 39) { // right
+    go_right();
+  }
+});
+
 span.onclick = function() {
     modal.style.display = "none";
+	$("#mo_img_"+x).remove();
 }
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+		$("#mo_img_"+x).remove();
     }
 }
 
