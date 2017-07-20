@@ -159,7 +159,7 @@ include('left_search.php');
                               </div>
                               <div class="item-title">
                                  
-                                    <h4><?php echo $title; ?></h4>
+                                    <h4><?php echo strip_tags($title); ?></h4>
                                  
                                  <h3>€ <?php echo $price; ?></h3>
                               </div>

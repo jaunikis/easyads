@@ -80,7 +80,7 @@ include('reklama.php');
                                     <img class="img-responsive img-center" src="<?php echo 'ads_images/'.$cover2;?>" alt="">
                                  </div>
                                  <div class="similar-ad-right">
-                                    <h4><?php echo $title2;?></h4>
+                                    <h4><?php echo strip_tags($title2);?></h4>
                                     <p>€ <?php echo $price2;?></p>
                                  </div>
                                  <div class="clearfix"></div>
@@ -101,7 +101,7 @@ include('reklama.php');
                            <div class="item-ads-grid icon-blue">
                               <div class="item-title">
                                  
-                                    <h2><?php echo $title;?></h2>
+                                    <h2><?php echo strip_tags($title);?></h2>
                                  
                                  <div class="item-meta">
                                     <ul>
@@ -154,7 +154,7 @@ echo '<div class="item"><a href="ads_images/'.$images2[$i].'" target="blank"><im
                                  </table>
                                  <h4><strong>Description</strong></h4>
                                  <p>
-                                   <?php echo $description;?> 
+                                   <?php echo strip_tags($description);?> 
 								</p>
                               </div>
                               <div class="item-footer">
@@ -190,7 +190,7 @@ echo '<div class="item"><a href="ads_images/'.$images2[$i].'" target="blank"><im
                   <div class="widget user-widget">
                      <div class="widget-body text-center">
                         <img class="user-dp" alt="User Image" src="/easyads/images/user3.png">
-                        <h2 class="seller-name"><?php echo $user;?></h2>
+                        <h2 class="seller-name"><?php echo strip_tags($user);?></h2>
                         <p class="seller-detail">Location: <strong>Cavan</strong><br>
                            Joined : <strong>21 March 2017</strong>
                         </p>
@@ -222,9 +222,34 @@ echo '<div class="item"><a href="ads_images/'.$images2[$i].'" target="blank"><im
          </div>
       </section>
       <!-- End Category List -->
-	 
-	  <img id="wait" class="waitas" src='/easyads/images/loading3.gif'/>
+	  
+	  <div id="myModal" class="modal">
+		<div class="modal-content">
+		<span class="close">&times;</span>
+		<h2>modal</h2>
+		namas
+		</div>
+	  </div>
+	 <button id="testas">preview</button>
+	  <img id="wait" style="display:none;" class="waitas" src='/easyads/images/loading3.gif'/>
 <script>
+
+var modal = document.getElementById('myModal');
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+$("#testas").click(function(){
+	//alert('preview');
+	modal.style.display = "block";
+});
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
 jQuery.fn.center = function () {
     this.css("position","absolute");
     this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + 

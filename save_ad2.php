@@ -18,7 +18,7 @@ $description='';
 if(isset($_SESSION['user'])){$user=$_SESSION['user'];}
 
 if(isset($_POST['cover'])){$cover=$_POST['cover'];if($cover==''){$cover=0;}}
-if(isset($_POST['title'])){$title=$_POST['title'];}
+if(isset($_POST['title'])){$title=strip_tags($_POST['title']);}
 if(isset($_POST['cat1'])){$cat1=$_POST['cat1'];}
 if(isset($_POST['cat2'])){$cat2=$_POST['cat2'];}
 if(isset($_POST['make'])){$make=$_POST['make'];}
@@ -30,10 +30,10 @@ if(isset($_POST['bodyType'])){$bodyType=$_POST['bodyType'];}
 if(isset($_POST['color'])){$color=$_POST['color'];}
 if(isset($_POST['price'])){$price=$_POST['price'];}
 if(isset($_POST['location'])){$location=$_POST['location'];}
-if(isset($_POST['description'])){$description=$_POST['description'];}
-if(isset($_POST['name'])){$name=$_POST['name'];}
-if(isset($_POST['email'])){$email=$_POST['email'];}
-if(isset($_POST['phone'])){$phone=$_POST['phone'];}
+if(isset($_POST['description'])){$description=strip_tags($_POST['description']);}
+if(isset($_POST['name'])){$name=strip_tags($_POST['name']);}
+if(isset($_POST['email'])){$email=strip_tags($_POST['email']);}
+if(isset($_POST['phone'])){$phone=strip_tags($_POST['phone']);}
 
 $cover=intval($cover);
 $images1file=$_SESSION['images1'];
@@ -44,10 +44,10 @@ function generateRandomString($length = 10) {
 }
 if(!isset($_SESSION['user'])){$ad_code=generateRandomString(6);}
 
-$valid_till=intval($timestamp2+(86400*30));
+$valid_till=intval($timestamp2+(86400*40));
 
 //atimame rand idejimo laika
-//$minus=rand(1,86000);$timestamp2=-$minus;
+//$minus=rand(1,43000);$timestamp2=-$minus;
 
 $bump_days=rand(1,5);
 //$sql = "INSERT INTO skelbimai (cover,cover1file,ip,user,title,cat1,cat2,make,model,year,fuel,transmission,bodyType,color,price,location,condition2,description,name,email,phone,active,timestamp2) VALUES ('$images1[$cover]','$images1file[$cover]','$ip','$user','$title','$cat1','$cat2','$make','$model','$year','$fuel','$transmission','$bodyType','$color','$price','$location','$condition','$description','$name','$email','$phone','Active',$timestamp2)";
