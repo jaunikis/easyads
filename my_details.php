@@ -46,12 +46,13 @@
 								 
                               </div>
                            </div>
-                           <div class="form-group">
+                           <div class="form-group" style="display:none;">
                               <label  class="col-sm-3 control-label">Image</label>
                               <div class="col-sm-9">
                                  <input id="inputFile" type="file" onchange="avatar(this)" class="filestyle55" accept="image/jpeg, image/png" />
                                  <span class="help-block"></span>
                               </div>
+							  <div id="images-div"></div>
                            </div>
 						   <div id="pass1" class="form-group">
                               <label class="col-sm-3 control-label">Old Password <span class="required">*</span></label>
