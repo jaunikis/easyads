@@ -47,9 +47,9 @@
                               </div>
                            </div>
                            <div class="form-group">
-                              <label  class="col-sm-3 control-label">Avatar</label>
+                              <label  class="col-sm-3 control-label">Image</label>
                               <div class="col-sm-9">
-                                 <input type="file" class="filestyle">
+                                 <input id="inputFile" type="file" onchange="avatar(this)" class="filestyle55" accept="image/jpeg, image/png" />
                                  <span class="help-block"></span>
                               </div>
                            </div>
@@ -87,6 +87,8 @@
          </div>
       </section>
       <!-- End Settings -->
+	  
+<script src="/easyads/js/avatar.js"></script>
 	  
 <script>
 function check_password(password){

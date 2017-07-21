@@ -30,7 +30,8 @@ $favourite = $result_favourite->num_rows;
                   <div class="widget profile-widget">
                      <div class="widget-body">
                         <div class="avatar">
-                           <a class="btn-icon" title="" data-placement="left" data-toggle="tooltip" href="#" data-original-title="Edit">
+                           <a onclick="document.getElementById('iFile').click();" class="btn-icon" title="" data-placement="left" data-toggle="tooltip" data-original-title="Edit">
+						   <input id="iFile" type="file" onchange="avatar(this)" class="filestyle55" accept="image/jpeg, image/png" style="display:none;" />
                            <i class="fa fa-camera"></i>
                            </a>
                            <img class="profile-dp" alt="User Image" src="/easyads/images/user3.png">
