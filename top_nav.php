@@ -21,10 +21,19 @@
                </ul>
 <?php
 if(isset($_SESSION['user'])){
+	//echo $_SESSION['photo_blob'];
+	
 	echo '<div class="user-dropdown pull-right">
 						<ul class="nav navbar-right top-nav">
 							<li class="dropdown">
-								<a aria-expanded="true" href="" class="dropdown-toggle" data-toggle="dropdown"><img src="/easyads/images/user3.png" alt="User Image" class="user-dp">&nbsp'.$_SESSION['user'].'&nbsp<b class="caret"></b></a>
+								<a aria-expanded="true" href="" class="dropdown-toggle" data-toggle="dropdown">';
+					if($_SESSION['photo_blob']==''){echo'<img id="avatar_top_image" src="/easyads/images/user3.png" alt="User Image" class="user-dp">&nbsp';
+						}else{
+						echo'<img id="avatar_top_image" src="'.$_SESSION['photo_blob'].'" alt="User Image" class="user-dp">&nbsp';
+					}
+								
+								
+								echo $_SESSION['user'].'&nbsp<b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li>
 										<a href="/easyads/my_ads"><i class="fa fa-fw fa-pencil"></i> My Ads</a>

@@ -24,6 +24,7 @@ $_SESSION['photo']=$row['photo'];
 $_SESSION['active']=$row['active'];
 $_SESSION['location']=$row['location'];
 $_SESSION['saved']=$row['saved'];
+$_SESSION['photo_blob']=$row['photo_blob'];
 		
 		if($remember=='on'){setcookie('user', $user, time() + (86400 * 6));} // 86400 = 1 day
 		if(isset($_SESSION['link'])){ 

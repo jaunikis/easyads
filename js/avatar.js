@@ -28,8 +28,8 @@ function avatar(th){
 			height = imga.height;
             
 			 var canvas = document.createElement('canvas');
-				canvas.width=320;
-				canvas.height=240;
+				canvas.width=200;
+				canvas.height=150;
 			
 				//alert(ori);
 				if(ori==6){
@@ -98,8 +98,8 @@ function avatar(th){
 			//img.className="img-avatar";
 			//img.onclick=function() { rotate(this); };
 			
-			$("#avatar_image").attr("src",dataurl);
 			
+			user=$("#email").val();
 			//upload to server
 				$.ajax({
 				type: "POST",
@@ -107,10 +107,13 @@ function avatar(th){
 				url: "/easyads/incl/upload_avatar.php",
 				success: function(msg){
 					//$("#description").val(msg);
-					//alert(nr2);
+					//alert(msg);
+					if(msg=='1'){
+						$("#avatar_image").attr("src",dataurl);
+						$("#avatar_top_image").attr("src",dataurl);
+					}
+					//document.getElementById(nr2).style.opacity="1";
 					
-					document.getElementById(nr2).style.opacity="1";
-					nr2++;
 					}
 			});
 			

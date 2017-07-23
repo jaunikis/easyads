@@ -34,7 +34,12 @@ $favourite = $result_favourite->num_rows;
 						   <input id="iFile" type="file" onchange="avatar(this)" class="filestyle55" accept="image/jpeg, image/png" style="display:none;" />
                            <i class="fa fa-camera"></i>
                            </a>
-                           <img id="avatar_image" class="profile-dp" alt="User Image" src="/easyads/images/user3.png">
+				<?php
+					if($_SESSION['photo_blob']==''){echo'<img id="avatar_image" class="profile-dp" alt="User Image" src="/easyads/images/user3.png">';
+						}else{
+						echo'<img id="avatar_image" class="profile-dp" alt="User Image" src="'.$_SESSION['photo_blob'].'">';
+					}
+                ?>
                            <div class="profile-info">
                               <h2 class="seller-name"><?php if(isset($_SESSION['user'])){echo $_SESSION['user'];}?></h2>
                               <p class="seller-detail"> Joined : <strong><?php if(isset($_SESSION['registered'])){echo $_SESSION['registered'];}?></strong></p>
