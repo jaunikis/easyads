@@ -10,7 +10,7 @@ parse_str($segments[1]);
 //$item=$_SESSION['last_id'];
 require_once ('incl/server.php');
 require_once ('incl/elapsed.php');
-$sql="SELECT id,title,cover1file,price,cat1,cat2,make,model,location,condition2,ad_views,description,saved,phone,name,user,timestamp2 FROM skelbimai WHERE id='$item'";
+$sql="SELECT id,title,cover1file,price,cat1,cat2,make,model,engine,fuel,year,transmission,bodyType,color,location,condition2,ad_views,description,saved,phone,name,user,timestamp2 FROM skelbimai WHERE id='$item'";
 $result=sqlconnect($sql);
 while ($row = $result->fetch_assoc()) {
 	$id=$row['id'];
@@ -22,6 +22,12 @@ while ($row = $result->fetch_assoc()) {
 	$cat2=$row['cat2'];
 	$make=$row['make'];
 	$model=$row['model'];
+	$fuel=$row['fuel'];
+	$year=$row['year'];
+	$engine=$row['engine'];
+	$transmission=$row['transmission'];
+	$bodyType=$row['bodyType'];
+	$color=$row['color'];
 	$location=$row['location'];
 	$condition2=$row['condition2'];
 	$ad_views=$row['ad_views']; $ad_views++;
@@ -94,11 +100,14 @@ include('reklama.php');
                      </div>
                   </div>
                </div>
+			   
                <div class="col-lg-6 col-md-6 col-sm-6">
                   <div class="row">
                      <div class="col-lg-12">
                         <div class="item single-ads top-space">
                            <div class="item-ads-grid icon-blue">
+						   <button id="report_ad_button" onclick="report_ad(<?php echo $id;?>);" class="report_ad_button btn btn-warning btn-xs">Report Ad</button>
+						   
                               <div class="item-title">
                                  
                                     <h2><?php echo $title;?></h2>
@@ -138,20 +147,20 @@ echo '<div class="item"><a onclick="large_photos('.$i.');" style="cursor:zoom-in
 								 
                               </div>
                               <div class="single-item-meta">
-                                 <h4><strong>Specification</strong></h4>
-                                 <table class="table table-condensed table-hover">
-                                    <tbody>
-                                       <tr>
-                                          <td>Classified ID</td>
-                                          <td><?php echo $id;?></td>
-                                       </tr>
-                                       <tr>
-                                          <td>Condition</td>
-                                          <td><?php echo $condition2;?></td>
-                                       </tr>
-                                       
-                                    </tbody>
-                                 </table>
+			<?php
+				if($cat2=="Cars"||$make!=''){
+                    echo '<h4><strong>Specification</strong></h4>';
+                        echo '<table class="table table-condensed table-hover">';
+                            echo '<tbody>';
+                            if($year>0){echo '<tr><td>'.$year.' ';}
+							echo $make.' '.$model.' '.$engine.' '.$fuel.' '.$transmission.' '.$color.' '.$bodyType.'</td></tr>';
+                            
+                            
+                                
+                            
+                            echo '</tbody></table>';
+				}
+				?>
                                  <h4><strong>Description</strong></h4>
                                  <p>
                                    <?php echo strip_tags($description);?> 
@@ -164,7 +173,7 @@ echo '<div class="item"><a onclick="large_photos('.$i.');" style="cursor:zoom-in
                                     </div>
                                     <div class="col-xs-12 col-md-7 text-right-md">
                                        <div class="share-widget">
-                                          <span>Share This Ad :</span>
+                                          <span>Share Ad :</span>
                                           <div class="social-links social-bg pull-right">
                                              <ul>
                                                 <li><a class="fa fa-twitter" target="_blank" href="#"></a></li>
@@ -175,6 +184,7 @@ echo '<div class="item"><a onclick="large_photos('.$i.');" style="cursor:zoom-in
                                           </div>
                                        </div>
                                     </div>
+									<div class="bottom-id">Classified ID: <?php echo $id;?></div>
                                  </div>
                               </div>
                            </div>
@@ -223,7 +233,7 @@ echo '<div class="item"><a onclick="large_photos('.$i.');" style="cursor:zoom-in
       </section>
       <!-- End Category List -->
 	  
-	  <div id="myModal" class="modal" style="display:none;">
+	  <div id="myModal" class="modal">
 		<div id="m_content" class="modal-content">
 			<span class="close2">&times;</span>
 			<h1 id="m_title" class="m_title"><?php echo $title;?></h1>
@@ -238,9 +248,32 @@ echo '<div class="item"><a onclick="large_photos('.$i.');" style="cursor:zoom-in
 			</a>
 		</div>
 	  </div>
-	 <button id="open_modal">preview</button>
+	  
+	<div id="report_ad_modal" class="modal">
+		<div id="report_ad_content" class="report_ad_content">
+			<span id="close_report" class="close_report">&times;</span>
+			<form>
+				<input type="text">
+			</form>
+		</div>
+	</div>
+	 
 	  <img id="wait" style="display:none;" class="waitas" src='/easyads/images/loading3.gif'/>
 <script>
+var report_ad_modal=document.getElementById('report_ad_modal');
+$("#close_report").click(function(){
+	report_ad_modal.style.display="none";
+});
+
+function report_ad(id){
+	//alert(id);
+	
+	var report_ad_button=document.getElementById('report_ad_button');
+	var report_ad_success=document.getElementById('report_ad_success');
+	report_ad_modal.style.display = "block";
+	
+	
+}
 
 var modal = document.getElementById('myModal');
 var btn = document.getElementById("myBtn");
@@ -353,6 +386,10 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
 		$("#mo_img_"+x).remove();
+    }
+	if (event.target == report_ad_modal) {
+        report_ad_modal.style.display = "none";
+		
     }
 }
 
