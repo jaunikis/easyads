@@ -264,8 +264,8 @@
 	padding:32px;
 	padding-top:16px;
 	padding-bottom:16px;
-	color:silver;
-	background:green;
+	color:grey;
+	background:white;
 	opacity:0.9;
 	position:absolute;
 	top:50%;
@@ -290,4 +290,17 @@
     color: white;
     text-decoration: none;
     cursor: pointer;
+}
+
+.reason_input{
+	border
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }

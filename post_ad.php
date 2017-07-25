@@ -336,7 +336,7 @@ for($i=date("Y")-20;$i<date("Y")+1;$i++){
                                  </div>
                               </div>
 							<p style="padding-top:15px;text-align: center;">
-							<button type="button" class="btn btn-success" onclick="$('#forma').submit();"><i class="fa fa-save"></i> Create ad</button>
+							
 							<button type="button" class="btn btn-default" id="m_close"><i class="fa fa-close"></i> Close</button>
 							</p>
 						   </div>

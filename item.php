@@ -252,8 +252,17 @@ echo '<div class="item"><a onclick="large_photos('.$i.');" style="cursor:zoom-in
 	<div id="report_ad_modal" class="modal">
 		<div id="report_ad_content" class="report_ad_content">
 			<span id="close_report" class="close_report">&times;</span>
+			<p>Please select report reason.</p>
 			<form>
-				<input type="text">
+				<input id="report_id" name="report_id" style="display:none"></input>
+				<p><select name="color" id="reason" class="form-control border-form">
+					<option value="0" disabled selected style="display: none;">Please choose</option>
+					<option>Wrong phone number</option>
+					<option>Inappropriate content</option>
+					<option onselect="alert('namas');">Other</option>
+				</select></p>
+				<p id="reason2" style="display:none">Please fill the reason: <input class="reason_input" type="text" name="reason2"></input></p>
+				<p><button id="report_ad_button" class="btn btn-warning">Report</button></p>
 			</form>
 		</div>
 	</div>
@@ -264,10 +273,15 @@ var report_ad_modal=document.getElementById('report_ad_modal');
 $("#close_report").click(function(){
 	report_ad_modal.style.display="none";
 });
+$('#reason').change(function(){
+        if(this.value=='Other'){
+			$("#reason2").show();
+		}
+    });
 
 function report_ad(id){
 	//alert(id);
-	
+	$("#report_id").val(id);
 	var report_ad_button=document.getElementById('report_ad_button');
 	var report_ad_success=document.getElementById('report_ad_success');
 	report_ad_modal.style.display = "block";
