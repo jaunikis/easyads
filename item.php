@@ -255,14 +255,14 @@ echo '<div class="item"><a onclick="large_photos('.$i.');" style="cursor:zoom-in
 			<p>Please select report reason.</p>
 			<form>
 				<input id="report_id" name="report_id" style="display:none"></input>
-				<p><select name="color" id="reason" class="form-control border-form">
+				<p><select name="reason" id="reason" class="form-control border-form">
 					<option value="0" disabled selected style="display: none;">Please choose</option>
 					<option>Wrong phone number</option>
 					<option>Inappropriate content</option>
 					<option onselect="alert('namas');">Other</option>
 				</select></p>
-				<p id="reason2" style="display:none">Please fill the reason: <input class="reason_input" type="text" name="reason2"></input></p>
-				<p><button id="report_ad_button" class="btn btn-warning">Report</button></p>
+				<p id="reason2" style="display:none">Please fill the reason: <input id="reason22" class="reason_input" type="text" name="reason2"></input></p>
+				<p><button type="button" id="report_ad_button2" class="btn btn-warning">Report</button></p>
 			</form>
 		</div>
 	</div>
@@ -277,8 +277,28 @@ $('#reason').change(function(){
         if(this.value=='Other'){
 			$("#reason2").show();
 		}
-    });
-
+});
+$("#report_ad_button2").click(function(){
+	var reason=$("#reason").val();
+	var reason2=$("#reason22").val();
+	var id='<?php echo $id;?>';
+	if(reason==null){return}
+	//alert(reason);
+	$.ajax({
+		type: "POST",
+		data: {id:id,reason:reason,reason2:reason2},
+		url: "/easyads/incl/report_ad.php",
+		success: function(msg){
+			//$("#wait").hide();
+			//$("#darken").hide();
+			//alert(msg);
+			report_ad_modal.style.display = "none";
+			//window.location = "/easyads/items?item="+msg;
+			//document.getElementById("forma").submit();
+		}
+	});
+});
+	
 function report_ad(id){
 	//alert(id);
 	$("#report_id").val(id);
