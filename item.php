@@ -107,7 +107,10 @@ include('reklama.php');
                         <div class="item single-ads top-space">
                            <div class="item-ads-grid icon-blue">
 						   <button id="report_ad_button" onclick="report_ad(<?php echo $id;?>);" class="report_ad_button btn btn-warning btn-xs">Report Ad</button>
-						   
+						   <div id="report_success" style="display:none;" class="report_ad_button alert alert-success alert-dismissable fade in">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							<strong>Thank you!</strong> This advert will be reviewed.
+						  </div>
                               <div class="item-title">
                                  
                                     <h2><?php echo $title;?></h2>
@@ -270,6 +273,7 @@ echo '<div class="item"><a onclick="large_photos('.$i.');" style="cursor:zoom-in
 	  <img id="wait" style="display:none;" class="waitas" src='/easyads/images/loading3.gif'/>
 <script>
 var report_ad_modal=document.getElementById('report_ad_modal');
+
 $("#close_report").click(function(){
 	report_ad_modal.style.display="none";
 });
@@ -292,6 +296,10 @@ $("#report_ad_button2").click(function(){
 			//$("#wait").hide();
 			//$("#darken").hide();
 			//alert(msg);
+			$("#report_ad_button2").hide();
+			$("#report_ad_button").hide();
+			$("#report_success").show();
+			//setTimeout('', 2000);
 			report_ad_modal.style.display = "none";
 			//window.location = "/easyads/items?item="+msg;
 			//document.getElementById("forma").submit();
@@ -305,6 +313,8 @@ function report_ad(id){
 	var report_ad_button=document.getElementById('report_ad_button');
 	var report_ad_success=document.getElementById('report_ad_success');
 	report_ad_modal.style.display = "block";
+	
+	
 	
 	
 }
