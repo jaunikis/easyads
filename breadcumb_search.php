@@ -4,6 +4,9 @@ $location='All Locations';
 if(isset($_SESSION['s_location'])){$location=$_SESSION['s_location'];}
 $search='';
 if(isset($_SESSION['search'])){$search=$_SESSION['search'];}
+
+$string = file_get_contents("categories-list.txt");
+$json = json_decode($string, true);
 ?>    
 	
 	
@@ -19,8 +22,10 @@ if(isset($_SESSION['search'])){$search=$_SESSION['search'];}
                         <select name="location" class="form-control input-lg search-form">
                            <option selected=""><?php echo $location; ?></option>
             <?php
-				for($i=0;$i<count($locations);$i++){
-					echo '<option>'.$locations[$i].'</option>';
+				for($i=0;$i<count($json["locations"]);$i++){
+					echo '<option ';
+					if($json["locations"][$i]==$location){echo 'selected';}
+					echo'>'.$json["locations"][$i].'</option>';
 				}
             ?>
                         </select>

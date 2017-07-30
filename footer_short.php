@@ -5,7 +5,7 @@
                <div class="row">
                   <div class="col-md-12">
                      <div class="site-info pull-left">
-                        <p>All Copyrights Reserved @ 2017 - Made with <i class="fa fa-heart"></i> by <a target="_blank" href="http://www.mariusvorosilovas.com/">mvmedia</a></p>
+                        <p>All Copyrights Reserved @ 2017 - Made by <a target="_blank" href="http://www.mv-media.com/">mvmedia</a></p>
                      </div>
                      <div class="bottom-social-icons social-icon pull-right">  
                         <a href="#" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a> 

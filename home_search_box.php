@@ -1,30 +1,43 @@
       <!-- Search Box -->
+<?php
+$location='All Locations';
+if(isset($_SESSION['s_location'])){$location=$_SESSION['s_location'];}
+$search='';
+if(isset($_SESSION['search'])){$search=$_SESSION['search'];}
+
+$string = file_get_contents("categories-list.txt");
+$json = json_decode($string, true);
+?>    
       <section class="search-box">
          <div class="container">
             <div class="row">
                <div class="main-search-box text-center">
                   <h1 class="intro-title" >Sell or Advertise everything online with Easyads.ie classified</h1>
                   <p class="sub-title">Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and more</p>
-                  <form>
+                  <form action="/easyads/items">
                      <div class="col-md-4 col-sm-4 search-input">
-                        <input type="text" placeholder="What are you looking for...?" class="form-control input-lg search-form">
+                        <input name="search" type="text" placeholder="What are you looking for...?" class="form-control input-lg search-form">
                      </div>
 					 <div class="col-md-3 col-sm-3 search-input">
-                        <select class="form-control input-lg search-form">
+                        <select name="cat1" class="form-control input-lg search-form">
                            <option selected="">All Category</option>
             <?php
-				for($i=0;$i<count($category1);$i++){
-					echo '<option>'.$category1[$i].'</option>';
+				for($i=0;$i<count($json['cat1']);$i++){
+					echo '<option ';
+					//if($json['cat1'][$i]==$cat1){echo 'selected';}
+				echo '>'.$json['cat1'][$i].'</option>';
 				}
             ?>
                         </select>
                      </div>
                      <div class="col-md-3 col-sm-3 search-input">
-                        <select class="form-control input-lg search-form">
-                           <option selected="">All Location</option>
+                        <select name="location" class="form-control input-lg search-form">
+                           <option selected="">All Locations</option>
             <?php
-				for($i=0;$i<count($locations);$i++){
-					echo '<option>'.$locations[$i].'</option>';
+				for($i=0;$i<count($json["locations"]);$i++){
+					echo '<option ';
+					//if($json["locations"][$i]==$location){echo 'selected';}
+					echo'>'.$json["locations"][$i].'</option>';
 				}
             ?>
                         </select>

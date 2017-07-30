@@ -262,6 +262,7 @@ echo '<div class="item"><a onclick="large_photos('.$i.');" style="cursor:zoom-in
 					<option value="0" disabled selected style="display: none;">Please choose</option>
 					<option>Wrong phone number</option>
 					<option>Inappropriate content</option>
+					<option>Item sold</option>
 					<option onselect="alert('namas');">Other</option>
 				</select></p>
 				<p id="reason2" style="display:none">Please fill the reason: <input id="reason22" class="reason_input" type="text" name="reason2"></input></p>
